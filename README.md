@@ -22,3 +22,7 @@
    git revert是针对远端，通过提交一个新的commit,**撤销某几个commit**（新的commit的改动就是之前的反操作） <br />  
 
     
+## Linux
+   
+   ### NFS与rpcbind
+   https://www.cnblogs.com/me80/p/7464125.html
