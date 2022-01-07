@@ -26,3 +26,8 @@
    
    ### NFS与rpcbind
    https://www.cnblogs.com/me80/p/7464125.html
+   
+   ### env与 bashrc,profile
+   env的东西保存在bashrc和profile里面。
+   bashrc和profile在/etc和/home中都存在一份，/home中的相同内容会覆盖/etc中的。bashrc和profile本身也稍有区别
+   https://cloud.tencent.com/developer/article/1174426
