@@ -37,4 +37,4 @@
    
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0
-   https://www.zhihu.com/question/399087116
+   为什么value不作为弱引用   https://www.zhihu.com/question/399087116
