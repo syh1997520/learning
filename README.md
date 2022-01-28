@@ -38,3 +38,8 @@
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0
    为什么value不作为弱引用   https://www.zhihu.com/question/399087116
+   
+   ### 序列化
+   writeObject readObject来实现手动的存储与读取
+   transient声明的对象不主动序列化
+   
