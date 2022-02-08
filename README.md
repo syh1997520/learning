@@ -49,6 +49,9 @@
    ### this
    this有显示绑定，隐式绑定等概念，在react中使用时会涉及到bind等行为 https://www.cnblogs.com/DM428/p/7777539.html    
    怎么写bind比较优雅   https://blog.csdn.net/flytam/article/details/104760202  
+   ### package.json与package-lock.json
+   package.json类似于pom文件，package-lock是用来锁定版本号的
+   在npm install时，如果lock与packgae版本兼容，则依据lock.不兼容则更新lock
 ## 网络安全
    ### ddos
    http://www.ruanyifeng.com/blog/2018/06/ddos.html
