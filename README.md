@@ -45,6 +45,7 @@
    
 ## 前端相关
    ### eslint
+   是一个第三方插件，用来查看前端代码不规范的地方   使用方法：https://blog.csdn.net/guang_s/article/details/90231312
    ### prettier
    ### this
    this有显示绑定，隐式绑定等概念，在react中使用时会涉及到bind等行为 https://www.cnblogs.com/DM428/p/7777539.html    
