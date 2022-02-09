@@ -49,8 +49,11 @@
    每个浏览器提供操作dom bom的api
    ### node.js
    每个浏览器都有自己的解释引擎，所以可以识别js代码
+   
    node.js可以让js代码做后端开发。本质是js的运行环境.通过  node js路径  指向js文件
+   
    内置模块fs,path,http等，模块的本质就是js文件
+   
    module:自定义模块的全局对象，当别的模块通过require引入其他模块时，实际就是获得该模块的module.export对象(为了书写方便，export和module.export等价)
    ### eslint
    是一个第三方插件，用来查看前端代码不规范的地方   使用方法：https://blog.csdn.net/guang_s/article/details/90231312
