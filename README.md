@@ -74,7 +74,7 @@
    ### react
    将数据渲染成视图的工具<br /> 
    传统的操作dom会造成浏览器多次渲染，效率低<br /> 
-   react采用组件化模式，声明式编码，以及虚拟dom,减少与真实dom的交互(可以实现dom复用等功能)<br /> 
+   react采用组件化模式，声明式编码，以及虚拟dom,减少与真实dom的交互(可以实现dom复用等功能).虚拟dom的本质是个object<br />
    react中使用jsx
    ### babel
    将jsx转换为js
