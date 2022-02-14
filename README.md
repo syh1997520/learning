@@ -70,6 +70,7 @@
    ES6标准发布后，module成为标准，标准使用是以export指令导出接口，以import引入模块。import和export时都是到node_module文件夹中<br /> 
    ### react
    将数据渲染成视图的工具
+   传统的操作dom会造成浏览器多次渲染，效率低
    ### eslint
    是一个第三方插件，用来查看前端代码不规范的地方   使用方法：https://blog.csdn.net/guang_s/article/details/90231312
    ### prettier
