@@ -32,6 +32,9 @@
    bashrc和profile在/etc和/home中都存在一份，/home中的相同内容会覆盖/etc中的。bashrc和profile本身也稍有区别
    https://cloud.tencent.com/developer/article/1174426
    
+   ### 正则
+   (.+)与(.+?)： (.+)默认是贪婪匹配 (.+?)为惰性匹配   https://www.cnblogs.com/ysk123/p/9896850.html
+   
    
 ## JAVA
    
