@@ -65,14 +65,17 @@
    
    ### yarn
    Yarn是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具 ，正如官方文档中写的，Yarn 是为了弥补 npm 的一些缺陷而出现的。<br /> 
+   ### ES6
+   es类似于js中jdk版本的存在
+   https://www.jianshu.com/p/7c35993b7bb3
    ### commonjs,ES6,import和require
-   esx类似于jdk
    commonjs和es6是两个关于模块化的标准  ：https://www.jianshu.com/p/58f49f69a2fb	<br /> 
    ES6标准发布后，module成为标准，标准使用是以export指令导出接口，以import引入模块。import和export时都是到node_module文件夹中<br /> 
    ### react
    将数据渲染成视图的工具<br /> 
    传统的操作dom会造成浏览器多次渲染，效率低<br /> 
    react采用组件化模式，声明式编码，以及虚拟dom,减少与真实dom的交互(可以实现dom复用等功能)<br /> 
+   react中使用jsx
    ### eslint
    是一个第三方插件，用来查看前端代码不规范的地方   使用方法：https://blog.csdn.net/guang_s/article/details/90231312
    ### prettier
