@@ -81,13 +81,13 @@
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
    动态资源：需要程序处理或者从数据库中读数据，能够根据不同的条件在页面显示不同的数据，内容更新不需要修改页面但是访问速度不及静态页面。<br />
    
-### 跨域问题，cors
+   ### 跨域问题，cors
    只要协议，域名，端口号，有一个不一样，就会产生跨域问题<br />
    通常可以通过cors或者jsonp两个办法绕开跨域（jsonp由于只能用于get请求等原因，已经弃用）<br />
    cors通过给被调用方response的head中添加Access-Control-Allow-Origin 等字段允许跨域访问（如果response中没有这个头，浏览器会拦截这个数据，所以也可以通过在浏览器端配置跨域使跨域生效）<br />
    cors请求的类型： https://www.bilibili.com/video/BV1a34y167AZ?p=55<br />
 
-     ### express
+   ### express
    一个基于Nodejs的http包，可以轻松的实现api服务器，和静态服务器的功能 （静态服务器既将html,css等允许直接访问）  <br />
    url中，localhost:8080/usr?name=10  这种查询，叫做query式url   localhost:8080/usrname=10   这种叫做param式<br />
    express中的路由是模块化的。既一个路由是由多个js文件注册在一起的。<br />
