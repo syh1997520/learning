@@ -76,6 +76,8 @@
    传统的操作dom会造成浏览器多次渲染，效率低<br /> 
    react采用组件化模式，声明式编码，以及虚拟dom,减少与真实dom的交互(可以实现dom复用等功能)<br /> 
    react中使用jsx
+   ### babel
+   将jsx转换为js
    ### eslint
    是一个第三方插件，用来查看前端代码不规范的地方   使用方法：https://blog.csdn.net/guang_s/article/details/90231312
    ### prettier
