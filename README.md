@@ -82,8 +82,12 @@
     jsx可以理解为类似于xml的js语法，是render函数中使用的语法。它与js有一些小的语法区别   https://www.bilibili.com/video/BV1wy4y1D7JT?p=5
     其中一个规则是组件名称开头要大写
     react中的虚拟节点中，可以使用表达式（表达式与语句的区别： https://www.bilibili.com/video/BV1wy4y1D7JT?p=6   最简单的区别就是有无返回值）
- - react组件<br /> 
+  - react组件<br /> 
     实现局部功能效果的代码和资源的集合 。react中的组件化，把一个页面的区域分成几个部分，每个区域用一个组件表示。分为函数式组件和类式组件<br /> 
+  - 函数组件<br /> 
+    通过function xxx(){return xxx} 定义, 函数组件中的this是window
+  - 类组件  <br />
+    class xxx extends React.Components(){render() {} }      必须有render函数。class中的this指向实例对象
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
