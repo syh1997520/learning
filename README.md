@@ -88,6 +88,10 @@
     通过function xxx(){return xxx} 定义, 函数组件中的this是window
   - 类组件  <br />
     class xxx extends React.Components(){render() {} }      必须有render函数。class中的this指向实例对象
+  - state <br/>
+    数据存放在state中，state用来驱动页面。通过构造函数初始化<br/>
+    如果一个组件有state,就是复杂组件。<br/>
+    函数组件不能携带state.<br/>
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
