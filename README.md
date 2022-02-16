@@ -115,7 +115,7 @@
     一个热重启的插件，使用nodemon xx.js  启动js文件，可以在保存后自动重启项目<br />
 
    ###  js语法相关
-   call()方法： 改变函数的所有者  https://www.w3school.com.cn/js/js_function_call.asp
+   call()方法： 改变函数的所有者(也可以理解为改变调用时的this)  https://www.w3school.com.cn/js/js_function_call.asp
    
    ### eslint
    是一个第三方插件，用来查看前端代码不规范的地方   使用方法：https://blog.csdn.net/guang_s/article/details/90231312<br />
