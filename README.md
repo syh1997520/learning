@@ -89,14 +89,14 @@
   - 类组件  <br />
     class xxx extends React.Components(){render() {} }      必须有render函数。class中的this指向实例对象
    - prototype、__proto__与constructor
-   实例和原型是两个相反的概念
-   https://blog.csdn.net/cc18868876837/article/details/81211729   图片
-   https://zhuanlan.zhihu.com/p/130503924
-   student.__proto__ === Student.prototype
-   __proto__:    __proto__指向了实例对象的原型对象；当你访问一个对象上没有的属性时，对象就会去__proto__上面找，如果还是找不到，就会继续找原型对象的__proto__，直到原型对象为null；因此__proto__构成了一条原型链。
-   prototype:   prototype是从一个函数指向一个对象，即函数才有prototype属性。这个函数所创建的实例的原型对象.它的作用是让该构造函数创建的所有实例对象们都能找到公用的属性和方法。任何函数在创建实例对象的时候，其实会关联该函数的prototype对象
-   constructor:  constructor属性也是对象才拥有的，它是从一个对象指向一个函数，含义就是指向该对象的构造函数 
-   把方法写在构造函数的内部，增加了通过构造函数初始化一个对象的成本（内存占用，因为两个实例对象就创建了两个一样的方法），把方法写在prototype属性上就有效的减少了这种成本
+   实例和原型是两个相反的概念  <br />
+   https://blog.csdn.net/cc18868876837/article/details/81211729   图片 <br />
+   https://zhuanlan.zhihu.com/p/130503924 <br />
+   student.__proto__ === Student.prototype <br />
+   __proto__:    __proto__指向了实例对象的原型对象；当你访问一个对象上没有的属性时，对象就会去__proto__上面找，如果还是找不到，就会继续找原型对象的__proto__，直到原型对象为null；因此__proto__构成了一条原型链。<br />
+   prototype:   prototype是从一个函数指向一个对象，即函数才有prototype属性。这个函数所创建的实例的原型对象.它的作用是让该构造函数创建的所有实例对象们都能找到公用的属性和方法。任何函数在创建实例对象的时候，其实会关联该函数的prototype对象<br />
+   constructor:  constructor属性也是对象才拥有的，它是从一个对象指向一个函数，含义就是指向该对象的构造函数 <br />
+   把方法写在构造函数的内部，增加了通过构造函数初始化一个对象的成本（内存占用，因为两个实例对象就创建了两个一样的方法），把方法写在prototype属性上就有效的减少了这种成本<br />
 
   - state <br/>
     数据存放在state中，state用来驱动页面。通过构造函数初始化<br/>
