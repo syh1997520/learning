@@ -47,6 +47,8 @@
    transient声明的对象不主动序列化<br /> 
    
 ## 前端相关
+   ### mdn
+   web开发手册，包含js的使用规则等等
    ### DOM与BOM
    BOM是浏览器对象模型，DOM是文档对象模型，前者是对浏览器本身进行操作，而后者是对浏览器（可看成容器）内的内容进行操作<br /> 
    每个浏览器提供操作dom bom的api<br /> 
@@ -71,6 +73,28 @@
    ### commonjs,ES6,import和require
    commonjs和es6是两个关于模块化的标准  ：https://www.jianshu.com/p/58f49f69a2fb	<br /> 
    ES6标准发布后，module成为标准，标准使用是以export指令导出接口，以import引入模块。import和export时都是到node_module文件夹中<br /> 
+   ### 语法糖
+   用更简练的言语表达较复杂的含义。在得到广泛接受的情况之下，可以提升交流的效率。
+   ### 定时器
+   setinterval(function,time)   启动一个定时器，定时执行。 一般需要在创建时接收对象，使用clearInterval清除定时器
+   ### prototype、__proto__与constructor
+   实例和原型是两个相反的概念  <br />
+   https://blog.csdn.net/cc18868876837/article/details/81211729   图片 <br />
+   https://zhuanlan.zhihu.com/p/130503924 <br />
+   student.__proto__ === Student.prototype <br />
+   __proto__:    __proto__指向了实例对象的原型对象；当你访问一个对象上没有的属性时，对象就会去__proto__上面找，如果还是找不到，就会继续找原型对象的__proto__，直到原型对象为null；因此__proto__构成了一条原型链。<br />
+   prototype:   prototype是从一个函数指向一个对象，即函数才有prototype属性。这个函数所创建的实例的原型对象.它的作用是让该构造函数创建的所有实例对象们都能找到公用的属性和方法。任何函数在创建实例对象的时候，其实会关联该函数的prototype对象<br />
+   constructor:  constructor属性也是对象才拥有的，它是从一个对象指向一个函数，含义就是指向该对象的构造函数 <br />
+   把方法写在构造函数的内部，增加了通过构造函数初始化一个对象的成本（内存占用，因为两个实例对象就创建了两个一样的方法），把方法写在prototype属性上就有效的减少了这种成本<br />
+   属性写在实例里，方法写在原型
+  ### 箭头函数和普通函数区别
+   箭头函数的this是不变的，指向定义时的this. 普通函数的this是随着调用者改变的
+   ### promise<br /> 
+    类似于java中的callable接口，用于异步调用  https://www.cnblogs.com/superSmile/p/8406037.html
+   ### 属性的赋值
+   属性的赋值有两种方式： obj.name='xiao'  obj[name] ='xiao'
+   object[key]=>key为常量时，object[key]等价于object.key，例如：a.b == a['b']
+   特殊的，object[key]=>key为变量时，只能用中括号形式
    ### react
    将数据渲染成视图的工具<br /> 
    传统的操作dom会造成浏览器多次渲染，效率低<br /> 
@@ -88,25 +112,29 @@
     通过function xxx(){return xxx} 定义, 函数组件中的this是window
   - 类组件  <br />
     class xxx extends React.Components(){render() {} }      必须有render函数。class中的this指向实例对象
-   - prototype、__proto__与constructor
-   实例和原型是两个相反的概念  <br />
-   https://blog.csdn.net/cc18868876837/article/details/81211729   图片 <br />
-   https://zhuanlan.zhihu.com/p/130503924 <br />
-   student.__proto__ === Student.prototype <br />
-   __proto__:    __proto__指向了实例对象的原型对象；当你访问一个对象上没有的属性时，对象就会去__proto__上面找，如果还是找不到，就会继续找原型对象的__proto__，直到原型对象为null；因此__proto__构成了一条原型链。<br />
-   prototype:   prototype是从一个函数指向一个对象，即函数才有prototype属性。这个函数所创建的实例的原型对象.它的作用是让该构造函数创建的所有实例对象们都能找到公用的属性和方法。任何函数在创建实例对象的时候，其实会关联该函数的prototype对象<br />
-   constructor:  constructor属性也是对象才拥有的，它是从一个对象指向一个函数，含义就是指向该对象的构造函数 <br />
-   把方法写在构造函数的内部，增加了通过构造函数初始化一个对象的成本（内存占用，因为两个实例对象就创建了两个一样的方法），把方法写在prototype属性上就有效的减少了这种成本<br />
-   属性写在实例里，方法写在原型
-
-  - state <br/>
+  - 周期函数
+    周期函数中的mount代表的是组件mount到节点上
+    初始周期： constructor----willmount-----render-----didmount
+    更新周期：（触发点1  父组件修改props）-------willreceiveProps------(触发点2 setState)-----shouldUpdate(返回boolean，类似拦截器)-----（触发点3 forceupdate）-------willUpdate----render-----Didupdate
+    新版本中与will相关的生命周期都不推荐使用了  
+    getderivedStateFromProps  使state永远从props获取  （基本不用）
+    getSnapshotOfState(更新时使用，将返回值传给didUpdate)
+- state <br/>
     数据存放在state中，state用来驱动页面。通过构造函数初始化<br/>
     如果一个组件有state,就是复杂组件。<br/>
     函数组件不能携带state.<br/>
   - props<br/>
-    用于在创建组件时传值
-   - 事件绑定  <br />
+    用于在创建组件时传值。 props是只读的 <br/>
+    函数组件也可以使用props. 在函数内部通过const去接收props的值 <br/>
+   - refs<br/>
+    组件实例拥有ref属性。 <br/>
+     由于react不操作dom,所以用ref来获得某个标签（可以理解为id）,使用ref获得的dom是真实dom<br/>
+     有三种使用方式：  1. 字符串类型  ref="input1" （效率比较低，已不推荐使用）  2.  回调函数形式  ref= (currentNode) => this.input1 = currentNode  (将真实dom绑定到this的某个属性上，由React自己调用，但是当重新渲染时，会调用两次该方法)  3.  createRef法：  a = React.createRef  然后将ref = a
+    尽量不要写ref,比如同一个input上，需要在事件时获取自己的值，可以在event中取到
+  - 事件绑定  <br />
     绑定事件时要写方法名，不要携带括号。携带括号意味调用函数，也就是把函数的值返回
+   -  react构造函数
+    主要做一件事： 给state设置初始值；  但是如果写了构造函数，要记得写super(props)
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
