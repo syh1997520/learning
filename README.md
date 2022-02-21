@@ -130,11 +130,17 @@
     组件实例拥有ref属性。 <br/>
      由于react不操作dom,所以用ref来获得某个标签（可以理解为id）,使用ref获得的dom是真实dom<br/>
      有三种使用方式：  1. 字符串类型  ref="input1" （效率比较低，已不推荐使用）  2.  回调函数形式  ref= (currentNode) => this.input1 = currentNode  (将真实dom绑定到this的某个属性上，由React自己调用，但是当重新渲染时，会调用两次该方法)  3.  createRef法：  a = React.createRef  然后将ref = a
-    尽量不要写ref,比如同一个input上，需要在事件时获取自己的值，可以在event中取到
+     尽量不要写ref,比如同一个input上，需要在事件时获取自己的值，可以在event中取到<br/>
   - 事件绑定  <br />
-    绑定事件时要写方法名，不要携带括号。携带括号意味调用函数，也就是把函数的值返回
+    绑定事件时要写方法名，不要携带括号。携带括号意味调用函数，也就是把函数的值返回<br/>
    -  react构造函数
-    主要做一件事： 给state设置初始值；  但是如果写了构造函数，要记得写super(props)
+    主要做一件事： 给state设置初始值；  但是如果写了构造函数，要记得写super(props)<br/>
+   -  react-creator脚手架
+    帮助你快速新建一个项目<br/>
+    初始构建好有以下文件夹：  node_modules, public(存放静态文件,内含index.html，是react项目唯一的html文件),src(js文件等)<br/>
+   - proxy
+     1.   在package.json中配置proxy,改变请求的指向（将前端的请求指向服务器，解决跨域问题，请求会先看前端是否有相应资源，没有再去请求后端） 缺点：只能配一个proxy
+      2.   如果需要配置多个proxy的话，可以用middleware
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
@@ -170,3 +176,7 @@
 ## 网络安全
    ### ddos
    http://www.ruanyifeng.com/blog/2018/06/ddos.html
+## Redis
+   ### 默认配置
+   redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
+   过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除
