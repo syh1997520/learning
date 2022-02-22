@@ -140,15 +140,15 @@
      尽量不要写ref,比如同一个input上，需要在事件时获取自己的值，可以在event中取到<br/>
   - 事件绑定  <br />
     绑定事件时要写方法名，不要携带括号。携带括号意味调用函数，也就是把函数的值返回<br/>
-  -  react构造函数
+  -  react构造函数<br/>
     主要做一件事： 给state设置初始值；  但是如果写了构造函数，要记得写super(props)<br/>
-  -  react-creator脚手架
+  -  react-creator脚手架<br/>
     帮助你快速新建一个项目<br/>
     初始构建好有以下文件夹：  node_modules, public(存放静态文件,内含index.html，是react项目唯一的html文件),src(js文件等)<br/>
-  - proxy
+  - proxy<br/>
      1.   在package.json中配置proxy,改变请求的指向（将前端的所以请求指向某个url，解决跨域问题） 缺点：只能配一个proxy
      2.   如果需要配置多个proxy的话，可以用middleware
-  - react路由
+  - react路由<br/>
      路由就是key-value的关系，不同的path对应不同的组件或函数
      原理是bom中含有hisyory属性，是一个栈，history.push会改变path。然后可以给这个栈设置监听事件
    ### 静态页面，动态页面
