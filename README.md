@@ -126,29 +126,29 @@
     新版本中与will相关的生命周期都不推荐使用了  
     getderivedStateFromProps  使state永远从props获取  （基本不用）
     getSnapshotOfState(更新时使用，将返回值传给didUpdate)
-- state <br/>
+  - state <br/>
     数据存放在state中，state用来驱动页面。通过构造函数初始化<br/>
     如果一个组件有state,就是复杂组件。<br/>
     函数组件不能携带state.<br/>
   - props<br/>
     用于在创建组件时传值。 props是只读的 <br/>
     函数组件也可以使用props. 在函数内部通过const去接收props的值 <br/>
-   - refs<br/>
+  - refs<br/>
     组件实例拥有ref属性。 <br/>
      由于react不操作dom,所以用ref来获得某个标签（可以理解为id）,使用ref获得的dom是真实dom<br/>
      有三种使用方式：  1. 字符串类型  ref="input1" （效率比较低，已不推荐使用）  2.  回调函数形式  ref= (currentNode) => this.input1 = currentNode  (将真实dom绑定到this的某个属性上，由React自己调用，但是当重新渲染时，会调用两次该方法)  3.  createRef法：  a = React.createRef  然后将ref = a
      尽量不要写ref,比如同一个input上，需要在事件时获取自己的值，可以在event中取到<br/>
   - 事件绑定  <br />
     绑定事件时要写方法名，不要携带括号。携带括号意味调用函数，也就是把函数的值返回<br/>
-   -  react构造函数
+  -  react构造函数
     主要做一件事： 给state设置初始值；  但是如果写了构造函数，要记得写super(props)<br/>
-   -  react-creator脚手架
+  -  react-creator脚手架
     帮助你快速新建一个项目<br/>
     初始构建好有以下文件夹：  node_modules, public(存放静态文件,内含index.html，是react项目唯一的html文件),src(js文件等)<br/>
-   - proxy
+  - proxy
      1.   在package.json中配置proxy,改变请求的指向（将前端的所以请求指向某个url，解决跨域问题） 缺点：只能配一个proxy
      2.   如果需要配置多个proxy的话，可以用middleware
-   - react路由
+  - react路由
      路由就是key-value的关系，不同的path对应不同的组件或函数
      原理是bom中含有hisyory属性，是一个栈，history.push会改变path。然后可以给这个栈设置监听事件
    ### 静态页面，动态页面
