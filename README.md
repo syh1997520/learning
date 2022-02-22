@@ -139,7 +139,7 @@
     帮助你快速新建一个项目<br/>
     初始构建好有以下文件夹：  node_modules, public(存放静态文件,内含index.html，是react项目唯一的html文件),src(js文件等)<br/>
    - proxy
-     1.   在package.json中配置proxy,改变请求的指向（将前端的请求指向服务器，解决跨域问题，请求会先看前端是否有相应资源，没有再去请求后端） 缺点：只能配一个proxy
+     1.   在package.json中配置proxy,改变请求的指向（将前端的所以请求指向某个url，解决跨域问题） 缺点：只能配一个proxy
       2.   如果需要配置多个proxy的话，可以用middleware
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
