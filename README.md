@@ -45,11 +45,17 @@
    为什么value不作为弱引用   https://www.zhihu.com/question/399087116<br />  
    
    ### java http请求
-   feign
+   feign<br />
+
+   ### IO操作
+   - inputWriter<br />
+   创建inputWriter对象时，需要传一个boolean参数，用来控制是否为追加输入(默认false)<br />
    
    ### 序列化
    writeObject readObject来实现手动的存储与读取<br /> 
-   transient声明的对象不主动序列化<br /> 
+   transient声明的对象不主动序列化<br />
+   ### JVM
+
    
 ## 前端相关
    ### mdn
@@ -107,6 +113,8 @@
    传统的操作dom会造成浏览器多次渲染，效率低<br /> 
    react采用组件化模式，声明式编码，以及虚拟dom,减少与真实dom的交互(可以实现dom复用等功能).虚拟dom的本质是个object<br />
    react生成li标签时，建议携带唯一的key<br />
+  - 教程<br />
+    https://www.bilibili.com/video/BV1wy4y1D7JT?p=95<br />
   - babel<br /> 
     将jsx转换为js<br />
   - jsx<br /> 
@@ -146,11 +154,14 @@
     帮助你快速新建一个项目<br/>
     初始构建好有以下文件夹：  node_modules, public(存放静态文件,内含index.html，是react项目唯一的html文件),src(js文件等)<br/>
   - proxy<br/>
-     1.   在package.json中配置proxy,改变请求的指向（将前端的所以请求指向某个url，解决跨域问题） 缺点：只能配一个proxy
-     2.   如果需要配置多个proxy的话，可以用middleware
+     1.   在package.json中配置proxy,改变请求的指向（将前端的localhost:3000(启动端口)的请求指向某个url，主要是为了解决跨域问题） 缺点：只能配一个proxy<br/>
+     2.   如果需要配置多个proxy的话，可以用middleware<br/>
   - react路由<br/>
-     路由就是key-value的关系，不同的path对应不同的组件或函数
-     原理是bom中含有hisyory属性，是一个栈，history.push会改变path。然后可以给这个栈设置监听事件
+     路由就是key-value的关系，不同的path对应不同的组件或函数<br/>
+     原理是bom中含有hisyory属性，是一个栈，history.push会改变path。然后可以给这个栈设置监听事件<br/>
+     通过react-router插件实现
+  - UI框架
+     antd  蚂蚁出品
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
