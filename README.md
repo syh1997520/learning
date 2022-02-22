@@ -189,4 +189,7 @@
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
-   过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除
+   过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）
+   ### redission使用手册
+   https://www.bookstack.cn/read/redisson-wiki-zh
+  
