@@ -37,7 +37,8 @@
    
    
 ## JAVA
-   
+   ### ClassPath
+   在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br />  
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0<br />  
    为什么value不作为弱引用   https://www.zhihu.com/question/399087116<br />  
