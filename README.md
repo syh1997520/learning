@@ -159,9 +159,14 @@
   - react路由<br/>
      路由就是key-value的关系，不同的path对应不同的组件或函数<br/>
      原理是bom中含有hisyory属性，是一个栈，history.push会改变path。然后可以给这个栈设置监听事件<br/>
-     通过react-router插件实现
+     通过react-router插件实现<br/>
+  - hook
+     在函数式组件中是不能使用state,周期函数等概念的，但是可以通过hook实现类似效果<br/>
+     useState: 返回一个state，以及更新state的函数  https://blog.csdn.net/wu_xianqiang/article/details/105181044   useState有一个坑，React 官方文档提到：组件内部的任何函数，包括事件处理函数和 Effect，都是从它被创建的那次渲染中被「看到」的，所以引用的值任然是旧的，最后导致 setState 出现异常  https://www.cnblogs.com/hymenhan/p/14991789.html
+     useEffect： 类似于周期函数  https://www.jianshu.com/p/6e525c3686ab
+     useRef:  类似于REF  https://blog.csdn.net/hjc256/article/details/102587037
   - UI框架
-     antd  蚂蚁出品
+     antd  蚂蚁出品<br/>
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
