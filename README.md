@@ -37,6 +37,9 @@
    
    
 ## JAVA
+
+   ### javaHome
+   javahome配置在path中的顺序可能会影响配置效果<br /> 
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br />  
    
@@ -55,7 +58,38 @@
    writeObject readObject来实现手动的存储与读取<br /> 
    transient声明的对象不主动序列化<br />
    ### JVM
-
+    #### JVM内存模型
+     ##### 栈
+     - TLAB (Thread Local Allocation Buffer)
+     JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.
+     https://blog.csdn.net/xiaomingdetianxia/article/details/77688945
+    #### JVM调优
+     ##### 调优指标
+     1. stw时间   
+     2. 吞吐量（运行时间与总时间的比值）
+     3. 并发数
+     ##### JVM监控命令
+     - JPS (java process status)
+      显示java进程的进程号，类似于linux的ps命令,可以在启动时 -XX:-UsePerfData 使jps无法检测到该进程
+      -q :只显示id   -l: 显示进程完整名称  -v: 显示jvm启动参数 
+     - JSTAT (JVM statictics monitor tool) 
+       用于监控jvm状态的命令，没有gui时使用 
+       interval: 查询间隔(默认只查询一次)  count: 设置查询总次数  -t: 显示程序运行总时间
+       类加载参数： -class: 显示类装载信息
+       编译器相关参数:   
+       垃圾回收相关参数：-gc 显示各区域总大小和当前容量，gc次数，时间等  （根据运行时间与gc时间比值，20%以上说明有些压力，90%则随时可能oom;  如果ou列一直不断上生，怀疑是不是内存泄漏）
+     - JINFO (configuration info for java) 
+       用于查看或修改jvm参数 (openjdk8似乎有bug,无法使用jinfo)
+       查看参数： -sysprops: 查看system.props的值   -flags: 查看非默认值的参数  -flag: 查看某个参数的值
+       修改参数： -flag: 能修改的参数很有限
+     - JMAP(JVM memory map)
+       用于生成dump文件(快照，记录了堆信息等)
+       手动： jmap -dump:live,format=b,file=$(path) PID  只保存存活的对象 (手动生成的dump并不是实时的，需要等线程达到安全点才能停止)
+       自动： 通过配置jvm参数，在即将oom之前自动触发，自动生成快照  -xx:+HEAPDUMP...  -xx:HEAPDUMPPATH=... 
+       
+## MAVEN
+   ### 与idea的坑
+   idea版本需要与maven版本适应才能在idea中使用
    
 ## 前端相关
    ### mdn
