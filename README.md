@@ -69,7 +69,7 @@
 1. stw时间   
 2. 吞吐量（运行时间与总时间的比值）
 3. 并发数
-##### JVM监控命令
+##### JVM监控命令(命令行版)
 - JPS (java process status)
  显示java进程的进程号，类似于linux的ps命令,可以在启动时 -XX:-UsePerfData 使jps无法检测到该进程
  -q :只显示id   -l: 显示进程完整名称  -v: 显示jvm启动参数 
@@ -87,7 +87,13 @@
   用于生成dump文件(快照，记录了堆信息等)
   手动： jmap -dump:live,format=b,file=$(path) PID  只保存存活的对象 (手动生成的dump并不是实时的，需要等线程达到安全点才能停止)
   自动： 通过配置jvm参数，在即将oom之前自动触发，自动生成快照  -xx:+HEAPDUMP...  -xx:HEAPDUMPPATH=... 
-       
+- JSTACK
+  用于显示线程信息,显示各个线程的状态，可以发现死锁等问题
+  -l 额外显示锁信息  
+##### JVM监控命令(GUI)
+- visual vm
+  需要下载，手动配置java_home
+
 ## MAVEN
    ### 与idea的坑
    idea版本需要与maven版本适应才能在idea中使用
