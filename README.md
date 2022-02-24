@@ -38,7 +38,9 @@
 ## JAVA
 
    ### javaHome
-   javahome配置在path中的顺序可能会影响配置效果<br /> 
+   javahome配置在path中的顺序可能会影响配置效果<br />
+   ### javac
+   使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br />  
    
