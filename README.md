@@ -43,6 +43,18 @@
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br />  
+   ### 数组
+   arraylist每次扩容，扩一半长度
+   ### hashcode与equals
+   equals返回boolean,判断两个对象的是否相等
+   hashcode返回int,用于表示在hash表中的位置
+   ### hashmap
+   hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变
+   ### try-catch-with-resource
+   java7中的一种新语法，用于try-catch需要关闭资源时使用，很方便。只要资源实现了autoclose接口就可以使用
+   资源不释放可能导致连接无法断开，尽管有些连接操作会把关闭写在finalize里，但是会有不确定性
+   https://www.cnblogs.com/barrywxx/p/9993005.html  
+   https://blog.csdn.net/hengyunabc/article/details/18459463
    
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0<br />  
@@ -64,6 +76,18 @@
 - TLAB (Thread Local Allocation Buffer)
     JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.
     https://blog.csdn.net/xiaomingdetianxia/article/details/77688945
+#### 强软弱虚
+   软，弱引用都是在对象没有强引用的情况下发生的    
+#### JVM内存泄漏
+几个常见的场景：
+1. 静态集合： 静态属性的生命周期一般都是与jvm一样的，所以在设置静态属性时要三思，单例对象也属于这种情况
+2. 属性作用域不合理： 比如局部变量定义为了全局变量
+3. map中的key： 当map的key为对象时（string除外），可能会发生key泄露的事。可以使用weakedHashmap
+4. hashcode变化导致内存泄露： 如果hashcode是可变的，那么会出现无法remove掉set中存在的hashcode,所以一直有引用指向这个对象。 因此hashcode可以改变的对象，在使用哈希表时，要在Hash值改变之前先从Hash表移除
+当我们创建的引用不想去影响对象的生命周期时，就去使用弱/软引用
+在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(如果后续要进行遍历，则不能用weadxx)
+
+    
 #### JVM调优
 ##### 调优指标
 1. stw时间   
@@ -93,6 +117,7 @@
 ##### JVM监控命令(GUI)
 - visual vm
   需要下载，手动配置java_home
+  还可以 生成/读取 dump文件
 
 ## MAVEN
    ### 与idea的坑
