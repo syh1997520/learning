@@ -85,7 +85,7 @@
 3. map中的key： 当map的key为对象时（string除外），可能会发生key泄露的事。可以使用weakedHashmap
 4. hashcode变化导致内存泄露： 如果hashcode是可变的，那么会出现无法remove掉set中存在的hashcode,所以一直有引用指向这个对象。 因此hashcode可以改变的对象，在使用哈希表时，要在Hash值改变之前先从Hash表移除
 当我们创建的引用不想去影响对象的生命周期时，就去使用弱/软引用
-在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(如果后续要进行遍历，则不能用weadxx)
+在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(Collections.newSetFromMap();如果后续要进行遍历，则不能用weadxx)
 
     
 #### JVM调优
@@ -115,9 +115,12 @@
   用于显示线程信息,显示各个线程的状态，可以发现死锁等问题
   -l 额外显示锁信息  
 ##### JVM监控命令(GUI)
+- jmx
+- jstatd  
 - visual vm
   需要下载，手动配置java_home
   还可以 生成/读取 dump文件
+  远程监控：   https://www.cnblogs.com/jhxxb/p/13279201.html
 
 ## MAVEN
    ### 与idea的坑
@@ -278,4 +281,6 @@
    过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）
    ### redission使用手册
    https://www.bookstack.cn/read/redisson-wiki-zh
-  
+## tomcat
+   ### catalina.out
+   catalina.out用来存储控制台打印的信息即标准输入的目的地,在log4j中配置的consoleappender也会输入到此. 一般都含有gc信息（jdk默认在gc时会向控制台输出信息，可以通过jvm potion关闭）
