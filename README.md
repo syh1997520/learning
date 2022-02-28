@@ -42,7 +42,12 @@
    ### javac
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### ClassPath
-   在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br />  
+   在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br /> 
+   ### 编译与解释
+   解释执行：将编译好的字节码一行一行地翻译为**机器码** 执行。 
+   编译执行：以方法为单位，将字节码一次性翻译为**机器码** 后执行。
+   编译器看到的都是字节码文件！！！！！ 
+   https://www.cnblogs.com/lingz/archive/2018/07/31/9394238.html
    ### 数组
    arraylist每次扩容，扩一半长度
    ### hashcode与equals
@@ -71,6 +76,14 @@
    writeObject readObject来实现手动的存储与读取<br /> 
    transient声明的对象不主动序列化<br />
    ### JVM
+#### JIT编译器
+###### 为什么不使用aot(静态编译)
+JIT编译是动态编译，指字节码---->机器码 这一过程
+为什么不一上来全弄成机器码,既为什么不采用AOT（静态编译）：  1. 缺少运行环境生成出的机器码，可能效率并不高  2. 空间问题
+###### 逃逸分析
+通过分析变量的作用域，进行以下优化： 同步省略，标量替换，栈上分配
+https://blog.csdn.net/hollis_chuang/article/details/80922794
+但是逃逸分析并不成熟，而且分析也需要消耗时间，不一定比直接解释执行来的快
 #### JVM内存模型
 ##### 栈
 - TLAB (Thread Local Allocation Buffer)
@@ -89,7 +102,10 @@
 4. hashcode变化导致内存泄露： 如果hashcode是可变的，那么会出现无法remove掉set中存在的hashcode,所以一直有引用指向这个对象。 因此hashcode可以改变的对象，在使用哈希表时，要在Hash值改变之前先从Hash表移除
 当我们创建的引用不想去影响对象的生命周期时，就去使用弱/软引用
 在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(Collections.newSetFromMap();如果后续要进行遍历，则不能用weadxx)
-
+#### 垃圾回收
+##### cms
+- 为什么不采用标记整理
+为了追求单次gc时间，cms的清除过程是不stw，如果要整理的话，会造成空指针的问题，所以采用标记清除
     
 #### JVM调优
 ##### 调优指标
@@ -124,6 +140,11 @@
   需要下载，手动配置java_home
   还可以 生成/读取 dump文件
   远程监控：   https://www.cnblogs.com/jhxxb/p/13279201.html
+##### JVM参数
+- 参数类型
+  1. 标准参数： 以-开头 如-help，后续版本不会改变
+  2. -X参数： 以-X开头 ，如 -Xms最小堆  -Xmx最大堆 -Xss栈大小
+  3. -XX参数： 以-XX开头，
 
 ## MAVEN
    ### 与idea的坑
@@ -184,6 +205,14 @@
    属性的赋值有两种方式： obj.name='xiao'  obj[name] ='xiao'
    object[key]=>key为常量时，object[key]等价于object.key，例如：a.b == a['b']
    特殊的，object[key]=>key为变量时，只能用中括号形式
+   ### typescript
+   - 简介
+   typescipt是以js为基础的语言，扩展了ts,ts实际是编译以后生成js代码.
+   - ts中的类型
+   ts类型除了普通的boolean,string等，还可以为字面量，既某个具体的值  let a = "male" | "female"
+   除此之外还可以为any,但是一般不建议设置成any,可以设置为unknow. any与unknow的主要区别就是能不能给其他属性赋值(any可以把这个变量的值赋给任何变量，unknow声明的则不可以)
+   还可以通过{filedName: type} 来声明一个指定属性的object (如果要动态属性的话需要复杂一点)
+
    ### react
    将数据渲染成视图的工具<br /> 
    传统的操作dom会造成浏览器多次渲染，效率低<br /> 
@@ -278,6 +307,10 @@
 ## 网络安全
    ### ddos
    http://www.ruanyifeng.com/blog/2018/06/ddos.html
+## 操作系统
+   ### 并发与并行
+   并发是指一个处理器同时处理多个任务。
+   并行是指多个处理器或者是多核的处理器同时处理多个不同的任务。   
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
