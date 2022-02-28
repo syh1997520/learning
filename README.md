@@ -287,3 +287,6 @@
 ## tomcat
    ### catalina.out
    catalina.out用来存储控制台打印的信息即标准输入的目的地,在log4j中配置的consoleappender也会输入到此. 一般都含有gc信息（jdk默认在gc时会向控制台输出信息，可以通过jvm potion关闭）
+## log4j
+   ### DailyRollingFileAppender
+   按天生成日志文件，旧的log会带后缀
