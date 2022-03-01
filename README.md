@@ -70,6 +70,12 @@
    
    ### java http请求
    feign<br />
+   ### stream流
+   stream流使用时分为三步： 创建stream-----> 对steam操作 -----> 结束
+   其中每一步都有很多api   https://blog.csdn.net/y_k_y/article/details/84633001
+   结束时可以对集合进行Collectors.groupby，返回一个map
+   还可以对两个stream流进行Stream.concat操作
+   stream的并行：https://www.jb51.net/article/149901.htm
 
    ### IO操作
    - inputWriter<br />
@@ -163,6 +169,9 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
    ### DOM与BOM
    BOM是浏览器对象模型，DOM是文档对象模型，前者是对浏览器本身进行操作，而后者是对浏览器（可看成容器）内的内容进行操作<br /> 
    每个浏览器提供操作dom bom的api<br /> 
+   ###  js语法相关
+   call()方法： 改变函数的所有者(也可以理解为改变调用时的this)  https://www.w3school.com.cn/js/js_function_call.asp
+   js中操作集合，使用foreach前，先想想有没有替代品（foreach能做的事比较多，没法直接看出来要干什么，而some,erery等函数则可以方便看清，并且代码量少）：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
    ### spa应用
    单页面应用，指只有一个页面。 点击页面中的链接不会刷新页面，而是局部刷新组件
    ### node.js
@@ -294,9 +303,6 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
 
     ### nodemon
     一个热重启的插件，使用nodemon xx.js  启动js文件，可以在保存后自动重启项目<br />
-
-   ###  js语法相关
-   call()方法： 改变函数的所有者(也可以理解为改变调用时的this)  https://www.w3school.com.cn/js/js_function_call.asp
    
    ### eslint
    是一个第三方插件，用来查看前端代码不规范的地方   使用方法：https://blog.csdn.net/guang_s/article/details/90231312<br />
