@@ -341,3 +341,12 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
    ### 代码格式
    运算符或关键字左右用空格，小括号内不加
    弃用tab,改为4个空格
+   ### 书写规范
+   浮点数比较不要用 == 或者equals,可能出现不准的情况，可以采用比较差值
+   实体类的基本类型要写成封装类(避免空指针)
+   实体类一定要写toString方法
+   
+   ### 提高代码质量
+   使用 Objects.equals 方法替换entity.equals方法（可以避免空指针）
+   操作集合时多考虑使用stream流
+   for循环拼接string使用stringbuilder代替
