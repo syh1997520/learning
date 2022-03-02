@@ -159,7 +159,9 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
 
 ## MAVEN
    ### 与idea的坑
-   idea版本需要与maven版本适应才能在idea中使用
+   idea版本需要与maven版本适应才能在idea中使用,并且新的项目总是使用idea自带的Maven
+   ### dependencyManagement
+   用于父pom，对于声明在父pom的该标签下的依赖，子工程可以不写版本号(子工程如果写了以子工程为准),并且父pom不会导入该包
  
    
 ## spring
@@ -226,6 +228,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
    ts类型除了普通的boolean,string等，还可以为字面量，既某个具体的值  let a = "male" | "female"
    除此之外还可以为any,但是一般不建议设置成any,可以设置为unknow. any与unknow的主要区别就是能不能给其他属性赋值(any可以把这个变量的值赋给任何变量，unknow声明的则不可以)
    还可以通过{filedName: type} 来声明一个指定属性的object (如果要动态属性的话需要复杂一点)
+   [typeName, typeName...] 这个代表一个元组,固定长度的数组
+   type typeName = {...}  给右边的类型起一个别名
 
    ### react
    将数据渲染成视图的工具<br /> 
@@ -331,9 +335,18 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
 ## tomcat
    ### catalina.out
    catalina.out用来存储控制台打印的信息即标准输入的目的地,在log4j中配置的consoleappender也会输入到此. 一般都含有gc信息（jdk默认在gc时会向控制台输出信息，可以通过jvm potion关闭）
+## mysql
+   ### 5.7安装
+   分为免安装版和安装版，免安装版教程：https://www.cnblogs.com/itcui/p/15511683.html   网址：http://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.7/   
 ## log4j
    ### DailyRollingFileAppender
    按天生成日志文件，旧的log会带后缀
+## springcloud
+   ### 版本
+   springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
+## 微服务
+   ### 简介
+   将一个大的服务拆分成为多个小的服务   
 ## 编码规范
    ### 属性命名
    变量的命名一律采用驼峰式，不要在乎变量名的长度，表达完整意思即可
