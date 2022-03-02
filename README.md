@@ -53,6 +53,8 @@
    https://www.cnblogs.com/lingz/archive/2018/07/31/9394238.html
    ### 数组
    arraylist每次扩容，扩一半长度
+   ### Mutable类
+   对于需要在函数间修改值的基本数据类型，可以使用Mutablexxx类
    ### hashcode与equals
    equals返回boolean,判断两个对象的是否相等
    hashcode返回int,用于表示在hash表中的位置
@@ -341,6 +343,9 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
    ### 代码格式
    运算符或关键字左右用空格，小括号内不加
    弃用tab,改为4个空格
+   注释与//间留一个空格就好
+   链式调用每个·换个行
+   空行一次加一个即可，没必要多加
    ### 书写规范
    浮点数比较不要用 == 或者equals,可能出现不准的情况，可以采用比较差值
    实体类的基本类型要写成封装类(避免空指针)
