@@ -167,6 +167,9 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
 ## spring
    ### spring3
    无法在spring3中使用lmbda
+## mybatis
+   ### retruntype map
+   mybatis里当查询到的值用map接收时，key是列名,value是值
 ## 前端相关
    ### mdn
    web开发手册，包含js的使用规则等等
