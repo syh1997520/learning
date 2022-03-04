@@ -16,7 +16,7 @@
    checkout本质是HEAD的移动<br />
    https://blog.csdn.net/csflvcxx/article/details/81612336<br />
    https://blog.csdn.net/wu_xianqiang/article/details/110678343<br />
-#### git reset 与 git rever  
+#### git reset 与 git revert  
    git reset是用于本地的branch(未push的), **将暂存区的commit回到某个commit的时候**，工作区不动<br />
    git revert是针对远端，通过提交一个新的commit,**撤销某几个commit**（新的commit的改动就是之前的反操作） <br />  
 
@@ -24,19 +24,19 @@
 ## Linux
    
    ### NFS与rpcbind
-   https://www.cnblogs.com/me80/p/7464125.html
+   https://www.cnblogs.com/me80/p/7464125.html<br /> 
    
    ### env与 bashrc,profile
-   env的东西保存在bashrc和profile里面。
-   bashrc和profile在/etc和/home中都存在一份，/home中的相同内容会覆盖/etc中的。bashrc和profile本身也稍有区别
-   https://cloud.tencent.com/developer/article/1174426
+   env的东西保存在bashrc和profile里面。<br /> 
+   bashrc和profile在/etc和/home中都存在一份，/home中的相同内容会覆盖/etc中的。bashrc和profile本身也稍有区别<br /> 
+   https://cloud.tencent.com/developer/article/1174426<br /> 
    
    ### 正则
-   (.+)与(.+?)： (.+)默认是贪婪匹配 (.+?)为惰性匹配   https://www.cnblogs.com/ysk123/p/9896850.html
+   (.+)与(.+?)： (.+)默认是贪婪匹配 (.+?)为惰性匹配   https://www.cnblogs.com/ysk123/p/9896850.html<br /> 
    
    ### scp
-   注意，使用scp时，如果最前面加了sudo，则当前登陆用户是root，可能没有对方机器的登陆权限
-   scp无法直接在target端执行sudo命令，所以只能把文件传输到target用户拥有write权限的目录下
+   注意，使用scp时，如果最前面加了sudo，则当前登陆用户是root，可能没有对方机器的登陆权限<br /> 
+   scp无法直接在target端执行sudo命令，所以只能把文件传输到target用户拥有write权限的目录下<br /> 
    
 ## JAVA
 
@@ -47,24 +47,24 @@
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br /> 
    ### 编译与解释
-   解释执行：将编译好的字节码一行一行地翻译为**机器码** 执行。 
-   编译执行：以方法为单位，将字节码一次性翻译为**机器码** 后执行。
-   编译器看到的都是字节码文件！！！！！ 
-   https://www.cnblogs.com/lingz/archive/2018/07/31/9394238.html
+   解释执行：将编译好的字节码一行一行地翻译为**机器码** 执行。 <br /> 
+   编译执行：以方法为单位，将字节码一次性翻译为**机器码** 后执行。<br /> 
+   编译器看到的都是字节码文件！！！！！ <br /> 
+   https://www.cnblogs.com/lingz/archive/2018/07/31/9394238.html<br /> 
    ### 数组
-   arraylist每次扩容，扩一半长度
+   arraylist每次扩容，扩一半长度<br /> 
    ### Mutable类
-   对于需要在函数间修改值的基本数据类型，可以使用Mutablexxx类
+   对于需要在函数间修改值的基本数据类型，可以使用Mutablexxx类<br /> 
    ### hashcode与equals
-   equals返回boolean,判断两个对象的是否相等
-   hashcode返回int,用于表示在hash表中的位置
+   equals返回boolean,判断两个对象的是否相等<br /> 
+   hashcode返回int,用于表示在hash表中的位置<br /> 
    ### hashmap
-   hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变
+   hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变<br /> 
    ### try-catch-with-resource
-   java7中的一种新语法，用于try-catch需要关闭资源时使用，很方便。只要资源实现了autoclose接口就可以使用
-   资源不释放可能导致连接无法断开，尽管有些连接操作会把关闭写在finalize里，但是会有不确定性
-   https://www.cnblogs.com/barrywxx/p/9993005.html  
-   https://blog.csdn.net/hengyunabc/article/details/18459463
+   java7中的一种新语法，用于try-catch需要关闭资源时使用，很方便。只要资源实现了autoclose接口就可以使用<br /> 
+   资源不释放可能导致连接无法断开，尽管有些连接操作会把关闭写在finalize里，但是会有不确定性<br /> 
+   https://www.cnblogs.com/barrywxx/p/9993005.html  <br /> 
+   https://blog.csdn.net/hengyunabc/article/details/18459463<br /> 
    
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0<br />  
@@ -73,11 +73,11 @@
    ### java http请求
    feign<br />
    ### stream流
-   stream流使用时分为三步： 创建stream-----> 对steam操作 -----> 结束
-   其中每一步都有很多api   https://blog.csdn.net/y_k_y/article/details/84633001
-   结束时可以对集合进行Collectors.groupby，返回一个map
-   还可以对两个stream流进行Stream.concat操作
-   stream的并行：https://www.jb51.net/article/149901.htm
+   stream流使用时分为三步： 创建stream-----> 对steam操作 -----> 结束<br /> 
+   其中每一步都有很多api   https://blog.csdn.net/y_k_y/article/details/84633001<br /> 
+   结束时可以对集合进行Collectors.groupby，返回一个map<br /> 
+   还可以对两个stream流进行Stream.concat操作<br /> 
+   stream的并行：https://www.jb51.net/article/149901.htm<br /> 
 
    ### IO操作
    - inputWriter<br />
@@ -89,34 +89,34 @@
    ### JVM
 #### JIT编译器
 ###### 为什么不使用aot(静态编译)
-JIT编译是动态编译，指字节码---->机器码 这一过程
-为什么不一上来全弄成机器码,既为什么不采用AOT（静态编译）：  1. 缺少运行环境生成出的机器码，可能效率并不高  2. 空间问题
+JIT编译是动态编译，指字节码---->机器码 这一过程<br /> 
+为什么不一上来全弄成机器码,既为什么不采用AOT（静态编译）：  1. 缺少运行环境生成出的机器码，可能效率并不高  2. 空间问题<br /> 
 ###### 逃逸分析
-通过分析变量的作用域，进行以下优化： 同步省略，标量替换，栈上分配
-https://blog.csdn.net/hollis_chuang/article/details/80922794
-但是逃逸分析并不成熟，而且分析也需要消耗时间，不一定比直接解释执行来的快
+通过分析变量的作用域，进行以下优化： 同步省略，标量替换，栈上分配<br /> 
+https://blog.csdn.net/hollis_chuang/article/details/80922794<br /> 
+但是逃逸分析并不成熟，而且分析也需要消耗时间，不一定比直接解释执行来的快<br /> 
 #### JVM内存模型
 ##### 栈
 - TLAB (Thread Local Allocation Buffer)
-    JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.
-    https://blog.csdn.net/xiaomingdetianxia/article/details/77688945
+    JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.<br /> 
+    https://blog.csdn.net/xiaomingdetianxia/article/details/77688945<br /> 
 #### 强软弱虚
    软，弱引用都是在对象没有强引用的情况下发生的
 #### 内存分配
-   1. 空闲链表（free list）：通过额外的存储记录空闲的地址，将随机 IO 变为顺序 IO，但带来了额外的空间消耗。(标记清除时)
-   2. 碰撞指针（bump  pointer）：通过一个指针作为分界点，需要分配内存时，仅需把指针往空闲的一端移动与对象大小相等的距离，分配效率较高，但使用场景有限。（标记整理时）
+   1. 空闲链表（free list）：通过额外的存储记录空闲的地址，将随机 IO 变为顺序 IO，但带来了额外的空间消耗。(标记清除时)<br /> 
+   2. 碰撞指针（bump  pointer）：通过一个指针作为分界点，需要分配内存时，仅需把指针往空闲的一端移动与对象大小相等的距离，分配效率较高，但使用场景有限。（标记整理时）<br /> 
 #### JVM内存泄漏
 几个常见的场景：
-1. 静态集合： 静态属性的生命周期一般都是与jvm一样的，所以在设置静态属性时要三思，单例对象也属于这种情况
-2. 属性作用域不合理： 比如局部变量定义为了全局变量
-3. map中的key： 当map的key为对象时（string除外），可能会发生key泄露的事。可以使用weakedHashmap
-4. hashcode变化导致内存泄露： 如果hashcode是可变的，那么会出现无法remove掉set中存在的hashcode,所以一直有引用指向这个对象。 因此hashcode可以改变的对象，在使用哈希表时，要在Hash值改变之前先从Hash表移除
-当我们创建的引用不想去影响对象的生命周期时，就去使用弱/软引用
-在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(Collections.newSetFromMap();如果后续要进行遍历，则不能用weadxx)
+1. 静态集合： 静态属性的生命周期一般都是与jvm一样的，所以在设置静态属性时要三思，单例对象也属于这种情况<br /> 
+2. 属性作用域不合理： 比如局部变量定义为了全局变量<br /> 
+3. map中的key： 当map的key为对象时（string除外），可能会发生key泄露的事。可以使用weakedHashmap<br /> 
+4. hashcode变化导致内存泄露： 如果hashcode是可变的，那么会出现无法remove掉set中存在的hashcode,所以一直有引用指向这个对象。 因此hashcode可以改变的对象，在使用哈希表时，要在Hash值改变之前先从Hash表移除<br /> 
+当我们创建的引用不想去影响对象的生命周期时，就去使用弱/软引用<br /> 
+在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(Collections.newSetFromMap();如果后续要进行遍历，则不能用weadxx)<br /> 
 #### 垃圾回收
 ##### cms
 - 为什么不采用标记整理
-为了追求单次gc时间，cms的清除过程是不stw，如果要整理的话，会造成空指针的问题，所以采用标记清除
+为了追求单次gc时间，cms的清除过程是不stw，如果要整理的话，会造成空指针的问题，所以采用标记清除<br /> 
     
 #### JVM调优
 ##### 调优指标
