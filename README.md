@@ -341,6 +341,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794
 ## mysql
    ### 5.7安装
    分为免安装版和安装版，免安装版教程：https://www.cnblogs.com/itcui/p/15511683.html   网址：http://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.7/   
+   ### char比较时的坑
+   对于值为null的char,任何判断都会为false. 例如 name != 'a',是不会包含name为null的数据的，需要在前面加上is null包含上null的数据
 ## log4j
    ### DailyRollingFileAppender
    按天生成日志文件，旧的log会带后缀
