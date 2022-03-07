@@ -354,9 +354,20 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## log4j
    ### DailyRollingFileAppender
    按天生成日志文件，旧的log会带后缀
+## lombok
+   ### 使用
+   项目需要下载lombok的依赖，idea需要下载lombok插件
+## springboot
+   ### yml配置
+   一定要注意空格关系！！！！
+   注意： datasource配置是属于spring一级的     
 ## springcloud
    ### 版本
    springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
+   ### 新建项目步骤
+   建module,改pom,建yml,启动类，主代码
+   
+
 ## 微服务
    ### 简介
    将一个大的服务拆分成为多个小的服务 <br />  
