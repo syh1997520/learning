@@ -349,6 +349,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 索引
     #### 索引失效
     https://www.cnblogs.com/wdss/p/11186411.html
+   ### 语句优化
+   使用group by 替换distinct
 ## log4j
    ### DailyRollingFileAppender
    按天生成日志文件，旧的log会带后缀
