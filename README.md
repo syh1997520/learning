@@ -78,6 +78,7 @@
    为什么value不作为弱引用   https://www.zhihu.com/question/399087116<br />  
    
    ### java http请求
+   resttemplete
    feign<br />
    ### stream流
    stream流使用时分为三步： 创建stream-----> 对steam操作 -----> 结束<br /> 
@@ -169,11 +170,11 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    idea版本需要与maven版本适应才能在idea中使用,并且新的项目总是使用idea自带的Maven
    ### dependencyManagement
    用于父pom，对于声明在父pom的该标签下的依赖，子工程可以不写版本号(子工程如果写了以子工程为准),并且父pom不会导入该包
+   ### 包的管理
+   每次导入的就是坐标文件夹下的Jar包.  
+   对于import的类文件来说，是没有group与artifity的. 路径就是jar包中的路径.所以可能会存在不同Group或者artifity里面相同路径名称的类，这时候就只能根据在maven里面的依赖顺序决定使用的是哪个类文件
  
    
-## spring
-   ### spring3
-   无法在spring3中使用lmbda
 ## mybatis
    ### retruntype map
    mybatis里当查询到的值用map接收时，key是列名,value是值
@@ -373,15 +374,27 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## lombok
    ### 使用
    项目需要下载lombok的依赖，idea需要下载lombok插件
+## spring
+   ### spring3
+   无法在spring3中使用lmbda
+   ### requestmapping
+   在spring4中引入了@getmapping,@postmapping注解，用来表示指定类型的请求(requestmapping默认接受任何类型) 
+   ### 创建多模块
+   多模块时需要选取一个父模块来控制依赖版本，以及一个模块来存储公共的实体类和工具类  
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
-   注意： datasource配置是属于spring一级的     
+   注意： datasource配置是属于spring一级的  
+   ### 新建项目步骤
+   建module,改pom,建yml,启动类，主代码
+   注意：如果不需要数据库操作，不要导入mysql相关包，会报错的  
+   
+    
 ## springcloud
    ### 版本
    springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
-   ### 新建项目步骤
-   建module,改pom,建yml,启动类，主代码
+   
+      
    
 
 ## 微服务
