@@ -345,6 +345,11 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## tomcat
    ### catalina.out
    catalina.out用来存储控制台打印的信息即标准输入的目的地,在log4j中配置的consoleappender也会输入到此. 一般都含有gc信息（jdk默认在gc时会向控制台输出信息，可以通过jvm potion关闭）
+## restful
+   ### 请求类型
+   get: 查    post:新增   put:更新所有  patch:更新某个属性  delete:删除
+   ### 规则
+   url中只存在名词，不存在动词，并且最好与数据库的表名对应
 ## mysql
    ### 5.7安装
    分为免安装版和安装版，免安装版教程：https://www.cnblogs.com/itcui/p/15511683.html   网址：http://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.7/   
