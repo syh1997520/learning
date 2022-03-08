@@ -177,6 +177,10 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## mybatis
    ### retruntype map
    mybatis里当查询到的值用map接收时，key是列名,value是值
+   ### 一级缓存
+   缓存的单位是session，即一个事务，当遇到增删改自动失效
+   ### 二级缓存
+   缓存的单位是一个mapper文件，需要实体类实现serizable接口，不可用于分布式
 ## 前端相关
    ### mdn
    web开发手册，包含js的使用规则等等
