@@ -380,35 +380,42 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    将一个大的服务拆分成为多个小的服务 <br />  
 ## 编码规范
    ### java代码
-      #### 属性命名
-      变量的命名一律采用驼峰式，不要在乎变量名的长度，表达完整意思即可<br />
-      常量名一律大写加下划线分割<br />
-      包名全部小写，用点来分割单词<br />
-      类名如果使用设计模式要写上设计模式名称，枚举后面跟上enum<br />
-      对于boolean类型的变量，不要以isxxx命名（boolean的默认get方法也是isxxx,可能会出现问题）<br />
-      ### 代码格式
-      运算符或关键字左右用空格，小括号内不加<br />
-      弃用tab,改为4个空格<br />
-      注释与//间留一个空格就好<br />
-      链式调用每个·换个行<br />
-      空行一次加一个即可，没必要多加<br />
-      ### 书写规范
-      浮点数比较不要用 == 或者equals,可能出现不准的情况，可以采用比较差值<br />
-      实体类的基本类型要写成封装类(避免空指针)<br />
-      实体类一定要写toString方法<br />
-      遍历map是要使用entryset，而不是keyset<br />
-      switch判断字符串时，要进行非空判断<br />
-      使用正则时，要将pattern设置static<br />
-      对于 调用频率低，耗时比较长，需要极其稳定或者比较公开的接口，都要去进行参数校验<br />
-      ### java书写的一些小技巧
-      使用 Objects.equals 方法替换entity.equals方法（可以避免空指针）<br />
-      操作集合时多考虑使用stream流<br />
-      for循环拼接string使用stringbuilder代替<br />
-   ### mysql相关
-      #### 建表的规范
-      表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
-      表名全部小写<br />
-      要注意避免出现保留字： range,match,case等<br />
-      索引名称要符合规范： 主键pk_  唯一键uk_ 普通索引idx_<br />
-      小数类型使用decimal,而不是float/double(可能缺失精度)<br />
-      表一定要有的三个列： id,create_time,update_time<br />
+   #### 属性命名
+   变量的命名一律采用驼峰式，不要在乎变量名的长度，表达完整意思即可<br />
+   常量名一律大写加下划线分割<br />
+   包名全部小写，用点来分割单词<br />
+   类名如果使用设计模式要写上设计模式名称，枚举后面跟上enum<br />
+   对于boolean类型的变量，不要以isxxx命名（boolean的默认get方法也是isxxx,可能会出现问题）<br />
+   ### 代码格式
+   运算符或关键字左右用空格，小括号内不加<br />
+   弃用tab,改为4个空格<br />
+   注释与//间留一个空格就好<br />
+   链式调用每个·换个行<br />
+   空行一次加一个即可，没必要多加<br />
+   ### 书写规范
+   浮点数比较不要用 == 或者equals,可能出现不准的情况，可以采用比较差值<br />
+   实体类的基本类型要写成封装类(避免空指针)<br />
+   实体类一定要写toString方法<br />
+   遍历map是要使用entryset，而不是keyset<br />
+   switch判断字符串时，要进行非空判断<br />
+   使用正则时，要将pattern设置static<br />
+   对于 调用频率低，耗时比较长，需要极其稳定或者比较公开的接口，都要去进行参数校验<br />
+   ### java书写的一些小技巧
+   使用 Objects.equals 方法替换entity.equals方法（可以避免空指针）<br />
+   操作集合时多考虑使用stream流<br />
+   for循环拼接string使用stringbuilder代替<br />
+  ### mysql相关
+   #### 建表的规范
+   表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
+   表名全部小写<br />
+   要注意避免出现保留字： range,match,case等<br />
+   索引名称要符合规范： 主键pk_  唯一键uk_ 普通索引idx_<br />
+   小数类型使用decimal,而不是float/double(可能缺失精度)<br />
+   表一定要有的三个列： id,create_time,update_time<br />
+   不要使用外键，在应用层处理<br />
+   #### 索引相关
+   只要该表的某个字段（或某些字段）具有唯一性，就应该建一个唯一索引。
+   多表查询时，要尽量保证关联的字段有索引。
+   #### 查询相关
+   分页时利用子查询来优化查找
+   使用count(*)而不是count(列名)，第二种会导致忽略掉null值的列
