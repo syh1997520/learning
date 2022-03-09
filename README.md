@@ -421,7 +421,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    遍历map是要使用entryset，而不是keyset<br />
    switch判断字符串时，要进行非空判断<br />
    使用正则时，要将pattern设置static<br />
-   对于 调用频率低，耗时比较长，需要极其稳定或者比较公开的接口，都要去进行参数校验<br />
+   对于 调用频率低，耗时比较长，需要极其稳定或者比较公开的接口，都要去进行参数校验。 校验一般放在controller层<br />
    ### java书写的一些小技巧
    使用 Objects.equals 方法替换entity.equals方法（可以避免空指针）<br />
    操作集合时多考虑使用stream流<br />
@@ -441,3 +441,4 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    #### 查询相关
    分页时利用子查询来优化查找
    使用count(*)而不是count(列名)，第二种会导致忽略掉null值的列
+   尽量避免select * ,而是要指定返回的列
