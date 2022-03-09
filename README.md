@@ -173,7 +173,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 包的管理
    每次导入的就是坐标文件夹下的Jar包.  
    对于import的类文件来说，是没有group与artifity的. 路径就是jar包中的路径.所以可能会存在不同Group或者artifity里面相同路径名称的类，这时候就只能根据在maven里面的依赖顺序决定使用的是哪个类文件
- 
+   ### 内部变量
+   ${project.version} ： 用在子模块间互相引用时填写在version中
    
 ## mybatis
    ### retruntype map
@@ -341,7 +342,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    
    ### htpp请求
    #### time_wait
-   在四次挥手中，客户端最后需要有一个time_wait的时间，以确保没有包存活。而这个time_wait对于高并发的时候则是很吃力的，所以对于高访问的机器可以适当调低，或者尝试使用长连接来减少连接数量
+   在四次挥手中，客户端最后需要有一个time_wait的时间，以确保没有包存活。而这个time_wait对于高并发的时候则是很吃力的，所以对于高访问的机器可以适当调低，或者尝试使用长连接来减少连接数量<br/>
+   netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'   查看数量<br/>
    #### keepalive_timeout
    传统的http请求都是在完成一次发送后结束连接，当指定了keepalive_timeout时，会在每次发送后开启计时，达到时间才关闭连接
 ## 操作系统
