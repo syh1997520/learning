@@ -334,9 +334,16 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### package.json与package-lock.json
    package.json类似于pom文件，package-lock是用来锁定版本号的
    在npm install时，如果lock与packgae版本兼容，则依据lock.不兼容则更新lock
-## 网络安全
-   ### ddos
+## 计算机网络
+   ### 网络安全
+   #### ddos
    http://www.ruanyifeng.com/blog/2018/06/ddos.html
+   
+   ### htpp请求
+   #### time_wait
+   在四次挥手中，客户端最后需要有一个time_wait的时间，以确保没有包存活。而这个time_wait对于高并发的时候则是很吃力的，所以对于高访问的机器可以适当调低，或者尝试使用长连接来减少连接数量
+   #### keepalive_timeout
+   传统的http请求都是在完成一次发送后结束连接，当指定了keepalive_timeout时，会在每次发送后开启计时，达到时间才关闭连接
 ## 操作系统
    ### 并发与并行
    并发是指一个处理器同时处理多个任务。
