@@ -402,7 +402,13 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## springcloud
    ### 版本
    springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
-   
+   ### 服务注册中心
+   #### 简介
+   将provider和counsumer注册的地方
+   #### eureka
+   需要一个模块来启动eureka服务，无需下载，导入pom启动即可
+   服务端启动类注解@enableEurekaServer  ,注册端加@enableEurekaClient注解
+   最好使用eureka集群，集群server之间相互注册, client里任写一个server就行
       
    
 
