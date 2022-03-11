@@ -168,6 +168,10 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## MAVEN
    ### 与idea的坑
    idea版本需要与maven版本适应才能在idea中使用,并且新的项目总是使用idea自带的Maven
+   ### 配置文件
+   repository： 用来指明本地远程库（一个repository代表一个本地远程库）
+   mirror: 用来指明下载远程仓库时的镜像
+   plugin: maven的生命周期每个周期都是执行相应的插件
    ### dependencyManagement
    用于父pom，对于声明在父pom的该标签下的依赖，子工程可以不写版本号(子工程如果写了以子工程为准),并且父pom不会导入该包
    ### 包的管理
@@ -175,6 +179,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    对于import的类文件来说，是没有group与artifity的. 路径就是jar包中的路径.所以可能会存在不同Group或者artifity里面相同路径名称的类，这时候就只能根据在maven里面的依赖顺序决定使用的是哪个类文件
    ### 内部变量
    ${project.version} ： 用在子模块间互相引用时填写在version中
+   ### 一些命令行参数
+   nsu： maven的repository中可能有snapshot,默认会在使用时查看远端是否存在最新的，然后更新本地的，加上这个参数会停止这个过程(快照默认每次都会去看有没有最新的 https://blog.csdn.net/weixin_38608626/article/details/88011541)
    
 ## mybatis
    ### retruntype map
@@ -415,6 +421,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## 微服务
    ### 简介
    将一个大的服务拆分成为多个小的服务 <br />  
+## 设计模式
+   ###
 ## 编码规范
    ### java代码
    #### 属性命名
@@ -441,6 +449,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    使用 Objects.equals 方法替换entity.equals方法（可以避免空指针）<br />
    操作集合时多考虑使用stream流<br />
    for循环拼接string使用stringbuilder代替<br />
+   创建集合是应该思考一下大概的长度<br />
   ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
