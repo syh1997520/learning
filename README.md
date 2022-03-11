@@ -171,7 +171,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 配置文件
    repository： 用来指明本地远程库（一个repository代表一个本地远程库）
    mirror: 用来指明下载远程仓库时的镜像
-   plugin: maven的生命周期每个周期都是执行相应的插件
+   plugin: maven的生命周期每个周期都是执行相应的插件，plguin可以不指定版本，会下载本地远程库的release版本
    ### dependencyManagement
    用于父pom，对于声明在父pom的该标签下的依赖，子工程可以不写版本号(子工程如果写了以子工程为准),并且父pom不会导入该包
    ### 包的管理
