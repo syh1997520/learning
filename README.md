@@ -57,6 +57,10 @@
    https://www.cnblogs.com/lingz/archive/2018/07/31/9394238.html<br /> 
    ### 数组
    arraylist每次扩容，扩一半长度<br /> 
+   ### protobuf
+   是用来进行跨语言的反序列化工具  xx.java ---> 二进制 ----> xx.c
+   首先编写.proto文件，然后使用protoc将.proto文件生成为java文件（生成后的java文件自带转换等方法）
+   也可以使用maven插件在编译时自动将指定目录的.prto文件转换为.java
    ### Mutable类
    对于需要在函数间修改值的基本数据类型，可以使用Mutablexxx类<br /> 
    ### hashcode与equals
@@ -64,9 +68,38 @@
    hashcode返回int,用于表示在hash表中的位置<br /> 
    ### hashmap
    hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变<br /> 
-   ### 线程池
+   ### 并发编程   
+   #### 线程池
    如何实现线程池：  依靠blockingqueue来实现，核心线程一直while循环来消费队列中的任务  https://www.cnblogs.com/wxwall/p/7050698.html<br /> 
    什么时候使用： 需要去新建线程完成一些small task时（如果持续时间很长的job就没必要使用线程池了）
+   ##### ScheduledExecutorService 
+   用来实现定时任务的java类
+   ##### atomic类
+   atomic类本身并不能保证线程安全性，只是保证了可见性。
+   多线程下保证atomic在某个范围内
+   ```
+   while(true) {
+            int current = atomicInteger.get();
+            int next = (current + 1) % 5;
+            if (atomicInteger.compareAndSet(current, next)) {
+               return xxx
+            }
+        }
+   ```
+   #### cas
+   ```
+   while(true) {
+            int current = xxx.get();
+            //业务逻辑
+            if (compareAndSet(current, xxx.get())) {
+                retrun xxx  //结束
+            }
+        }
+   ```
+   #### countdownlunch与cyclebarrier，Semaphore
+   countdownlunch: 等待其他几个任务执行完毕之后才能执行,并且是不可重用的
+   cyclebarrier: 栅栏，实现让一组线程等待至某个状态之后再全部同时执行，是可重用的
+   Semaphore：车位，控制同时访问的线程个数，通过 acquire() 获取一个许可，如果没有就等待，而 release() 释放一个许可
    ### try-catch-with-resource
    java7中的一种新语法，用于try-catch需要关闭资源时使用，很方便。只要资源实现了autoclose接口就可以使用<br /> 
    资源不释放可能导致连接无法断开，尽管有些连接操作会把关闭写在finalize里，但是会有不确定性<br /> 
@@ -78,13 +111,15 @@
    为什么value不作为弱引用   https://www.zhihu.com/question/399087116<br />  
    
    ### java http请求
-   resttemplete
    feign<br />
    ### stream流
    stream流使用时分为三步： 创建stream-----> 对steam操作 -----> 结束<br /> 
    其中每一步都有很多api   https://blog.csdn.net/y_k_y/article/details/84633001<br /> 
+   关于flatmap:  使用情况是当map方法返回的是个集合时(如果返回的是一个集合，用Map得到的结果是类似于这样：list<Person[]> ， 而flatmap则是list<Person>)
    结束时可以对集合进行Collectors.groupby，返回一个map<br /> 
    还可以对两个stream流进行Stream.concat操作<br /> 
+   stream流的操作是不改变原始数组的(foreach可以改变，但是要注意foreach时的stream流是否含有元素，如果之前进行了filter导致没有元素则不会改变任何东西)
+   foreach与collect无法同时使用，filter作用于不同的结束符效果也不一样
    stream的并行：https://www.jb51.net/article/149901.htm<br /> 
 
    ### IO操作
@@ -94,6 +129,7 @@
    ### 序列化
    writeObject readObject来实现手动的存储与读取<br /> 
    transient声明的对象不主动序列化<br />
+   序列化会自动继承<br />
    ### JVM
 #### JIT编译器
 ###### 为什么不使用aot(静态编译)
@@ -181,6 +217,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ${project.version} ： 用在子模块间互相引用时填写在version中
    ### 一些命令行参数
    nsu： maven的repository中可能有snapshot,默认会在使用时查看远端是否存在最新的，然后更新本地的，加上这个参数会停止这个过程(快照默认每次都会去看有没有最新的 https://blog.csdn.net/weixin_38608626/article/details/88011541)
+   -T:  指定线程数
    
 ## mybatis
    ### retruntype map
@@ -276,7 +313,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
     周期函数中的mount代表的是组件mount到节点上
     初始周期： constructor----willmount-----render-----didmount
     更新周期：（触发点1  父组件修改props）-------willreceiveProps------(触发点2 setState)-----shouldUpdate(返回boolean，类似拦截器)-----（触发点3 forceupdate）-------willUpdate----render-----Didupdate
-    新版本中与will相关的生命周期都不推荐使用了  
+    新版本中与will相关的生命周期都不推荐使用了  （可以通过比较props和prepros来进行不同用途的生命周期）
     getderivedStateFromProps  使state永远从props获取  （基本不用）
     getSnapshotOfState(更新时使用，将返回值传给didUpdate)
   - state <br/>
@@ -312,6 +349,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
      useRef:  类似于REF  https://blog.csdn.net/hjc256/article/details/102587037
   - UI框架
      antd  蚂蚁出品<br/>
+     antd的form有个坑，input的name需要绑定类的属性，对这个属性的赋值才能生效
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
@@ -325,7 +363,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 
    ### express
    一个基于Nodejs的http包，可以轻松的实现api服务器，和静态服务器的功能 （静态服务器既将html,css等允许直接访问）  <br />
-   url中，localhost:8080/usr?name=10  这种查询，叫做query式url   localhost:8080/usrname=10   这种叫做param式<br />
+   url中，localhost:8080/usr?name=10  这种查询，叫做query式url   localhost:8080/10   这种叫做param式<br />
    express中的路由是模块化的。既一个路由是由多个js文件注册在一起的。<br />
    express中有一个中间件的概念： 一个req,res可以由多个函数处理，这里的处理函数就叫做中间件<br />
 
@@ -362,9 +400,16 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）
    ### redission使用手册
    https://www.bookstack.cn/read/redisson-wiki-zh
+## zookeeper
+   ### 节点类型
+   持久节点：该数据节点被创建后，就会一直存在于zookeeper服务器上，直到有删除操作来主动删除这个节点。
+   临时节点：临时节点的生命周期和客户端会话绑定在一起，客户端会话失效，则这个节点就会被自动清除。   
 ## tomcat
    ### catalina.out
    catalina.out用来存储控制台打印的信息即标准输入的目的地,在log4j中配置的consoleappender也会输入到此. 一般都含有gc信息（jdk默认在gc时会向控制台输出信息，可以通过jvm potion关闭）
+## postman
+   ### basic auth
+   basic auth实质就是在header里添加("authorization" , "Basic (name:password).toBase64")   
 ## restful
    ### 请求类型
    get: 查    post:新增   put:更新所有  patch:更新某个属性  delete:删除
@@ -383,7 +428,15 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
     https://www.cnblogs.com/wdss/p/11186411.html
    ### 语句优化
    使用group by 替换distinct
+## nginx
+   ### 反向代理与正向代理
+   最主要的区别是被代理的对象，如果被代理的是服务器，则是反向代理，被代理的是用户，则是正向代理   
+## jmeter
+   ### ramp-up
+   ramp up的值应该是启动全部线程所需的时间   
 ## log4j
+   ### 日志级别
+   debug < info < warn < error
    ### DailyRollingFileAppender
    按天生成日志文件，旧的log会带后缀
 ## lombok
@@ -396,27 +449,162 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    在spring4中引入了@getmapping,@postmapping注解，用来表示指定类型的请求(requestmapping默认接受任何类型) 
    ### 创建多模块
    多模块时需要选取一个父模块来控制依赖版本，以及一个模块来存储公共的实体类和工具类  
+   ### spring生命周期
+   实例化 Instantiation
+   属性赋值 Populate
+   初始化 Initialization
+   销毁 Destruction
+   ### 一些常用注解
+   @PostConstruct： 用于注解在init方法上，在赋值后执行
+   @configuration:  用来表明该类有bean的创建
+   @PathVariable: 例如/blogs/1
+   @RequestParam，例如blogs?blogId=1
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
    注意： datasource配置是属于spring一级的  
    ### 新建项目步骤
    建module,改pom,建yml,启动类，主代码
-   注意：如果不需要数据库操作，不要导入mysql相关包，会报错的  
+   注意：如果不需要数据库操作，不要导入mysql相关包，会报错的
+   ### 简单的集群项目
+   直接修改port再重启一次即可  
+
    
     
 ## springcloud
+   ### 与dubbo关系
+   springcloud是在dubbo的基础上建立的，后来又被spring-alibaba包含
    ### 版本
    springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
+   ### bootstrap.yml
+   bootstrap.yml（bootstrap.properties）用来在程序引导时执行，应用于更加早期配置信息读取，如可以使用来配置application.yml中使用到参数等
+   application.yml（application.properties) 应用程序特有配置信息，可以用来配置后续各个模块中需使用的公共参数等。
+   bootstrap.yml 先于 application.yml 加载且不会被application.yml覆盖
    ### 服务注册中心
    #### 简介
    将provider和counsumer注册的地方
+   #### 调用
+   注册进以后客户端直接通过服务名称访问生产者：  http://CLOUD-PAYMENT-SERVICE<br/>
+   被注册后依然可以使用ip进行访问
    #### eureka
-   需要一个模块来启动eureka服务，无需下载，导入pom启动即可
-   服务端启动类注解@enableEurekaServer  ,注册端加@enableEurekaClient注解
-   最好使用eureka集群，集群server之间相互注册, client里任写一个server就行
-      
+   需要一个模块来启动eureka服务，无需下载，导入pom启动即可<br/>
+   服务端启动类注解@enableEurekaServer  ,注册端加@enableEurekaClient注解<br/>
+   最好使用eureka集群，集群server之间相互注册, client里任写一个server就行<br/>
+   服务发现： 可以发现服务的信息（端口，ip等等）<br/>
+   保护模式： eurake属于ap类（高可用），不会自动清除微服务。短时间内大部分客户端丢失时，会进入保护模式。（好死不如赖活着）。默认开启，可以在配置文件关闭<br/>
+   #### zookeeper
+   直接在客户端指明spring cloud里面的zk地址即可，不需要新的模块启动zk服务端
+   ### 服务调用
+   #### resttemplete
+   主要有两个方法: getObject和getEntity 一个是返回body,一个是加上返回状态码请求头等详细信息
+   在springcloud 的使用中如果使用RestTemplate来进行rpc远程调用的时候 ，在调用服务的时候有的会选择使用服务端在注册中心注册的名称来进行远程调用 也有的会直接使用域名进行调用，在这个过程中如果使用注册名称的话在RestTemplate 那里开启 负载均衡 :  @LoadBalanced  如果是使用域名进行调用就不用开启负载均衡 
+   #### ribbon 
+   **客户端负载均衡**，由客户端选择访问哪台服务器
+   可以理解为 带负载均衡功能的resttempletea（实际使用时也是跟resttemplete一起使用）
+   @LoadBalanced既是调用了ribbon的负载均衡
+   默认是ZoneAwareLoadBalancer(轮询策略的一种升级)，可以根据不同的微服务选择不同的策略，也可以全局配置统一的策略（配置后直接作用于所有相关url的请求）
+   也可以自己实现一个负载均衡算法，核心是重写chose方法和lb的getserver方法
+   #### openfeign
+   使用注解形式完成http请求,本质还是resttemplete（负载均衡也是使用的ribbon）
+   https://blog.csdn.net/manzhizhen/article/details/110013311
+   与springcloud整合时，默认携带1s超时时间
+   requestInterceptor(new BasicAuthRequestInterceptor(userName, password)) 会作用于所有请求
+   ### 服务容错
+   #### Hystrix
+   是一个用于处理分布式延迟和容错的第三方库，保证在单个应用出错的情况下，不会导致整个服务失败，避免级联故障
+   主要功能： 降级，熔断，限流，监控 
+   ##### 降级（fallback)
+   当服务不可用时，返回友好的信息  (不可用包括 抛异常，超时等)，一般写在客户端(早发现早治理)
+   @HystrixCommand(fallbackMethod = "paymentInfoTimeOutHandler", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+    })
+   注解加在服务上，指定降级要调用的方法 (降级的调用方法需要与被降级方法同类型参同类型返回值)
+   @EnableHystrix  加在启动类上
+
+   一般设置一个默认的降级方法（该方法没有参数）
+   ##### 熔断(break)   : 
+   当一段时间内调用都失败时，拒绝访问，调用降级方法.过一段时间后自行恢复 (可以理解为保险丝，与降级相比多了个时间维度，且一般设置在服务端)
+   @HystrixProperty（name = "xxx", value ="xx"）填写触发熔断的条件(多少次请求失败啦，失败后的重试时间是多少等)
+   ##### 限流(limit) :  当一定时间访问量过大时，排队访问
+   ##### 监控
+   可以设置dashbord监控hystrix相关的服务，dashbord本身也是个模块
+   ### 服务网关
+   网关是微服务的入口，nginx的流量打到网关（网关其实就类似于一个nginx模块，但是功能比nginx多，可以额外做权限啦之类的事情）
+   #### gateway
+   基于netty实现的，非阻塞,支持websocket
+   路由： URL
+   断言： 指请求头中的参数，url路径等，还可以设置before after来进行时间相关的限制，设置是否携带某个cookie
+   过滤： 过滤器,主要是用来给修饰请求的，一般是实现自定义的（给请求头添加点东西之类的或者自己对请求做一些判断等）
+   核心： 路由转发+执行过滤链
+   与ribbon的区别是ribbon是客户端负载均衡，而gateway是服务端实现
+   ### 服务配置
+   #### spring-cloud-config
+   用来统一管理配置文件的地方，提供中心化的外部配置（一般是与gitlab连用，既指定配置文件所在的gitlab地址） 
+   springcloudconfig似乎不支持某些格式的ssh key访问git.(SpringCloudConfig访问git的组件不支持openssh这种格式的秘钥。使用git bash可以ssh访问，但是springconfig无法访问，建议使用http方式)
+   本身也是一个微服务，分为server端和client端，server端负责连接git,客户端需要将配置写在bootstrap.yml里（客户端读取的属性值不会自动刷新，需要加点小配置并且发送一个post请求才会刷新）
+   #### bus总线
+   与spring-cloud-config配合使用，实现配置的动态刷新，需要绑定rabbitmq或activemq（之前需要往每个客户端发送post请求，现在只需要向config服务端自己发送一次post即可）
+   ### 消息驱动
+   #### cloud-stream
+   屏蔽底层消息中间件的差异，统一消息模型（类似于orm框架），目前仅支持rabbitmq和kafka
+   input消费者，output生产者
+   stream中同一个组的服务消息只有一个接收，不同组的会广播通知,建议设置group
+   ### 链路跟踪
+   #### sleuth
+   与zipkin配合使用  https://www.cnblogs.com/roadlandscape/p/12934407.html
+   下载zipkin jar包并启动zipkin(相当于一个监控服务)
+   将需要跟踪的链路注册到监控服务上
+## springcloud alibaba
+   ### nacos
+   #### 简介
+   服务注册与配置中心(naming config service)   eureka + config + bus
+   #### 服务注册
+   默认端口8848
+   由于nacos继承了ribbon，所以自带负载均衡
+   nacos支持cp与ap切换，发送一条post请求
+
+   #### 配置中心
+   配置文件位置由之前的git改为了nacos上
+   bootstrap.yml用来存放nacos的地址信息
+   application.yml用来指定要使用的文件名
+   nacos上的文件名格式 ${spring.application.name}-${appliction中配置的文件名}.${bootstrat中配置的文件后缀} 
+   实时刷新
+   由dataID,groupId,namespace三部分组成： namespace是可以用于区分部署环境的，Group和DataID逻辑上区分两个目标对象
+   #### 持久化
+   nacos一些数据，例如配置文件等，需要进行持久化。单机会存于一个nacos内嵌的数据库derby中，但是使用集群时要使用一个统一的mysql存储
    
+
+   ### sentinel
+   #### 简介
+   类似于hystrix的一个工具，使用jar包启动，需要监控的模块注册到jar包对应端口，还需要一个端口进行心跳检测
+   使用的懒加载，api需要被调用后才会显示在sentinal上
+
+   #### 流控规则
+   控制某个api的QPS等
+   ##### 类型
+   QPS: 每秒的请求个数
+   线程数: 保证当前时刻该api对应的线程数不高于某个值
+   ##### 模式
+   直接： 当不满足条件时，直接拒绝该ap的请求
+   关联：在A上关联B API，当B的访问量超过设置的阈值时，拒绝A
+   ##### 效果
+   直接失败： 返回 Blocked by Sentinel (flow limiting)
+   预热： 使qps慢慢增加。 会要求设置一个预热时长，初始的qps为 设置的最大阈值/3,然后再预热时长后达到最大阈值
+   排队等待： 到达最高阈值时，不是直接拒绝请求，而是使请求排队，当超过所设置的超时时间再拒绝
+
+   #### 降级
+   sentinel里的降级就是熔断
+   ##### 降级策略
+   RT: 秒级反应时间，两个参数RT与时间窗口.  RT为该api最大响应时间，当一秒内有5个请求超过这个时间，该api会在时间窗口时间内熔断
+   异常比例： 当一秒内有5个请求超过这个时间且当每秒异常的请求（只将抛出异常视为异常请求）数达到某个比例时，该api在时间窗口内熔断
+   异常数： 一分钟内的异常数量打到某个数值时，熔断该api
+   
+   #### 热点规则
+   可以配置针对api的某个参数的熔断规则(比如说需要传入用户id,那么针对id这个参数配置规则,这样可以限制一定时间内某个用户的访问次数)
+   在需要热点配置的方法上要添加 @SentinelResource 才可以生效(资源名称需要与注解的value值相等)
+   高级设置中，可以把某些特殊值排除在外，既特殊值可以不限流
+   
+   #### @sentinelResource
 
 ## 微服务
    ### 简介
@@ -450,6 +638,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    操作集合时多考虑使用stream流<br />
    for循环拼接string使用stringbuilder代替<br />
    创建集合是应该思考一下大概的长度<br />
+   字符串比较时最好加一个全转小写<br />
   ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
