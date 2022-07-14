@@ -18,7 +18,11 @@
    https://blog.csdn.net/wu_xianqiang/article/details/110678343<br />
 #### git reset 与 git revert  
    git reset是用于本地的branch(未push的), **将暂存区的commit回到某个commit的时候**，工作区不动<br />
+    git reset --soft HEAD^,将上一个commit吃掉，回到提交前的状态
    git revert是针对远端，通过提交一个新的commit,**撤销某几个commit**（新的commit的改动就是之前的反操作） <br />  
+#### git blame
+   git想要查看关于某一行的几次commit前的改动(正常只能看一次commit),那么可以回到那次commit的文件，再去查看这行当时是谁改的   
+
 
     
 ## Linux
@@ -33,6 +37,7 @@
    
    ### 正则
    (.+)与(.+?)： (.+)默认是贪婪匹配 (.+?)为惰性匹配   https://www.cnblogs.com/ysk123/p/9896850.html<br /> 
+   []中括号中的字符都被视为原始字符，既不带特殊含义
    
    ### scp
    注意，使用scp时，如果最前面加了sudo，则当前登陆用户是root，可能没有对方机器的登陆权限<br /> 
@@ -41,20 +46,37 @@
    ### bash语法
       #### sed
       用于对于多行文本的操作
-   
+
+   ### resolv.conf
+   /etc/resolv.conf 用于设置DNS服务器的IP地址及DNS域名   
+
+   ### 2 >&1
+   https://blog.csdn.net/zhaominpro/article/details/82630528
+
+## 计算机常识
+   ### idrac
+   iDRAC又称为Integrated Dell Remote Access Controller，也就是集成戴尔远程控制卡,这是戴尔服务器的独有功能，iDRAC卡相当于是附加在服务器上的一计算机，可以实现一对一的服务器远程管理与监控，通过与服务器主板上的管理芯片BMC进行通信，监控与管理服务器的硬件状态信息.
+
+
 ## JAVA
 
    ### javaHome
    javahome配置在path中的顺序可能会影响配置效果<br />
+   只要javahome的路径在path中就可以
    ### javac
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br /> 
+   ### public class与class
+   在定义class时可以用public或者默认权限修饰. public class必须与文件名相同，所以一个.java中只有一个public class,但是可以有无数个class
    ### 编译与解释
    解释执行：将编译好的字节码一行一行地翻译为**机器码** 执行。 <br /> 
    编译执行：以方法为单位，将字节码一次性翻译为**机器码** 后执行。<br /> 
    编译器看到的都是字节码文件！！！！！ <br /> 
    https://www.cnblogs.com/lingz/archive/2018/07/31/9394238.html<br /> 
+   ### java项目不能热重启
+   由于class文件只有第一次会加载到内存，所以在不重启jvm的情况下，class的改动是无法识别的
+   想要实现热重启，需要给每个类创建一个classloader. (因为同一个类在同一个classloader只能load一次，所以每次更换时，对应的classloader也要更换)
    ### 数组
    arraylist每次扩容，扩一半长度<br /> 
    ### protobuf
@@ -109,9 +131,11 @@
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0<br />  
    为什么value不作为弱引用   https://www.zhihu.com/question/399087116<br />  
+
+   ### nio
+   #### 零拷贝
+   https://blog.csdn.net/weixin_39879073/article/details/123054799   零拷贝的核心是减少了从内核缓冲区copy到jvm内存这个过程
    
-   ### java http请求
-   feign<br />
    ### stream流
    stream流使用时分为三步： 创建stream-----> 对steam操作 -----> 结束<br /> 
    其中每一步都有很多api   https://blog.csdn.net/y_k_y/article/details/84633001<br /> 
@@ -121,6 +145,9 @@
    stream流的操作是不改变原始数组的(foreach可以改变，但是要注意foreach时的stream流是否含有元素，如果之前进行了filter导致没有元素则不会改变任何东西)
    foreach与collect无法同时使用，filter作用于不同的结束符效果也不一样
    stream的并行：https://www.jb51.net/article/149901.htm<br /> 
+
+   ### jre/lib/cacerts
+   用来储存可以信任的网站的公钥(类似于浏览器信任证书的功能)
 
    ### IO操作
    - inputWriter<br />
@@ -142,7 +169,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 #### JVM内存模型
 ##### 栈
 - TLAB (Thread Local Allocation Buffer)
-    JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.<br /> 
+    JVM使用TLAB来避免多线程冲突(比如多个线程同时在堆上创建对象，是需要同步的)，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.<br /> 
     https://blog.csdn.net/xiaomingdetianxia/article/details/77688945<br /> 
 #### 强软弱虚
    软，弱引用都是在对象没有强引用的情况下发生的
@@ -218,6 +245,16 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 一些命令行参数
    nsu： maven的repository中可能有snapshot,默认会在使用时查看远端是否存在最新的，然后更新本地的，加上这个参数会停止这个过程(快照默认每次都会去看有没有最新的 https://blog.csdn.net/weixin_38608626/article/details/88011541)
    -T:  指定线程数
+## python
+   ### python2/python3
+   Python2和Python3分别是Python的两个版本，按照Python官方的计划，Python2只支持到2020年。为了不带入过多的累赘，Python3在设计的时候没有考虑向下相容，许多针对早期Python版本设计的程序都无法在Python3上正常执行 
+   ### pip
+   pip 是 Python 的包安装程序。其实，pip 就是 Python 标准库中的一个包，只是这个包比较特殊，用它可以来管理 Python 标准库中其他的包
+   ### virtualenv
+   virtualenv用来建立一个虚拟的python环境，一个专属于项目的python环境,解决了依赖包版本冲突的问题
+   会在当前的目录中创建一个文件夹，这是一个独立的python运行环境，包含了Python可执行文件， 以及 pip 库的一份拷贝，这样就能安装其他包了，不过已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的Python运行环境来
+   当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。
+
    
 ## mybatis
    ### retruntype map
@@ -226,17 +263,33 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    缓存的单位是session，即一个事务，当遇到增删改自动失效
    ### 二级缓存
    缓存的单位是一个mapper文件，需要实体类实现serizable接口，不可用于分布式
+
+
 ## 前端相关
    ### mdn
    web开发手册，包含js的使用规则等等
    ### DOM与BOM
    BOM是浏览器对象模型，DOM是文档对象模型，前者是对浏览器本身进行操作，而后者是对浏览器（可看成容器）内的内容进行操作<br /> 
-   每个浏览器提供操作dom bom的api<br /> 
+   每个浏览器提供操作dom bom的api<br />
+   ### shadow-root
+   shadow-root 包裹下的对象，不在全局的dom树中，因此getElementById 等方法，获取不到包裹中的对象。
+   该功能的目的就是，独立出一块渲染块，不受外层样式的影响，内层的样式也不影响外层的显示。 
+   想要获得的话，访问方式为： 得到shadow-root 外层的根node 这个node是在全局dom树中的。取得gtx的shadow块
    ###  js语法相关
+   this: js的this指向调用者(当函数通过xx.func调用时指向xx，直接调用时指向window)
+   当函数作为属性时，调用时的this似乎一直跟赋值时的this相等，不会再改变（不确定）
    call()方法： 改变函数的所有者(也可以理解为改变调用时的this)  https://www.w3school.com.cn/js/js_function_call.asp
    js中操作集合，使用foreach前，先想想有没有替代品（foreach能做的事比较多，没法直接看出来要干什么，而some,erery等函数则可以方便看清，并且代码量少）：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
    ### spa应用
    单页面应用，指只有一个页面。 点击页面中的链接不会刷新页面，而是局部刷新组件
+   ### webpack与vite 
+   两者都是打包工具： 前端写代码时为了方便会将代码写在许多文件中，但是转化成HTML代码时，会使用‘script’标签进行引入js代码，这样会使页面进行的http衍生请求次数的次数增多，页面加载耗能增加。使用打包过后将许多零碎的文件打包成一个整体，页面只需请求一次，js文件中使用模块化互相引用（export、import ），这样能在一定程度上提供页面渲染效率(打包成一个js文件)
+   webpack: 分析依赖=> 编译打包=> 交给本地服务器进行渲染。首先分析各个模块之间的依赖，然后进行打包，在启动webpack-dev-server，请求服务器时，直接显示打包结果。webpack打包之后存在的问题：随着模块的增多，会造成打出的 bundle 体积过大，进而会造成热更新速度明显拖慢。(静态编译)
+   vite: 启动服务器=> 请求模块时按需动态编译显示。是先启动开发服务器，请求某个模块时再对该模块进行实时编译，因为现代游览器本身支持ES-Module，所以会自动向依赖的Module发出请求。所以vite就将开发环境下的模块文件作为浏览器的执行文件，而不是像webpack进行打包后交给本地服务器。(动态编译)
+
+   ### 验证input输入完成
+   一般可以用onblur方法，既失焦时触发
+
    ### node.js
    每个浏览器都有自己的解释引擎，所以可以识别js代码<br /> 
    node.js可以让js代码做后端开发。本质是js的运行环境.通过  node js路径  指向js文件<br /> 
@@ -273,7 +326,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    把方法写在构造函数的内部，增加了通过构造函数初始化一个对象的成本（内存占用，因为两个实例对象就创建了两个一样的方法），把方法写在prototype属性上就有效的减少了这种成本<br />
    属性写在实例里，方法写在原型
   ### 箭头函数和普通函数区别
-   箭头函数的this是不变的，指向定义时的this. 普通函数的this是随着调用者改变的
+   箭头函数的this是不变的，指向**定义**时的this. 普通函数的this是随着调用者改变的(例：var a =  (1) => {this.xx} this为1对应处的this,如果1不在一个大括号里面，说明没有作用域，则是指向window 而 var a = function ppp((1) => {this.xx}) 则是有作用域的，this就不是window了  既判断第一个括号是否在函数中)
+   https://blog.csdn.net/qq_43303102/article/details/113005871
    ### promise<br /> 
     类似于java中的callable接口，用于异步调用  https://www.cnblogs.com/superSmile/p/8406037.html
    ### 属性的赋值
@@ -297,6 +351,14 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    react生成li标签时，建议携带唯一的key<br />
   - 教程<br />
     https://www.bilibili.com/video/BV1wy4y1D7JT?p=95<br />
+  - react rule
+    react给form添加规则时，不要通过绑定事件然后在方法中判断是否成功，而是可以通过rule属性来进行处理  
+  - 在父组件获取子组件的的state
+    signoffModal: RefObject<SignoffModal> = React.createRef();  
+    <SignoffModal    ref={this.signoffModal}  />
+    let modal = this.signoffModal.current
+  - 在子组件修改父组件pros或者state
+    可以将父组件修改的方法传入子组件  
   - babel<br /> 
     将jsx转换为js<br />
   - jsx<br /> 
@@ -329,7 +391,10 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
      有三种使用方式：  1. 字符串类型  ref="input1" （效率比较低，已不推荐使用）  2.  回调函数形式  ref= (currentNode) => this.input1 = currentNode  (将真实dom绑定到this的某个属性上，由React自己调用，但是当重新渲染时，会调用两次该方法)  3.  createRef法：  a = React.createRef  然后将ref = a
      尽量不要写ref,比如同一个input上，需要在事件时获取自己的值，可以在event中取到<br/>
   - 事件绑定  <br />
+    react事件绑定相当于一个中间变量，所以需用箭头函数或者bind方法
     绑定事件时要写方法名，不要携带括号。携带括号意味调用函数，也就是把函数的值返回<br/>
+    有括号, 函数会立即执行, 然后返回结果;
+    无括号, 会将函数 作为"对象"赋值给你的变量 .
   -  react构造函数<br/>
     主要做一件事： 给state设置初始值；  但是如果写了构造函数，要记得写super(props)<br/>
   -  react-creator脚手架<br/>
@@ -340,6 +405,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
      2.   如果需要配置多个proxy的话，可以用middleware<br/>
   - react路由<br/>
      路由就是key-value的关系，不同的path对应不同的组件或函数<br/>
+     <Redirect to={{ pathname: '/login', state(自定义属性): { from: this.props.location } }} />  路由信息存在this.props.location中. 通过浏览器访问时会自动填充pathname属性
      原理是bom中含有hisyory属性，是一个栈，history.push会改变path。然后可以给这个栈设置监听事件<br/>
      通过react-router插件实现<br/>
   - hook
@@ -383,6 +449,18 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 网络安全
    #### ddos
    http://www.ruanyifeng.com/blog/2018/06/ddos.html
+   #### 公钥与私钥
+   公钥用于加密，私钥用于解密
+   #### 证书
+   颁发的证书一般有三部分： 公钥，私钥，证书，其中证书一般与公钥是在一起的
+   颁发的私钥一般是加密的，需要解密后才可以使用
+   #### ssl过程
+   完成时为对称加密的形式(客户端与服务端共用一个key进行数据传输)
+   https://www.cnblogs.com/hld123/p/15255526.html
+
+   双向验证： https://www.jianshu.com/p/fb5fe0165ef2
+   #### hsts
+   浏览器维护一个hsts表，在表中的网站只使用https的方式连接，拒绝所有http请求
    
    ### htpp请求
    #### time_wait
@@ -394,54 +472,239 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 并发与并行
    并发是指一个处理器同时处理多个任务。
    并行是指多个处理器或者是多核的处理器同时处理多个不同的任务。   
+
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
    过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）
    ### redission使用手册
    https://www.bookstack.cn/read/redisson-wiki-zh
+
 ## zookeeper
    ### 节点类型
    持久节点：该数据节点被创建后，就会一直存在于zookeeper服务器上，直到有删除操作来主动删除这个节点。
    临时节点：临时节点的生命周期和客户端会话绑定在一起，客户端会话失效，则这个节点就会被自动清除。   
+
+## ELK
+   ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana(由于后面又有一些新的组件加入，所以又称为elasticStack es)
+   logstash收集信息 ----》es数据库 -----》kibana数据展示
+   ### elasticsearch
+   #### 简介
+   Elasticsearch是个开源分布式搜索引擎，提供搜集、分析、存储数据三大功能。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等,9200为服务端口，9300为通信端口
+   主要通过http请求进行操作，是由lucene封装而来
+   #### 概念
+   index: 等同于mysql中的数据库
+   type: 可以理解为表，不过已经弃用，因为同一索引数据都是在一起的，不同type之间如果属性不同会造成大量空值
+   document: es中的最小单位，可以理解为一行，是jason格式存储的
+   field: 相当于列，指定一个document应该有哪些字段
+   shard: 分片，将数据分片存储在多台机器上,默认为1
+   replica: 副本，既主备，默认为1
+   #### 集群
+   一台机器可以有多个主分片
+   同一索引同一分片的主分片与副本分片不能在一台机器上，且一个索引的主分片数量是固定的，副本分片是可以改变的。
+   当主分片挂了，会查看有没有对应的副本分片，如果有的话就转为主分片，没有就宕掉了
+   如果是集群环境es会自动把主分片分到不同的机器上（比如两个节点时，两个主分片会在一台机器上，另一台上放对应的副本分片）
+   #### 状态
+   绿色：所有主分片和副本分片可用
+   黄色：存在副本分片不可以，所以主分片可用
+   红色：存在主分片不可用
+   #### TF/IDF算法
+   一个词语在一篇文章中出现次数越多, 同时在所有文档中出现次数越少, 越能够代表该文章
+   Term Frequency: 判断搜索的关键字在文章中出现的次数，越多则相关度越高
+   Inverse Document Frequency： 判断某个搜索的关键字在所有文章中的出现次数，出现次数越多，该关键字的相关度就越低
+   最终的结果为TF*IDF
+   #### crud操作
+   新建索引: PUT /indexName
+   新建document: POST/PUT /indexName/type/(表名，以后会启用 一般写 _doc)/id/_create  {json串}，也可以不指定id,自定生成id
+   获取document: 1.全局返回：GET /indexName/type/id   2.返回指定field  GET /indexName/type/id?_source_indludes=fielName1,fieldName2
+   更新document: 1.全局替换：  POST/PUT /indexName/type/id  {json串}   2.局部更新： POST /indexName/type/id/_update {"doc":{json串}}
+   批量操作: bulk (推荐使用\n进行分行，因为可以减少服务端进行Json->jsonArrray的转换)
+   #### 指定搜索
+   indexName/_search?q=(+-)fieldName:xxx  指定关键词搜索  -号代表不含有xxx
+   indexName/_search?q=sort=fieldNam(:desc) 根据某一列排序
+   indexName/_search?timeout=10ms 指定搜索的最长等待时间(在这个时间内，搜到多少条就返回多少条)
+   indexName1,indexName2/_search 多index搜索
+   indexName/_search?from=x&size=y 分页查询,返回第x 起的y条数据(默认根据相关度排序)  当from数量太大时，会出现deep paging问题(因为分布式时，会去所有子节点取出x+y条数据，然后再排一次序，造成消耗带宽等问题) https://www.cnblogs.com/michael9/p/14632698.html
+   以上这些参数都可以通过body携带
+
+   filter: 查询结果中必须要包含的内容，不会影响相关度
+   should: 查询结果非必须包含项，包含了会提高分数，影响相关度
+   must_not: 查询结果中不能包含的内容，不会影响相关度 可见，filter 和 must _not 单纯只用于过滤文档，而它们对文档相关度没有 任何影响。换句话说，这两种子句对查询结果的排序没有作用。在这四种子句中， should 子句的情况有些复杂。首先它的执行结果影响相关度，但在是否过滤结 果上则取决于上下文。当 should 子句与 must 子句或 filter 子句同时出现在子句 中时，should 子句将不会过滤结果。也就是说，在这种情况下，即使 should 子 句不满足，结果也会返回
+
+   #### mapping
+   在创建index时可以对document的属性类型进行设置，如果不指定则会根据字段值进行动态判断。(不同类型的属性查找规则不同,有些是全文检索，有些是精确匹配)
+   Get indexName/_mapping 查看一个索引的映射
+   PUT indexName/_mapping {"properties": {json}}  创建某个index的索引
+   在给一个index设置type时，可以指定dynamic mapping配置(开启、禁用、不设置索引)
+   ##### 类型
+   text: 文本类型，可以添加参数来设置某个属性使用的分词器、是否需要建立倒排索引(默认是不支持排序的，因为倒排索引后不知道原数据的组成顺序)
+   keyword: 关键词类型，与text类似，但是不建立倒排索引(index:false)
+   date:不需要设置分词器，可以定义存储的日期的格式
+   数值类型: byte、int、float等(还有一个scared_float,是指把小数类型作为整数存储)
+   ##### 自定义动态索引
+   可以自己定义动态索引的设置规则，让某些field匹配为某种type. 比如按照field名称的正则匹配等等
+   ##### 修改mapping
+   如果索引已经插入数据，则映射无法修改，只能删除索引重新创建，所以创建索引后就要指定mapping类型。 
+   修改的话通常是新建一个index,然后type改好，把原index的数据全部导入新的索引
+   #### 倒排索引
+   es维护一个倒排表，将单词和对应的document进行一个连接，同时把该单词进行一个同义词/时态的转化(一个Index的一个filed就对应一个倒排表)
+   #### 分词器
+   将一段文本通过分词器处理，然后存入倒排表中(可以自己配置很多参数)。
+   存储的时候使用一个分词器，对该属性搜索的时候用另一个分词器(搜索的时候如果是全文索引，也会对搜索的内容进行分词)，一般来说存储用分成最多数量的分词，搜索用分成最小数量的
+   默认有五种分词器
+   使用GET /_anaylize 来测试分词器工作结果
+   ##### ik分词器
+   中文分词器
+   大概有27w个分词
+   可以添加自己的分词，可以加在mysql里也可以加在文件里
+   ##### 工作步骤
+   1.character filter 
+   常见的如：去掉一些<html>等无效字符 ,将&转换为and等
+   2.tokenlizer
+   把句子化为一个个单词
+   3.tokenfilter
+   常见的如：去掉一些语气词(a,the,an等,默认不去掉)  ，转换为小写
+   #### 存储选择原理
+   通过对document进行hash计算取模，决定放在哪个主分片
+   #### 替换与删除原理
+   替换时更新version版本(局部更新也会更新version)，旧的version并不会马上删除，而是在一个时间一起删除。 
+   删除也不会马上删除，会先标记，等待时间再删除(为了减少io访问次数)
+   #### 内置脚本
+   ```
+      POST /book/_doc/1/_update 
+         {
+         "script":"ctx._source.price+=1"
+         }
+   ```
+   #### 乐观锁机制
+   java中可以在请求中携带version来使用乐观锁机制(也可以设置VersionType.EXTERNAL，只要当前的版本号高于es中的版本号，就可以存入)
+
+   ### kibana
+   #### 简介
+   是用来图形化查看es的工具。默认端口5601 
+
+   ### logstash  
+   #### 简介
+   数据收集工具，将某个地方的数据存入另一个地方(比如mysql的存入es)
+   #### 组成
+   input ----> filter(可以将input的数据按照正则解析为很多个字段) ----> output
+
+
 ## tomcat
    ### catalina.out
    catalina.out用来存储控制台打印的信息即标准输入的目的地,在log4j中配置的consoleappender也会输入到此. 一般都含有gc信息（jdk默认在gc时会向控制台输出信息，可以通过jvm potion关闭）
+
+
 ## postman
    ### basic auth
    basic auth实质就是在header里添加("authorization" , "Basic (name:password).toBase64")   
+
+
 ## restful
    ### 请求类型
-   get: 查    post:新增   put:更新所有  patch:更新某个属性  delete:删除
+   get: 查    post:新增(非幂等)   put:更新所有  patch:更新某个属性(非幂等，因为可能导致update_time字段改变)  delete:删除
+   head： 只返回相应的head信息，不返回body
    ### 规则
    url中只存在名词，不存在动词，并且最好与数据库的表名对应
+
+
+## graph ql
+   是一种来替代restful api的技术，查询时可以指定需要查询的属性
+   一般只有一个post api  
+   {
+      operation(query,mutation) {
+         endpoint(user) {
+            field1 (name)
+            field2 (age)
+         }
+      }
+   } 
+
+## osgi
+   是一种实现模块化的框架. OSGi 是严格要求模块化的，模块有个专有名词 bundle。每个模块都是一个 bundle，一个 Business Logic 由多个 bundle 来实现
+   当一个 bundle 发现并开始使用 OSGi 中的一个服务了以后，这个服务可能在任何的时候改变或者是消失。
+   SOA粗暴理解：把系统按照实际业务，拆分成刚刚好大小的、合适的、独立部署的模块，每个模块之间相互独立。
+
+## Keytool
+Keytool 是一个JAVA环境下的安全钥匙与证书的管理工具，Keytool将密钥（key）和证书（certificates）存在一个称为keystore 的文件(受密码保护)中。keystore生成时自带证书，只能先删除原有的。
+.p12文件是用来给keystore使用的，由证书和私钥生成
+openssl pkcs12 -export -in cert.pem -inkey key.pem -out cacert.p12
+keytool -importkeystore -destkeystore /opt/fastrun.app/conf/tomcat.keystore -srckeystore cacert.p12 -srcstoretype pkcs12
+keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cacert.p12 -srcstoretype pkcs12   
+还有个类似的文件时.jks文件，这个文件是通过Android studio生成的，本质跟.keystore文件一样
+
+
+
 ## mysql
    ### 5.7安装
    分为免安装版和安装版，免安装版教程：https://www.cnblogs.com/itcui/p/15511683.html   网址：http://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.7/   
    ### char比较时的坑
    对于值为null的char,任何判断都会为false. 例如 name != 'a',是不会包含name为null的数据的，需要在前面加上is null包含上null的数据
+   ### having与where
+   https://blog.csdn.net/qq_37189082/article/details/122607549
+   where作用于表数据过滤，Having作用于组数据的过滤；where在分组和聚合之前选取数据，having在分组和聚合之后选取分组数据
+   ### like
+   like默认是不区分大小写的
+   ### 配置文件
+   ["client"]
+   socket =xxxx  来指定客户端使用的socket文件
    ### 数据类型
     #### unsigned
     无符号类型
+   ### log类型
+   https://zhuanlan.zhihu.com/p/213770128
+   binlog: 存储所执行的sql语句
+   redolog: 与事务相关，保证事务的一致性。与Binlog类似。但是粒度比binlog小，记载的是对页的操作 （binlog只有在事务结束提交前写入一次，但是redolog则是在事务过程中不断添加，所以可恢复成度也大于binlog）
+   undolog: 主要保证回滚的正确性，通过一个指针串联起一行数据的多个版本
+   更多redolog和binlog区别： https://blog.csdn.net/weixin_44691915/article/details/122860263
    ### 索引
     #### 索引失效
     https://www.cnblogs.com/wdss/p/11186411.html
-   ### 语句优化
-   使用group by 替换distinct
+   
+
+## druid
+   连接池技术，是目前最快的连接池
+   Druid连接池是阿里巴巴开源的数据库连接池项目。Druid连接池为监控而生，内置强大的监控功能，监控特性不影响性能。功能强大，能防SQL注入，内置Loging能诊断Hack应用行为
+
 ## nginx
    ### 反向代理与正向代理
    最主要的区别是被代理的对象，如果被代理的是服务器，则是反向代理，被代理的是用户，则是正向代理   
+
 ## jmeter
    ### ramp-up
    ramp up的值应该是启动全部线程所需的时间   
+
 ## log4j
    ### 日志级别
    debug < info < warn < error
    ### DailyRollingFileAppender
    按天生成日志文件，旧的log会带后缀
+
 ## lombok
    ### 使用
    项目需要下载lombok的依赖，idea需要下载lombok插件
+
+## mycat
+   一款可以分库分表的数据库中间件，但是已经不在维护，不推荐使用   
+
+## 代码测试
+   阶段： 单元测试 ---->  集成测试  ----->  系统测试
+   集成测试和系统测试区别不大
+   冒烟测试(smoke test): 冒烟测试这个名称的来历，最初是从电路板测试得来的。因为当电路板做好以后，首先会加电测试，如果板子没有冒烟再进行其它测试，否则就必须重新来过. 冒烟只是这类测试活动更形象化一些的叫法，目的是保证系统基本功能可用   
+   回归测试(regression): 当修复一个BUG后，把之前的测试用例在新的代码下进行再次测试。 确保改完原来的BUG后，没有给其他部分带来新的缺陷
+   BVT(Build Verification Test): 主要目的是验证最新生成的软件版本在功能上是否完整，主要的软件特性是否正确。如无大的问题，就可以进行相应的功能测试（bvt与smoke test差不多）
+
+## testng
+   一款基于junit的自动化测试框架
+   listener类可以继承,如果继承了多个listner(多级关系),那么不同参数相同注解的方法会都执行
+   @Test 注解一个test方法
+   @Before/After Method修饰的方法可以携带参数 Method method, ITestResult result，
+
+## DGS graphql
+   一款用于实现graphql的java框架
+   使用时在resource文件夹中创建schema文件，来指定返回值的类型。
+   通过@DGSComponent注解声明一个fetcher,一般一个返回值对应一个同名方法 通过配置resolver来进行分表查询
+   自带一个前端页面来方便进行graphql查询  
 ## spring
    ### spring3
    无法在spring3中使用lmbda
@@ -472,6 +735,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    
     
 ## springcloud
+   https://yunyanchengyu.blog.csdn.net/?type=blog
    ### 与dubbo关系
    springcloud是在dubbo的基础上建立的，后来又被spring-alibaba包含
    ### 版本
@@ -509,6 +773,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    https://blog.csdn.net/manzhizhen/article/details/110013311
    与springcloud整合时，默认携带1s超时时间
    requestInterceptor(new BasicAuthRequestInterceptor(userName, password)) 会作用于所有请求
+   openfeign默认的解码器只支持String类型、[byte]类型。 与springcloud整合时会调用Spring MVC 中的消息转换器（HttpMessageConverter）进行编码，而消息转换器适配了很多种数据格式，String、Byte、Json、XML都是支持的。
+   当使用参数作为path一部分时，要注意对参数进行urlencoder(默认会把所以%2F转换成/，如果不需要可以通过decodeSlash = false 关闭这个功能)
    ### 服务容错
    #### Hystrix
    是一个用于处理分布式延迟和容错的第三方库，保证在单个应用出错的情况下，不会导致整个服务失败，避免级联故障
@@ -603,8 +869,48 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    可以配置针对api的某个参数的熔断规则(比如说需要传入用户id,那么针对id这个参数配置规则,这样可以限制一定时间内某个用户的访问次数)
    在需要热点配置的方法上要添加 @SentinelResource 才可以生效(资源名称需要与注解的value值相等)
    高级设置中，可以把某些特殊值排除在外，既特殊值可以不限流
-   
+
+   #### 系统规则
+   针对整个系统制定规则(比如系统qps达到某个阈值,cpu达到某个利用率等),不是很推荐使用
+
    #### @sentinelResource
+   配置自定义的流控/熔断页面
+   blockHandler = "xxxMethod" 用于处理违反配置的api  ,  fallback = "xxxMethod" 用于处理runtimeException(如果方法只配了fallback，BlockException也会被接收), exceptionToIgnore 使某些异常不走fallback方法
+   也可以配置全局的方法，注意该方法需要设置为static, blockHandlerClass=xxx.class blockHandler= "xxxMethod"
+   注意： 自定义方法需要与controller的方法保持相同的参数,并且最后加上BlockException xxx
+
+   #### 持久化
+   配置的规则默认是临时的，重启sntinel或者重启项目就会消失
+   将配置规则写在nacos中，把需要规则监控的模块与Nacos中的配置文件绑定
+   https://blog.csdn.net/qq_40777074/article/details/106860713
+
+   ### seata
+   用来解决分布式事务问题的服务
+   https://blog.csdn.net/qq_41910252/article/details/122517092
+   TC： seata服务器    TM：需要注解的方法   RM：连接的数据库
+
+## 大数据
+   大规模的数据进行存储，分析，计算. TB,PB,EB级别
+   ### hadoop
+   #### 简介
+   分布式大数据计算与存储的框架，由google的两篇论文所衍生出来
+   #### 组成
+   hdfs,mapredurce,yarn
+   #### hdfs
+   分布式文件系统，用于存储数据，将一个文件分成多个块(一个块一般是128m，如果文件不足128m会把该块共享给其他文件。设置128m是因为hdfs建议一秒内完成块传输，而机械硬盘一般是100MB/s)，存到集群中。 
+   存储后的文件不能修改内容，只能追加内容，不适合保存小文件(namenode中会记录文件位置，本身也要占用空间)
+   NameNode：用来记录数据存储在哪些机器上
+   SecondryNameNode：NameNode的备份节点
+   DataNode：具体存储据的机器
+   自带一个web页面，可以查看存储的文件
+   客户端上传文件时，会把文件进行拆分，分成一个个块。
+
+   #### mapreduce
+   用于将大任务分成多个小任务(map),再将结果合并(reduce)
+   #### yarn
+   负责调度mapreduce
+   ResourceManager: 整个集群的资源(内存和cpu)调度节点
+   NodeManager: 管理某台机器的资源(会把某台机器的资源分成很多container)
 
 ## 微服务
    ### 简介
