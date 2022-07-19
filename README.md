@@ -49,6 +49,8 @@
       #### trap
       对捕获到的SIGNAL,改变原有的处理action为新的action,可以用来做类似try catch的处理(如果单纯重试请使用 xx || xx)
       https://cloud.tencent.com/developer/article/1640249
+      #### exit与return
+      exit是退出程序，return是退出函数
 
    ### resolv.conf
    /etc/resolv.conf 用于设置DNS服务器的IP地址及DNS域名   
