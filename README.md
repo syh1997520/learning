@@ -57,6 +57,7 @@
 
    ### 2 >&1
    https://blog.csdn.net/zhaominpro/article/details/82630528
+   2>&1 本身是一个整体，将标准错误重定向到标准输出
 
 ## 计算机常识
    ### idrac
