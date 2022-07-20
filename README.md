@@ -50,7 +50,7 @@
       对捕获到的SIGNAL,改变原有的处理action为新的action,可以用来做类似try catch的处理(如果单纯重试请使用 xx || xx)
       https://cloud.tencent.com/developer/article/1640249
       #### exit与return
-      exit是退出程序，return是退出函数（注意，return退出函数时，要保证上层函数同样retrun下层函数的值才行，不然不会传递.）
+      exit是退出程序，return是退出函数（注意，return退出函数时，要保证上层函数同样retrun下层函数的值才行，不然不会传递. 如果有很多层，可以在最底层调用时export 一个变量，在外面去判断变量的值）
 
    ### resolv.conf
    /etc/resolv.conf 用于设置DNS服务器的IP地址及DNS域名   
@@ -467,6 +467,10 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    双向验证： https://www.jianshu.com/p/fb5fe0165ef2
    #### hsts
    浏览器维护一个hsts表，在表中的网站只使用https的方式连接，拒绝所有http请求
+   
+   ### vpn与proxy
+   https://zhuanlan.zhihu.com/p/451193697
+   vpn与proxy都是服务器，vpn需要下载软件，与vpn服务器形成隧道传输，比proxy多了加密功能
    
    ### htpp请求
    #### time_wait
