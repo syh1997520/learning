@@ -645,6 +645,9 @@ openssl pkcs12 -export -in cert.pem -inkey key.pem -out cacert.p12
 keytool -importkeystore -destkeystore /opt/fastrun.app/conf/tomcat.keystore -srckeystore cacert.p12 -srcstoretype pkcs12
 keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cacert.p12 -srcstoretype pkcs12   
 还有个类似的文件时.jks文件，这个文件是通过Android studio生成的，本质跟.keystore文件一样
+   
+## cacert
+   在java的jre\lib\security 文件夹下有一个cacerts文件，也被称作truststore,是用来存放受信任的证书的
 
 
 
