@@ -717,6 +717,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    listener类可以继承,如果继承了多个listner(多级关系),那么不同参数相同注解的方法会都执行
    @Test 注解一个test方法
    @Before/After Method修饰的方法可以携带参数 Method method, ITestResult result，
+   
+## harbor
+   docker的本地镜像仓库,提供了ui操作
 
 ## DGS graphql
    一款用于实现graphql的java框架
