@@ -49,6 +49,7 @@
       #### trap
       对捕获到的SIGNAL,改变原有的处理action为新的action,可以用来做类似try catch的处理(如果单纯重试请使用 xx || xx)
       https://cloud.tencent.com/developer/article/1640249
+      解决trap不能继续执行:可以把某个方法作为子脚本执行，这样trap的范围是整个子脚本
       #### exit与return
       exit是退出程序，return是退出函数（注意，return退出函数时，要保证上层函数同样retrun下层函数的值才行，不然不会传递. 如果有很多层，可以在最底层调用时export 一个变量，在外面去判断变量的值）
 
