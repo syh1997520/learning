@@ -722,6 +722,37 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## harbor
    docker的本地镜像仓库,提供了ui操作
 
+## k8s
+   ### 简介   
+   google开源的容器管理技术
+   ### 组成
+   由master和node节点组成
+
+   #### master
+   ##### ApiServer
+   集群的统一入口，以restful方式进行请求，然后交给etcd处理
+   ##### scheduler
+   调度器，决定在哪个node上面进行部署
+   ##### controller-manager
+   对某个资源进行控制(比如有多个订单服务pod，那么由一个订单服务manager来管理)
+   ##### etcd
+   可以理解为数据库，存放数据
+
+   #### node
+   ##### kublete
+   master放置在node上的一个agent,用来获取node上的运行情况等
+   ##### kube-proxy
+   用于网络代理
+
+   ### 概念
+   #### pod
+   最小部署单元，由一个或多个container组成. 内部的端口是一组的
+   #### controller
+   管理多个功能相同的pod
+   #### service
+   定义一组pod的访问规则（可以理解为入口）
+   
+
 ## DGS graphql
    一款用于实现graphql的java框架
    使用时在resource文件夹中创建schema文件，来指定返回值的类型。
