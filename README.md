@@ -728,6 +728,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    google开源的容器管理技术
    ### 组成
    由master和node节点组成
+   ### 安装
+   机器初始化(关闭防火墙，禁止swap分区等). 安装docker,kubelet,kubeadmin,kubectl.  kubeadmin init
 
    #### master
    ##### ApiServer
