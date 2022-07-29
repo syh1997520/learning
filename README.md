@@ -74,6 +74,8 @@
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br /> 
+   ### 默认路径
+   默认的路径是System.getProperty("user.dir"). 但是这个路径可能是变化的，所以最好还是用绝对路径
    ### public class与class
    在定义class时可以用public或者默认权限修饰. public class必须与文件名相同，所以一个.java中只有一个public class,但是可以有无数个class
    ### 编译与解释
