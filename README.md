@@ -609,6 +609,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    catalina.out用来存储控制台打印的信息即标准输入的目的地,在log4j中配置的consoleappender也会输入到此. 一般都含有gc信息（jdk默认在gc时会向控制台输出信息，可以通过jvm potion关闭）
    ### CATALINA_BASE和CATALINA_HOME
    当一台机器上有多个app,不想都放到webapp目录下时(如果都在webapp会造成无法单独启动的问题)，可以给每个app设置单独的CATALINA_BASE(简单理解为属于app自己的一个tomcat环境)，然后把tomcat根目录的log文件夹copy过去，创建bin目录以及start.sh/shutdown.sh,即可直接在app目录启动自身
+   ### new File
+   tomcat的默认new file在serv目录下
 
 ## postman
    ### basic auth
