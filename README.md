@@ -742,7 +742,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    可以理解为数据库，存放数据
 
    #### node
-   ##### kublete
+   ##### kubelete
    master放置在node上的一个agent,用来获取node上的运行情况等
    ##### kube-proxy
    用于网络代理
@@ -754,6 +754,18 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    管理多个功能相同的pod
    #### service
    定义一组pod的访问规则（可以理解为入口）
+ 
+   ### k8s yaml文件
+   实际生产环境中使用yum来操作k8s
+   yum文件的内容分成两部分： 控制器定义，pod信息 (两部分一般由templete字段来区分，上面的是控制器定义，下面的是pod信息)
+   创建yum文件的方法： kubectl create deployment --image=nginx -o yaml --dry-run
+
+
+   ### 命令
+   #### kubectrl
+   k8s的命令行操作，创建pod等等操作
+
+   
    
 
 ## DGS graphql
