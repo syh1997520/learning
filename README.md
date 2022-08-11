@@ -488,6 +488,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    传统的http请求都是在完成一次发送后结束连接，当指定了keepalive_timeout时，会在每次发送后开启计时，达到时间才关闭连接
    #### Cache-Control
    位于response header中，用来向客户端声明资源的有效时间(浏览器默认只有刷新才会去重新刷新资源，关闭重进并不会自动刷新)
+   https://blog.csdn.net/ljfrocky/article/details/123032502
 ## 操作系统
    ### 并发与并行
    并发是指一个处理器同时处理多个任务。
