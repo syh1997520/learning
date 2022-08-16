@@ -273,6 +273,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## mybatis
    ### retruntype map
    mybatis里当查询到的值用map接收时，key是列名,value是值
+   ### 联表查询
+   https://blog.csdn.net/codejas/article/details/79532434
    ### 一级缓存
    缓存的单位是session，即一个事务，当遇到增删改自动失效
    ### 二级缓存
