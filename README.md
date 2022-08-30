@@ -21,7 +21,9 @@
     git reset --soft HEAD^,将上一个commit吃掉，回到提交前的状态
    git revert是针对远端，通过提交一个新的commit,**撤销某几个commit**（新的commit的改动就是之前的反操作） <br />  
 #### git blame
-   git想要查看关于某一行的几次commit前的改动(正常只能看一次commit),那么可以回到那次commit的文件，再去查看这行当时是谁改的   
+   git想要查看关于某一行的几次commit前的改动(正常只能看一次commit),那么可以回到那次commit的文件，再去查看这行当时是谁改的  
+#### git 删除文件
+   对于大文件或者私密文件，直接提一个新的commit删除，并不能永久删除，在git clone时依然会下载该文件.所以需要通过filter-branch来删除
 
 
     
@@ -481,6 +483,9 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### vpn与proxy
    https://zhuanlan.zhihu.com/p/451193697
    vpn与proxy都是服务器，vpn需要下载软件，与vpn服务器形成隧道传输，比proxy多了加密功能
+   
+   ### ping
+   ping使用icmp协议，不携带端口号，可以关闭电脑的ping功能
    
    ### htpp请求
    #### time_wait
