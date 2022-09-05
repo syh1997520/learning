@@ -751,7 +751,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
    ### 概念
    #### pod
-   最小部署单元，由一个或多个container组成. 内部的端口是一组的
+   最小部署单元，由一个或多个container组成. 内部的网络是共享的. pod是短暂的
+   创建pod时先创建一个pause容器，然后把业务容器加到pause容器中，由此实现网络共享
+   使用volumn来进行数据的共享存储
    #### controller
    管理多个功能相同的pod
    #### service
