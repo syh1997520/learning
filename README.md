@@ -21,7 +21,9 @@
     git reset --soft HEAD^,将上一个commit吃掉，回到提交前的状态
    git revert是针对远端，通过提交一个新的commit,**撤销某几个commit**（新的commit的改动就是之前的反操作） <br />  
 #### git blame
-   git想要查看关于某一行的几次commit前的改动(正常只能看一次commit),那么可以回到那次commit的文件，再去查看这行当时是谁改的   
+   git想要查看关于某一行的几次commit前的改动(正常只能看一次commit),那么可以回到那次commit的文件，再去查看这行当时是谁改的  
+#### git 删除文件
+   对于大文件或者私密文件，直接提一个新的commit删除，并不能永久删除，在git clone时依然会下载该文件.所以需要通过filter-branch来删除
 
 
     
@@ -49,9 +51,11 @@
       #### trap
       对捕获到的SIGNAL,改变原有的处理action为新的action,可以用来做类似try catch的处理(如果单纯重试请使用 xx || xx)
       https://cloud.tencent.com/developer/article/1640249
-      解决trap不能继续执行:可以把某个方法作为子脚本执行，这样trap的范围是整个子脚本
+      解决trap不能继续执行:可以把某个方法作为子脚本执行，这样trap的范围是整个子脚本(要注意在子shell，exit只会退出相关进程，并不会被trap捕捉，所以要对subshell的地方单独处理)
       #### exit与return
       exit是退出程序，return是退出函数（注意，return退出函数时，要保证上层函数同样retrun下层函数的值才行，不然不会传递. 如果有很多层，可以在最底层调用时export 一个变量，在外面去判断变量的值）
+      #### ln
+      如果涉及到一台机器某个文件需要一个副本的话，可以尝试用软连接(用cp可能导致文件权限改变)
 
    ### resolv.conf
    /etc/resolv.conf 用于设置DNS服务器的IP地址及DNS域名   
@@ -271,6 +275,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## mybatis
    ### retruntype map
    mybatis里当查询到的值用map接收时，key是列名,value是值
+   ### 联表查询
+   https://blog.csdn.net/codejas/article/details/79532434
    ### 一级缓存
    缓存的单位是session，即一个事务，当遇到增删改自动失效
    ### 二级缓存
@@ -478,12 +484,18 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    https://zhuanlan.zhihu.com/p/451193697
    vpn与proxy都是服务器，vpn需要下载软件，与vpn服务器形成隧道传输，比proxy多了加密功能
    
+   ### ping
+   ping使用icmp协议，不携带端口号，可以关闭电脑的ping功能
+   
    ### htpp请求
    #### time_wait
    在四次挥手中，客户端最后需要有一个time_wait的时间，以确保没有包存活。而这个time_wait对于高并发的时候则是很吃力的，所以对于高访问的机器可以适当调低，或者尝试使用长连接来减少连接数量<br/>
    netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'   查看数量<br/>
    #### keepalive_timeout
    传统的http请求都是在完成一次发送后结束连接，当指定了keepalive_timeout时，会在每次发送后开启计时，达到时间才关闭连接
+   #### Cache-Control
+   位于response header中，用来向客户端声明资源的有效时间(浏览器默认只有刷新才会去重新刷新资源，关闭重进并不会自动刷新)
+   https://blog.csdn.net/ljfrocky/article/details/123032502
 ## 操作系统
    ### 并发与并行
    并发是指一个处理器同时处理多个任务。
@@ -758,6 +770,15 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    管理多个功能相同的pod
    #### service
    定义一组pod的访问规则（可以理解为入口）
+   #### 镜像策略
+   镜像拉取策略:  根据宿主机有无该image 分为三种
+   资源限制: 可以设定满足条件的机器才会启动某个镜像
+   重启策略: 当容器关闭时，是否自动启动等
+   #### probe
+   https://blog.csdn.net/fastrunner2003/article/details/123676828
+   针对的对象为container，可以根据http请求的返回值，也可以根据执行命令的返回值来判断是否存活
+   livenessprobe: 如果返回为错误，则会重启container(同时pod状态也是不能服务的)
+   readinessprobe: 如果返回为错误，pod不会对外提供服务，也就是无法访问这个pod(挂掉的话不会自动去重启)
  
    ### k8s yaml文件
    实际生产环境中使用yum来操作k8s
@@ -768,6 +789,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 命令
    #### kubectrl
    k8s的命令行操作，创建pod等等操作
+
+   #### labels
+   kubectrl label 可以给node/pod/servcie 打上key-value键值对
 
    
    
