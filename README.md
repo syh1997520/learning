@@ -251,6 +251,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    plugin: maven的生命周期每个周期都是执行相应的插件，plguin可以不指定版本，会下载本地远程库的release版本
    ### dependencyManagement
    用于父pom，对于声明在父pom的该标签下的依赖，子工程可以不写版本号(子工程如果写了以子工程为准),并且父pom不会导入该包
+   ### parent & dependency
+   dependency标签是parent的子集. 使用parent标签后，子标签除了会import dependency.还会继承一些父类定义的变量值等
    ### 包的管理
    每次导入的就是坐标文件夹下的Jar包.  
    对于import的类文件来说，是没有group与artifity的. 路径就是jar包中的路径.所以可能会存在不同Group或者artifity里面相同路径名称的类，这时候就只能根据在maven里面的依赖顺序决定使用的是哪个类文件
