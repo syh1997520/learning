@@ -768,10 +768,15 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    最小部署单元，由一个或多个container组成. 内部的网络是共享的. pod是短暂的
    创建pod时先创建一个pause容器，然后把业务容器加到pause容器中，由此实现网络共享
    使用volumn来进行数据的共享存储
+   创建pod时需要指定controller与service类型
    #### controller
-   管理多个功能相同的pod
+   控制pod的创建和销毁. controller和pod通过label关联 . 常见的控制器类型有deployment、Job 、statefulset 、daemonset 等等。
+   deployment 是最常见的controller，它是部署静态服务用的控制器。控制器是通过标签来关联查找pod 的
    #### service
-   定义一组pod的访问规则（可以理解为入口）
+   可以理解为注册中心,pod创建时需要将自己注册到service. 同时还会给pod集群做负载均衡
+   clusterIP: 只允许集群内部间访问
+   NodePort: 可以允许外部访问
+   loadbalance: 
    #### 镜像策略
    镜像拉取策略:  根据宿主机有无该image 分为三种
    资源限制: 可以设定满足条件的机器才会启动某个镜像
@@ -794,6 +799,24 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
    #### labels
    kubectrl label 可以给node/pod/servcie 打上key-value键值对
+
+   #### create
+   kubectl create 用来创建pod
+
+   #### expose
+   kubectl expose rc nginx --port=80 --target-port=8000    将pod端口暴露
+   port代表在集群内布供其他pod访问的端口. --target-port表示该pod需要被暴露的端口
+
+   #### set image
+   进行版本升级
+   kubectl set image  修改某个controller或者某个pod的镜像版本(会新建一个新的pod,当准备就绪后关闭旧的pod,启用新的)
+
+   #### rollout
+   kubectl rollout 回滚版本   (options)
+   undo  回滚，   history历史
+
+   #### scale
+   kubectl scale 弹性伸缩
 
    
    
