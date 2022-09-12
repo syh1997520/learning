@@ -45,6 +45,9 @@
    注意，使用scp时，如果最前面加了sudo，则当前登陆用户是root，可能没有对方机器的登陆权限<br /> 
    scp无法直接在target端执行sudo命令，所以只能把文件传输到target用户拥有write权限的目录下<br /> 
    
+   ### tcpdump
+   用于抓包  tcpdump -i em0(网卡)
+   
    ### bash语法
       #### sed
       用于对于多行文本的操作
