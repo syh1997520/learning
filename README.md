@@ -775,11 +775,17 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    #### controller
    控制pod的创建和销毁. controller和pod通过label关联 . 常见的控制器类型有deployment、Job 、statefulset 、daemonset 等等。
    deployment 是最常见的controller，它是部署静态服务用的控制器。控制器是通过标签来关联查找pod 的
+   statefulSet 部署有状态应用(service必须使用headless的)
+   deamonSet 部署守护进程(在所有node上都部署某个pod,且只有一个相同的pod)
+   Job 只执行一次
+   CronJob 定期执行 (每次执行新建一个pod)
    #### service
    可以理解为注册中心,pod创建时需要将自己注册到service. 同时还会给pod集群做负载均衡
-   clusterIP: 只允许集群内部间访问
+   clusterIP: 只允许集群内部间访问 （可以在yml中把clusterIp 置为none来实现无头service,无头service使用域名访问对应的pod）
    NodePort: 可以允许外部访问
    loadbalance: 
+   #### configMap
+   一个用于存放变量的服务,数据存在etcd中.然后在创建别的pod的时候可以选择导入这些变量(可以直接作为环境变量导入，也可以通过数据卷挂载)
    #### 镜像策略
    镜像拉取策略:  根据宿主机有无该image 分为三种
    资源限制: 可以设定满足条件的机器才会启动某个镜像
