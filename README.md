@@ -469,6 +469,15 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    package.json类似于pom文件，package-lock是用来锁定版本号的
    在npm install时，如果lock与packgae版本兼容，则依据lock.不兼容则更新lock
 ## 计算机网络
+   ### 计算机网络基础
+   #### 光猫与路由器
+   光猫接入的是光信号，路由器又可以分为静态和动态路由器，简单来说光猫是用于转换数据，而路由器是用于传输数据。
+   #### 桥接与路由模式
+   光猫有桥接和路由两个模式，默认是路由. 
+   路由模式下，路由器是从光猫获取的ip,也就是作为一个设备
+   桥接模式下，光猫只用来做信号传输，需要使用路由器来拨号上网
+   #### 四层与七层
+   主要指对应的网络协议类型，四层一般指根据ip+端口，七层是根据协议及域名
    ### 网络安全
    #### ddos
    http://www.ruanyifeng.com/blog/2018/06/ddos.html
@@ -479,11 +488,14 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    颁发的私钥一般是加密的，需要解密后才可以使用
    #### ssl过程
    完成时为对称加密的形式(客户端与服务端共用一个key进行数据传输)
-   https://www.cnblogs.com/hld123/p/15255526.html
+   https://www.cnblogs.com/hld123/p/15255526.html 
 
    双向验证： https://www.jianshu.com/p/fb5fe0165ef2
    #### hsts
    浏览器维护一个hsts表，在表中的网站只使用https的方式连接，拒绝所有http请求
+
+   #### DDNS
+   动态dns,用于处理ip地址会经常改变的情况
    
    ### vpn与proxy
    https://zhuanlan.zhihu.com/p/451193697
@@ -753,6 +765,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    #### master
    ##### ApiServer
    集群的统一入口，以restful方式进行请求，然后交给etcd处理
+   还可以来做权限控制(rbac模型)
    ##### scheduler
    调度器，决定在哪个node上面进行部署
    ##### controller-manager
@@ -795,6 +808,12 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    针对的对象为container，可以根据http请求的返回值，也可以根据执行命令的返回值来判断是否存活
    livenessprobe: 如果返回为错误，则会重启container(同时pod状态也是不能服务的)
    readinessprobe: 如果返回为错误，pod不会对外提供服务，也就是无法访问这个pod(挂掉的话不会自动去重启)
+   #### ingress
+   https://blog.51cto.com/u_15382481/5205194
+   k8s内的网关，类似于nginx,需要自己安装,本质也是个pod
+   在service外再加一层，可以通过域名访问pod(service)
+   ingress: 指ingress的匹配规则，什么域名对应什么服务这样
+   ingress-controller:  实际用来实现功能的程序，一般使用 ingress-nginx
  
    ### k8s yaml文件
    实际生产环境中使用yum来操作k8s
