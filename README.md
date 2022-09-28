@@ -45,6 +45,14 @@
    注意，使用scp时，如果最前面加了sudo，则当前登陆用户是root，可能没有对方机器的登陆权限<br /> 
    scp无法直接在target端执行sudo命令，所以只能把文件传输到target用户拥有write权限的目录下<br /> 
    
+   ### systemd-private
+   http://t.zoukankan.com/lihuobao-p-5624071.html
+   只要使用Systemd这个进程作为启动进程的linux系统，其子进程都会有PrivateTmp这么一个属性，用于设置是否使用私有的tmp目录。
+   那么只要设置使用这个属性的service，都会使用私有的tmp目录。
+   比如说：
+　 nginx会有一个systemd-private-xxx-nginx.service/tmp目录
+ 　php-fpm会有一个systemd-private-xxx-php-fpm.service/tmp目录
+   
    ### tcpdump
    用于抓包  tcpdump -i em0(网卡)
    
