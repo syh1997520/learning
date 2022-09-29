@@ -448,6 +448,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
   - UI框架
      antd  蚂蚁出品<br/>
      antd的form有个坑，input的name需要绑定类的属性，对这个属性的赋值才能生效
+   - foreach
+     foreach中不能使用async.会把promise吞掉.需要改成for循环遍历
    ### 静态页面，动态页面
    静态页面一般可以跟文件类似，通过url直接访问<br />
    静态资源：可以理解为前端的固定页面，这里面包含HTML、CSS、JS、图片等等，不需要查数据库也不需要程序处理，直接就能够显示的页面，如果想修改内容则必须修改页面，但是访问效率相当高。<br />
