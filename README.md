@@ -47,6 +47,7 @@
    
    ### systemd-private
    http://t.zoukankan.com/lihuobao-p-5624071.html
+   https://www.cnblogs.com/lurenjia8/p/16215682.html
    只要使用Systemd这个进程作为启动进程的linux系统，其子进程都会有PrivateTmp这么一个属性，用于设置是否使用私有的tmp目录。
    那么只要设置使用这个属性的service，都会使用私有的tmp目录。
    比如说：
