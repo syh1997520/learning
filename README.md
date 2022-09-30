@@ -45,6 +45,10 @@
    注意，使用scp时，如果最前面加了sudo，则当前登陆用户是root，可能没有对方机器的登陆权限<br /> 
    scp无法直接在target端执行sudo命令，所以只能把文件传输到target用户拥有write权限的目录下<br /> 
    
+   ### chattr +i
+   让一个文件不能被删除、改名，设置连接也无法写入或添加据
+   
+   
    ### systemd-private
    http://t.zoukankan.com/lihuobao-p-5624071.html
    https://www.cnblogs.com/lurenjia8/p/16215682.html
