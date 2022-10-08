@@ -83,6 +83,11 @@
 ## 计算机常识
    ### idrac
    iDRAC又称为Integrated Dell Remote Access Controller，也就是集成戴尔远程控制卡,这是戴尔服务器的独有功能，iDRAC卡相当于是附加在服务器上的一计算机，可以实现一对一的服务器远程管理与监控，通过与服务器主板上的管理芯片BMC进行通信，监控与管理服务器的硬件状态信息.
+   ### 光驱
+   电脑上用于读取光盘的设备. 虚拟光驱也就是虚拟一个读取光盘的设备
+   很多游戏都需要虚拟光驱来运行，用来防盗版和防作弊等行为
+   ### gnome
+   linux的图形化桌面
 
 
 ## JAVA
@@ -834,6 +839,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    实际生产环境中使用yum来操作k8s
    yum文件的内容分成两部分： 控制器定义，pod信息 (两部分一般由templete字段来区分，上面的是控制器定义，下面的是pod信息)
    创建yum文件的方法： kubectl create deployment --image=nginx -o yaml --dry-run
+
+   ### helm
+   一个pod对应一个yml,会导致yml文件很多，通过helm对多个yml管理，并且实现yml复用
 
 
    ### 命令
