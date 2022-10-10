@@ -842,6 +842,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
    ### helm
    一个pod对应一个yml,会导致yml文件很多，通过helm对多个yml管理，并且实现yml复用
+   helm是k8s的包管理器
 
 
    ### 命令
@@ -908,6 +909,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
     
 ## springcloud
    https://yunyanchengyu.blog.csdn.net/?type=blog
+   https://blog.csdn.net/liuhuiteng/article/details/103348138
    ### 与dubbo关系
    springcloud是在dubbo的基础上建立的，后来又被spring-alibaba包含
    ### 版本
