@@ -97,6 +97,8 @@
    只要javahome的路径在path中就可以
    ### javac
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
+   ### 字符串转义符
+   如果绕晕的话，可以想象一下想要的结果用code展示的时候是什么样的
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br /> 
    ### 默认路径
