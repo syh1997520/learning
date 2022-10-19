@@ -899,6 +899,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    @configuration:  用来表明该类有bean的创建
    @PathVariable: 例如/blogs/1
    @RequestParam，例如blogs?blogId=1
+   @RequestBody, controller用来接收对象参数
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
