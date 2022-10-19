@@ -544,6 +544,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
    过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）
+   ### redis分片
+   分片相当于多个master,存储时会把分片存到某个master上. 但是一旦有某个master宕级就会导致集群挂掉
    ### redission使用手册
    https://www.bookstack.cn/read/redisson-wiki-zh
 
