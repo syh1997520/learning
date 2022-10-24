@@ -57,6 +57,12 @@
    比如说：
 　 nginx会有一个systemd-private-xxx-nginx.service/tmp目录
  　php-fpm会有一个systemd-private-xxx-php-fpm.service/tmp目录
+
+   ### systemd
+   用来对进程启动与停止进行管理. 可以设置自动重启等功能
+
+   ### supervisor
+   功能与systemd类似，都是来对进程启动与停止进行管理
    
    ### tcpdump
    用于抓包  tcpdump -i em0(网卡)
@@ -83,11 +89,20 @@
 ## 计算机常识
    ### idrac
    iDRAC又称为Integrated Dell Remote Access Controller，也就是集成戴尔远程控制卡,这是戴尔服务器的独有功能，iDRAC卡相当于是附加在服务器上的一计算机，可以实现一对一的服务器远程管理与监控，通过与服务器主板上的管理芯片BMC进行通信，监控与管理服务器的硬件状态信息.
+   ### okta
+   提供登录认证服务的第三方平台
+   IdPs: Identity Providers   SP：Service Provider  https://zhuanlan.zhihu.com/p/514846488
+   一些权限认证相关概念 https://www.woshipm.com/it/4681031.html/comment-page-1
    ### 光驱
    电脑上用于读取光盘的设备. 虚拟光驱也就是虚拟一个读取光盘的设备
    很多游戏都需要虚拟光驱来运行，用来防盗版和防作弊等行为
    ### gnome
    linux的图形化桌面
+   ### adb
+   adb的全称为Android Debug Bridge. 用来给安卓设备debug用. 可以通过adb软件向安卓设备传输apk
+   ### 交换机
+   路由器实现了不同网络之间的数据转发，交换机实现了特定网络内的数据交换. 路由器也兼具交换机的功能. 但是交换机往往有更多的端口
+   家庭使用的话一般是用于大数据传输.(T级别的数据传输等，需要用到万兆网络. 这里的万兆是指的内网速度)
 
 
 ## JAVA
@@ -535,6 +550,22 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    #### Cache-Control
    位于response header中，用来向客户端声明资源的有效时间(浏览器默认只有刷新才会去重新刷新资源，关闭重进并不会自动刷新)
    https://blog.csdn.net/ljfrocky/article/details/123032502
+
+   #### http与rpc
+   https://www.zhihu.com/question/41609070/answer/191965937
+
+   ### body的类型
+   #### multipart/form-data
+   表单格式，主要用来上传文件
+   #### application/x-www-from-urlencoded
+   表单格式，但是不上传文件
+   #### raw
+   raw可以上传任意格式的文本,一般是选择json
+
+
+
+
+
 ## 操作系统
    ### 并发与并行
    并发是指一个处理器同时处理多个任务。
@@ -847,6 +878,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### helm
    一个pod对应一个yml,会导致yml文件很多，通过helm对多个yml管理，并且实现yml复用
    helm是k8s的包管理器
+   chart: 一组yml的集合
+   
 
 
    ### 命令
@@ -953,6 +986,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    与springcloud整合时，默认携带1s超时时间
    requestInterceptor(new BasicAuthRequestInterceptor(userName, password)) 会作用于所有请求
    openfeign默认的解码器只支持String类型、[byte]类型。 与springcloud整合时会调用Spring MVC 中的消息转换器（HttpMessageConverter）进行编码，而消息转换器适配了很多种数据格式，String、Byte、Json、XML都是支持的。
+   如果想发送multipart/form-data格式的数据，需要在创建时设置encoder(new FormEncoder(new JacksonEncoder())). 根据请求的content-type来决定调用哪个encoder
    当使用参数作为path一部分时，要注意对参数进行urlencoder(默认会把所以%2F转换成/，如果不需要可以通过decodeSlash = false 关闭这个功能)
    ### 服务容错
    #### Hystrix
@@ -1067,6 +1101,13 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    用来解决分布式事务问题的服务
    https://blog.csdn.net/qq_41910252/article/details/122517092
    TC： seata服务器    TM：需要注解的方法   RM：连接的数据库
+
+## service mesh
+   springcloud虽然为微服务提供了解决方案，但是也给代码中添加了很多非业务的部分，代码侵入
+   ### sidecar
+   一个概念，可以理解为nginx,不过功能更加丰富，有负载均衡熔断等功能  
+   ### istio
+   主流的service mesh实现 
 
 ## 大数据
    大规模的数据进行存储，分析，计算. TB,PB,EB级别
