@@ -696,6 +696,9 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### CATALINA_BASE和CATALINA_HOME
    当一台机器上有多个app,不想都放到webapp目录下时(如果都在webapp会造成无法单独启动的问题)，可以给每个app设置单独的CATALINA_BASE(简单理解为属于app自己的一个tomcat环境)，然后把tomcat根目录的log文件夹copy过去，创建bin目录以及start.sh/shutdown.sh,即可直接在app目录启动自身
 
+## telegraf
+   可以在agent标签里  debug = true  logfile = "/var/log/telegraf/telegraf.log" 开启log
+   
 ## postman
    ### basic auth
    basic auth实质就是在header里添加("authorization" , "Basic (name:password).toBase64")   
