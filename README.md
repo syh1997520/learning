@@ -48,6 +48,9 @@
    ### chattr +i
    让一个文件不能被删除、改名，设置连接也无法写入或添加据
    
+   ### shell
+   任何shell脚本，记得查看是否有执行权限
+   
    
    ### systemd-private
    http://t.zoukankan.com/lihuobao-p-5624071.html
