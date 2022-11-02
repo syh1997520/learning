@@ -103,6 +103,9 @@
    ### 交换机
    路由器实现了不同网络之间的数据转发，交换机实现了特定网络内的数据交换. 路由器也兼具交换机的功能. 但是交换机往往有更多的端口
    家庭使用的话一般是用于大数据传输.(T级别的数据传输等，需要用到万兆网络. 这里的万兆是指的内网速度)
+   ### nas
+   将存储设备用网线被访问到(传统的硬盘使用数据线与主机连接也就是DAS，nas相当于一个小型电脑，将硬盘插入nas,nas再用网线接入路由器或交换机)
+   nas可以用废弃电脑搭建，但是建议买一台专业的nas服务器
 
 
 ## JAVA
@@ -812,11 +815,27 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## harbor
    docker的本地镜像仓库,提供了ui操作
 
+
+## docker 
+   ### docker部署java项目
+   将项目打成jar包 -----> 编写dockerfile ----> docker build 生成新的image -----> docker run
+   ### docker-compose
+   docker cmopose是一个软件，用来管理多个container之间的启动与关闭. 使用一个命令关闭启动多个container
+   一个yml对应多个container
+   ### docker-network
+   启动docker时，会自动启动docker网络(在建立container的时候需要制定网络模式). docker网络有五种模式
+   docker中每个container是有自己的ip的. 
+   bridge(默认): 创建一个docker0网卡(网桥)，主机与容器使用同一网段，可以使用ip访问容器. 每个使用bridge的container都连到docker0网卡(启动container后查看ipconfig也能看到相应的新网卡映射),container与container之间是可以互相ping通的. 
+   host: 与主机使用同一个网卡，既ip与端口和主机相同.如果启动container时使用了端口映射，也会失效.(如果外部无法访问可能是linux防火墙的问题)
+   none: 不给container配置网络.需要手动进去配置
+
 ## k8s
    ### 简介   
    google开源的容器管理技术
    ### 组成
    由master和node节点组成
+   ### 与dockercompose区别
+   主要是k8s是面向多服务器，而docker-compose是面向单机
    ### 安装
    机器初始化(关闭防火墙，禁止swap分区等). 安装docker,kubelet,kubeadmin,kubectl.  kubeadmin init
 
