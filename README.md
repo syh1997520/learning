@@ -933,7 +933,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    #### scale
    kubectl scale 弹性伸缩
 
-   
+## jenkins
+   jenkins的坑： 默认会开启workspace清理，启动时携带-Dhudson.model.WorkspaceCleanupThread.disabled=true将其关闭
    
 
 ## DGS graphql
