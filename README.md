@@ -48,6 +48,9 @@
    ### chattr +i
    让一个文件不能被删除、改名，设置连接也无法写入或添加据
    
+   ### /etc/init.d
+   该目录下的脚本会在开机时自动执行 xxx start
+   
    ### shell
    任何shell脚本，记得查看是否有执行权限
    
@@ -519,6 +522,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    光猫有桥接和路由两个模式，默认是路由. 
    路由模式下，路由器是从光猫获取的ip,也就是作为一个设备
    桥接模式下，光猫只用来做信号传输，需要使用路由器来拨号上网
+   注意，虚拟机使用桥接与主机连接是，需要在同一个网段
    #### 四层与七层
    主要指对应的网络协议类型，四层一般指根据ip+端口，七层是根据协议及域名
    ### 网络安全
@@ -935,7 +939,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    #### scale
    kubectl scale 弹性伸缩
 
-   
+## jenkins
+   jenkins的坑： 默认会开启workspace清理，启动时携带-Dhudson.model.WorkspaceCleanupThread.disabled=true将其关闭
    
 
 ## DGS graphql
