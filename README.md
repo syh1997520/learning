@@ -831,6 +831,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    bridge(默认): 创建一个docker0网卡(网桥)，主机与容器使用同一网段，可以使用ip访问容器. 每个使用bridge的container都连到docker0网卡(启动container后查看ipconfig也能看到相应的新网卡映射),container与container之间是可以互相ping通的. 
    host: 与主机使用同一个网卡，既ip与端口和主机相同.如果启动container时使用了端口映射，也会失效.(如果外部无法访问可能是linux防火墙的问题)
    none: 不给container配置网络.需要手动进去配置
+   container: 与某个container共享ip
+
+   自定义网络: 可以创建一个自定义的bridge网络  docker network create  --driver bridge，创建container时指定该网络，就可以实现使用服务名访问container
 
 ## k8s
    ### 简介   
