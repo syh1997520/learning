@@ -563,6 +563,12 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 
    #### http与rpc
    https://www.zhihu.com/question/41609070/answer/191965937
+   
+   ### 认证
+   #### basic
+   Authorization: basic  后面接base64编码的 用户名:密码
+   #### bearer
+   Authorization: bearer  后面接token
 
    ### body的类型
    #### multipart/form-data
