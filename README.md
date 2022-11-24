@@ -565,6 +565,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    https://www.zhihu.com/question/41609070/answer/191965937
    
    ### 认证
+   加在header中的kv键值对
    #### basic
    Authorization: basic  后面接base64编码的 用户名:密码
    #### bearer
