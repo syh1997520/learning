@@ -848,6 +848,11 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
    自定义网络: 可以创建一个自定义的bridge网络  docker network create  --driver bridge，创建container时指定该网络，就可以实现使用服务名访问container
 
+
+## argocd
+   ### 简介
+   基于k8s和gitlab的 ops工具. 用来保证pod与gitlab代码的一致   
+
 ## k8s
    ### 简介   
    google开源的容器管理技术
