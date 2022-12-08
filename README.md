@@ -156,8 +156,10 @@
    什么时候使用： 需要去新建线程完成一些small task时（如果持续时间很长的job就没必要使用线程池了）
    ##### ScheduledExecutorService 
    用来实现定时任务的java类
+   ##### volitale 与可见性
+   https://blog.csdn.net/xueping_wu/article/details/124541419
    ##### atomic类
-   atomic类本身并不能保证线程安全性，只是保证了可见性。
+   atomic类本身并不能保证线程安全性，只是保证了可见性与原子性。
    多线程下保证atomic在某个范围内
    ```
    while(true) {
