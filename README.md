@@ -544,7 +544,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    浏览器维护一个hsts表，在表中的网站只使用https的方式连接，拒绝所有http请求
 
    #### DDNS
-   动态dns,用于处理ip地址会经常改变的情况
+   动态dns,用于处理ip地址会经常改变的情况(把ip注册到某个服务商，直接用域名访问自己的设备)
+   https://zhuanlan.zhihu.com/p/46580280
    
    ### vpn与proxy
    https://zhuanlan.zhihu.com/p/451193697
