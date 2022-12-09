@@ -293,7 +293,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## MAVEN
    maven的核心是pom文件.所以只要文件夹里有pom.xml就可以视为一个maven project
    ### maven坐标
-   groupid: 公司域名倒序+项目名
+   groupid: 公司域名倒序 + 项目名
    artifatid: 模块名
    version: 版本
    ### 与idea的坑
@@ -312,7 +312,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### 内部变量
    ${project.version} ： 用在子模块间互相引用时填写在version中
    ### 一些命令行参数
-   clean install: 删除target目录，重新生成jar包
+   https://www.cnblogs.com/longkui-site/p/15858385.html
+   clean install: 删除target目录，重新生成jar包.并且保存到本地库
    dependency:purge-local-repository：删除repository中该pom的依赖
    nsu： maven的repository中可能有snapshot,默认会在使用时查看远端是否存在最新的，然后更新本地的，加上这个参数会停止这个过程(快照默认每次都会去看有没有最新的 https://blog.csdn.net/weixin_38608626/article/details/88011541)
    -T:  指定线程数
