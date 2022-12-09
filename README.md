@@ -292,6 +292,10 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 
 ## MAVEN
    maven的核心是pom文件.所以只要文件夹里有pom.xml就可以视为一个maven project
+   ### maven坐标
+   groupid: 公司域名倒序+项目名
+   artifatid: 模块名
+   version: 版本
    ### 与idea的坑
    idea版本需要与maven版本适应才能在idea中使用,并且新的项目总是使用idea自带的Maven
    ### 配置文件
