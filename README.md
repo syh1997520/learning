@@ -154,6 +154,8 @@
    #### 线程池
    如何实现线程池：  依靠blockingqueue来实现，核心线程一直while循环来消费队列中的任务  https://www.cnblogs.com/wxwall/p/7050698.html<br /> 
    什么时候使用： 需要去新建线程完成一些small task时（如果持续时间很长的job就没必要使用线程池了）
+   #### copyonwrite
+   https://jishuin.proginn.com/p/763bfbd30730
    ##### ScheduledExecutorService 
    用来实现定时任务的java类
    ##### atomic类
@@ -250,6 +252,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 为了追求单次gc时间，cms的清除过程是不stw，如果要整理的话，会造成空指针的问题，所以采用标记清除<br /> 
     
 #### JVM调优
+##### 类加载
+调用static final属性时，类不会被加载. 因为static final的属性在编译时直接作为常量被加载到了常量池
 ##### 调优指标
 1. stw时间   
 2. 吞吐量（运行时间与总时间的比值）
@@ -372,6 +376,7 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    
    ### yarn
    Yarn是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具 ，正如官方文档中写的，Yarn 是为了弥补 npm 的一些缺陷而出现的。<br /> 
+
    ### ES6
    es类似于js中jdk版本的存在
    一些es6语法规范： https://www.jianshu.com/p/7c35993b7bb3
@@ -594,6 +599,10 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）
    ### redis分片
    分片相当于多个master,存储时会把分片存到某个master上. 但是一旦有某个master宕级就会导致集群挂掉
+   ### redis分布式锁
+   https://blog.csdn.net/justin_jia_92/article/details/125618923
+   主从时可能出现问题，所以使用redlock
+   https://blog.csdn.net/justin_jia_92/article/details/125618923
    ### redission使用手册
    https://www.bookstack.cn/read/redisson-wiki-zh
 
@@ -762,6 +771,12 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
 
 ## mysql
+   ### 联表与子查询
+   联表查询一般是快于子查询的
+   ### left join 与 right join
+   在mysql 都需要写on. 但是inner join可以省略on. left join即使有数据在on中不满足，也会将左部分生成一行，右表填null值(有点像group by,把多行合并成一行返回，不过这里是0行变成一行返回) 也就是说,left join的结果里，左表的所有行，至少存在一条，可能存在多条
+   https://blog.csdn.net/weixin_38418951/article/details/102696929
+   https://blog.csdn.net/weixin_42039228/article/details/125074625 
    ### 5.7安装
    分为免安装版和安装版，免安装版教程：https://www.cnblogs.com/itcui/p/15511683.html   网址：http://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.7/   
    ### char比较时的坑
@@ -1150,6 +1165,15 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://blog.csdn.net/qq_41910252/article/details/122517092
    TC： seata服务器    TM：需要注解的方法   RM：连接的数据库
 
+## rocketmq
+   ### topic与queue，consumer关系
+   一个分区（queue），只能有一个comsumer；一个comsumer可以消费多个分区
+   https://blog.csdn.net/Alearn_/article/details/125012417
+   ### 消息类型
+   #### 顺序消息
+   https://blog.csdn.net/weixin_43767015/article/details/121028059
+
+
 ## service mesh
    springcloud虽然为微服务提供了解决方案，但是也给代码中添加了很多非业务的部分，代码侵入
    ### sidecar
@@ -1184,7 +1208,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 简介
    将一个大的服务拆分成为多个小的服务 <br />  
 ## 设计模式
-   ###
+   ### 代理模式
+   https://blog.csdn.net/qq_34609889/article/details/85317582
 ## 编码规范
    ### java代码
    #### 属性命名
