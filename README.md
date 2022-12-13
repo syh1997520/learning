@@ -1174,12 +1174,22 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    TC： seata服务器    TM：需要注解的方法   RM：连接的数据库
 
 ## rocketmq
+   ### 官方文档
+   https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
+   ### 下载与启动
+   先启动nameserver(执行.sh文件)，broker通过修改配置文件来实现集群
+   https://blog.csdn.net/a58125584s/article/details/124578049
    ### topic与queue，consumer关系
    一个分区（queue），只能有一个comsumer；一个comsumer可以消费多个分区
    https://blog.csdn.net/Alearn_/article/details/125012417
-   ### 消息类型
+   ### 消息策略
+   同步，异步，单向的区别主要在等待broker response的程度上
+   https://rocketmq.apache.org/zh/docs/4.x/producer/05message1/
    #### 顺序消息
    https://blog.csdn.net/weixin_43767015/article/details/121028059
+   #### consumer并发与顺序
+   ConsumeOrderlyContext MessageListenerConcurrently
+   区别是consumer消费时是多线程还是单线程.  如果是并发的话，可能会造成多线程消费同一个queue.对顺序消息产生影响
 
 
 ## service mesh
