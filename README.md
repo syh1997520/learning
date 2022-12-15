@@ -1233,6 +1233,10 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## 设计模式
    ### 代理模式
    https://blog.csdn.net/qq_34609889/article/details/85317582
+   
+## 算法
+   ### 链表相关题目
+   建议在head前添加个哑结点，可以避免掉特殊情况处理
 ## 编码规范
    ### java代码
    #### 属性命名
