@@ -151,6 +151,8 @@
    ### hashmap
    hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变<br /> 
    ### 并发编程   
+   #### synchronized锁升级
+   https://baijiahao.baidu.com/s?id=1740908287236022841&wfr=spider&for=pc
    #### 线程池
    如何实现线程池：  依靠blockingqueue来实现，核心线程一直while循环来消费队列中的任务  https://www.cnblogs.com/wxwall/p/7050698.html<br /> 
    什么时候使用： 需要去新建线程完成一些small task时（如果持续时间很长的job就没必要使用线程池了）
@@ -158,8 +160,12 @@
    https://jishuin.proginn.com/p/763bfbd30730
    ##### ScheduledExecutorService 
    用来实现定时任务的java类
+   ##### lock
+   可中断: ReentrantLock.lockInterruptibly()：允许在尝试获取锁时由其它线程调用尝试获取锁的线程的Thread.interrupt方法来中断线程而直接返回，这时不用获取到锁，而会直接抛出一个InterruptedException. 正常lock情况下是无法中断获得锁这个过程的
    ##### volitale 与可见性
    https://blog.csdn.net/xueping_wu/article/details/124541419
+   DCL 添加volitale，是为了防止指令重排，保证第一次获得的对象是完全初始化的（有微小的概率出现显式初始化未完成，但已经返回对线地址的情况）
+   https://blog.csdn.net/championhengyi/article/details/77677393
    ##### atomic类
    atomic类本身并不能保证线程安全性，只是保证了可见性与原子性。
    多线程下保证atomic在某个范围内
@@ -604,7 +610,9 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
-   过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）
+   ### 数据清除
+   过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）,默认会 定期+惰性删除，既二者都有
+   https://zhuanlan.zhihu.com/p/148584952
    ### redis分片
    分片相当于多个master,存储时会把分片存到某个master上. 但是一旦有某个master宕级就会导致集群挂掉
    ### redis分布式锁
