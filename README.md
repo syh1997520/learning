@@ -1004,6 +1004,11 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    @PathVariable: 例如/blogs/1
    @RequestParam，例如blogs?blogId=1
    @RequestBody, controller用来接收对象参数
+   ### 循环依赖解决以及为什么要三层缓存
+   https://blog.csdn.net/weixin_44129618/article/details/122839774
+   简单来说，为了解决循环依赖，两层缓存足够了，但是由于代理的原因，多加了一级，形成三级缓存
+   ### 事务传递
+   https://blog.csdn.net/qq_32424581/article/details/127532911
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
