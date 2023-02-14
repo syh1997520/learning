@@ -123,6 +123,9 @@
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### 字符串转义符
    如果绕晕的话，可以想象一下想要的结果用code展示的时候是什么样的
+   ### string拼接的自动优化
+   常量拼接: 直接作为一个拼接好的字符串
+   变量拼接: 利用stringbuilder进行优化
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br /> 
    ### 默认路径
@@ -149,10 +152,17 @@
    equals返回boolean,判断两个对象的是否相等<br /> 
    hashcode返回int,用于表示在hash表中的位置<br /> 
    ### hashmap
+   采用链地址法解决hash冲突
    hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变<br /> 
+   #### 其他的hash算法
+   例如二次探测法(开放地址法的一种)，即当hash冲突时，按照某种算法重新计算hash值. ThreadLocalMap是通过这种方法解决hash冲突的
+   https://blog.csdn.net/weixin_47651920/article/details/123602712
    ### 并发编程   
    #### synchronized锁升级
    https://baijiahao.baidu.com/s?id=1740908287236022841&wfr=spider&for=pc
+   https://www.cnblogs.com/soker/p/16926925.html
+   偏向锁在jdk15已经取消了. 一旦调用hashcode方法，偏向锁会直接升级为重量级锁.没有进入偏向状态的对象也会直接变成轻量级锁
+   由于wait需要一个队列来维护，所以一旦调用了wait方法，就会变成重量级锁
    #### 线程池
    如何实现线程池：  依靠blockingqueue来实现，核心线程一直while循环来消费队列中的任务  https://www.cnblogs.com/wxwall/p/7050698.html<br /> 
    什么时候使用： 需要去新建线程完成一些small task时（如果持续时间很长的job就没必要使用线程池了）
@@ -166,6 +176,7 @@
    https://blog.csdn.net/xueping_wu/article/details/124541419
    DCL 添加volitale，是为了防止指令重排，保证第一次获得的对象是完全初始化的（有微小的概率出现显式初始化未完成，但已经返回对线地址的情况）
    https://blog.csdn.net/championhengyi/article/details/77677393
+   volitate的可见性保证每次读到的都是最新的
    ##### atomic类
    atomic类本身并不能保证线程安全性，只是保证了可见性与原子性。
    多线程下保证atomic在某个范围内
@@ -215,6 +226,7 @@
    stream流的操作是不改变原始数组的(foreach可以改变，但是要注意foreach时的stream流是否含有元素，如果之前进行了filter导致没有元素则不会改变任何东西)
    foreach与collect无法同时使用，filter作用于不同的结束符效果也不一样
    stream的并行：https://www.jb51.net/article/149901.htm<br /> 
+   stream.findAny  该方法是按照时间返回一个最快找到的对象，所以其实不是用来随机查找的
 
    ### jre/lib/cacerts
    用来储存可以信任的网站的公钥(类似于浏览器信任证书的功能)
@@ -243,6 +255,14 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
     https://blog.csdn.net/xiaomingdetianxia/article/details/77688945<br /> 
 #### 强软弱虚
    软，弱引用都是在对象没有强引用的情况下发生的
+#### 类加载器
+只有类加载器不同，两个类才不同
+先检查是否已经被加载过，若没有加载则调用父加载器的loadClass方法， 如父加载器为空则默认使用启动类加载器作为父加载器   
+#### 双亲委派
+https://baijiahao.baidu.com/s?id=1710200711945883012&wfr=spider&for=pc
+https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
+取消双亲委派: 自定义类加载器可以设置是否开启双亲委派.  使用场景: tomcat,每一个war包有自己的类加载器 
+这个问题出现在JDBC中, 启动类加载器加载了JDK自带的DriverManager后, DriverManager用到了MySQL厂商的Driver实现。JVM规定某一类加载器加载A类时发现A用到了B，那么它就得先去加载B。所以启动类加载器就也想加载MySQLDriver, 但这个MySQLDriver实现类不在JAVA_HOME/lib下。所以要打破双亲委派，让父类加载器去使用子类加载器加载原本父类够不到的class文件
 #### 内存分配
    1. 空闲链表（free list）：通过额外的存储记录空闲的地址，将随机 IO 变为顺序 IO，但带来了额外的空间消耗。(标记清除时)<br /> 
    2. 碰撞指针（bump  pointer）：通过一个指针作为分界点，需要分配内存时，仅需把指针往空闲的一端移动与对象大小相等的距离，分配效率较高，但使用场景有限。（标记整理时）<br /> 
@@ -429,6 +449,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    [typeName, typeName...] 这个代表一个元组,固定长度的数组
    type typeName = {...}  给右边的类型起一个别名
 
+   ### hummer
+   一个前端框架，用来实现ios与安卓的跨端开发
    ### react
    将数据渲染成视图的工具<br /> 
    传统的操作dom会造成浏览器多次渲染，效率低<br /> 
@@ -541,6 +563,11 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    路由模式下，路由器是从光猫获取的ip,也就是作为一个设备
    桥接模式下，光猫只用来做信号传输，需要使用路由器来拨号上网
    注意，虚拟机使用桥接与主机连接是，需要在同一个网段
+   #### p2p,磁力,BT种子
+   https://zhuanlan.zhihu.com/p/551337128?utm_id=0
+   在下载某一个资源时某个节点将会在不同的节点获取资源的不同部分，同时你下载的部分也可以传输给别的节点。 既服务器会维护一个下载这个文件的表，有新的机器来下载这个文件的时候就可以从别的机器上一起下载，减少服务器带宽
+   BT: 自己做了bt种子需要将原文件保留一段时间，保证其'出种'(也就是别人下载了这个种子). 种子制作时需要填写第三方的tracker服务器。 bt种子的理念也是把文件分成多个块. tracker服务器存的是这个文件对应的机器
+   磁力: 由于版权原因等，很多bt服务器被迫关闭，转而使用磁力链接. 磁力链接的hash值是文件的hash(大部分时候时对应一个种子，因为磁力链接只能对应一个文件),会去挨个询问机器上有没有这个hash值的文件
    #### 四层与七层
    主要指对应的网络协议类型，四层一般指根据ip+端口，七层是根据协议及域名
    ### 网络安全
@@ -566,7 +593,10 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    ### vpn与proxy
    https://zhuanlan.zhihu.com/p/451193697
    vpn与proxy都是服务器，vpn需要下载软件，与vpn服务器形成隧道传输，比proxy多了加密功能
-   
+
+   ### 粘包与拆包
+   https://zhuanlan.zhihu.com/p/394113833
+
    ### ping
    ping使用icmp协议，不携带端口号，可以关闭电脑的ping功能
    
@@ -615,6 +645,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
    https://zhuanlan.zhihu.com/p/148584952
    ### redis分片
    分片相当于多个master,存储时会把分片存到某个master上. 但是一旦有某个master宕级就会导致集群挂掉
+   ### list数据结构
+   list在数据比较少时，使用zipList,数据比较多时使用双向链表. ziplist是类似数组的连续结构，因为链表需要额外的前后指针，占空间大一些
    ### redis分布式锁
    https://blog.csdn.net/justin_jia_92/article/details/125618923
    主从时可能出现问题，所以使用redlock
@@ -789,10 +821,27 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## mysql
    ### 联表与子查询
    联表查询一般是快于子查询的
+   ### 死锁处理
+   等待， 直到超时（innodb_lock_wait_timeout=50s） 。
+   发起死锁检测， 主动回滚一条事务， 让其他事务继续执行（innodb_deadlock_detect=on） 
+   ### mysql语句执行顺序
+      from子句组装来自不同数据源的数据；where子句基于指定的条件对记录行进行筛选；group by子句将数据划分为多个分组；使用聚集函数进行计算；
+   使用having子句筛选分组(having一般要带着聚集函数一起使用)；计算所有的表达式(此时相同分组的数据只保留一条)；使用order by对结果集进行排序；select 集合输出。
    ### left join 与 right join
    在mysql 都需要写on. 但是inner join可以省略on. left join即使有数据在on中不满足，也会将左部分生成一行，右表填null值(有点像group by,把多行合并成一行返回，不过这里是0行变成一行返回) 也就是说,left join的结果里，左表的所有行，至少存在一条，可能存在多条
    https://blog.csdn.net/weixin_38418951/article/details/102696929
    https://blog.csdn.net/weixin_42039228/article/details/125074625 
+   union是对两个结果求并集，union all是求全集
+   ### mysql group复杂场景
+   #### 求每个组的某一列最大的值对应的行
+      select * from (select * from product_image order by sort_id  limit 10000) a group by a.product_id
+      将该行先整体排序，然后group by,此时第一条数据就是最大的
+   #### 求每个组的某一列前三大的值对应的行
+      利用聚集函数保存分组后各个组的信息
+      select GROUP_CONCAT(t1.id) as ids from (
+      SELECT t.class, substring_index(GROUP_CONCAT(t.id ORDER BY t.score desc),',',3) as id from
+      test t GROUP BY t.class
+      )t1   
    ### 5.7安装
    分为免安装版和安装版，免安装版教程：https://www.cnblogs.com/itcui/p/15511683.html   网址：http://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.7/   
    ### char比较时的坑
@@ -1001,10 +1050,12 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    在spring4中引入了@getmapping,@postmapping注解，用来表示指定类型的请求(requestmapping默认接受任何类型) 
    ### 创建多模块
    多模块时需要选取一个父模块来控制依赖版本，以及一个模块来存储公共的实体类和工具类  
+   ### beanDefination
+   存储bean的配置信息，比如是否为单例，类名，懒加载等(一个bean对应一个beanDefination)
    ### spring生命周期
    实例化 Instantiation
    属性赋值 Populate
-   初始化 Initialization
+   初始化 Initialization  :  初始化主要3步: 执行aware接口,执行postconstruct接口,创建代理对象
    销毁 Destruction
    ### 一些常用注解
    @PostConstruct： 用于注解在init方法上，在赋值后执行
@@ -1012,11 +1063,26 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    @PathVariable: 例如/blogs/1
    @RequestParam，例如blogs?blogId=1
    @RequestBody, controller用来接收对象参数
+   @lazy: 用于懒加载.可以放在类和属性上(放在类上基本没用，放在属性上一开始注入一个cglib对象，使用时再去将属性赋值. 一般用来解决构造器循环依赖)
+   @autowired 与 resource :  都是进行注入用的，resource是java自带的注解，autowired是spring的. 当有多个实现类时，要用autoired去qualified一起使用
+   ### bean创建锁
+   在bean实例化开始时，会进行加锁操作，保证多个线程同一个bean只有一个会在创建(加锁时只在查找二三级缓存加锁)
+   ### IOC注入时的一些扩展接口
+   BeanDefinitionRegistyPostProcessor： 在bean信息注册到beanDefinition时调用，一般通过该接口把自定义注解的类加载为bean。存在的意义就是注册新的bd
+   BeanFactoryPostProcessor: 在factory读取到所以bd并且开始实例化之前执行.  存在的意义是对bd信息进行修改
+   xxxAware: 在初始化时调用，主要用来获得xxx属性(beanName,beanFactory等)
    ### 循环依赖解决以及为什么要三层缓存
+   https://blog.csdn.net/cristianoxm/article/details/113246104
    https://blog.csdn.net/weixin_44129618/article/details/122839774
+   首先，在不涉及循环依赖的情况下，bean生命周期是用不到三级缓存的,只需要一个一级缓存存最后的bean. 也就是说bean自己属性赋值实例化等等，是不需要从缓存去取bean的
    简单来说，为了解决循环依赖，两层缓存足够了，但是由于代理的原因，多加了一级，形成三级缓存
+   第三层存的是lambda表达式
+   ### 多例bean
+   多例bean是没有三级缓存这个概念的，因此无法解决循环依赖
    ### 事务传递
    https://blog.csdn.net/qq_32424581/article/details/127532911
+   ### 事务失效
+      异常不符合;方法不是public的;由该类的另外一个非事务方法调用;所在的类不是个bean
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
@@ -1026,6 +1092,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    注意：如果不需要数据库操作，不要导入mysql相关包，会报错的
    ### 简单的集群项目
    直接修改port再重启一次即可  
+   ### 启动过程
+   
 
    
     
@@ -1077,7 +1145,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    是一个用于处理分布式延迟和容错的第三方库，保证在单个应用出错的情况下，不会导致整个服务失败，避免级联故障
    主要功能： 降级，熔断，限流，监控 
    ##### 降级（fallback)
-   当服务不可用时，返回友好的信息  (不可用包括 抛异常，超时等)，一般写在客户端(早发现早治理)
+   当服务不可用时，返回友好的信息  (不可用包括 抛异常，超时等)，一般写在服务端(早发现早治理)
    @HystrixCommand(fallbackMethod = "paymentInfoTimeOutHandler", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
     })
@@ -1189,6 +1257,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## rocketmq
    ### 官方文档
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
+   ### 与rpc调用的一些区别
+   用mq的好处主要是有个队列可以储存消息，而rpc如果不加链路追踪，是看不到的. 并且mq会减少上游的压力(上游不用一直维护一个rpc调用线程的开销)
    ### 下载与启动
    先启动nameserver(执行.sh文件)，broker通过修改配置文件来实现集群
    https://blog.csdn.net/a58125584s/article/details/124578049
@@ -1203,6 +1273,12 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    #### consumer并发与顺序
    ConsumeOrderlyContext MessageListenerConcurrently
    区别是consumer消费时是多线程还是单线程.  如果是并发的话，可能会造成多线程消费同一个queue.对顺序消息产生影响
+   #### 事务消息
+   事务消息只关心生产者与MQ服务器之间的通信，事务消息只保证MQ和生产者之间消息是一致的。 至于生产者与消费者的一致性，那可不是事务消息的范畴，而是基于TCC、SAGA等分布式事务中间件来完成的.  也就是说这里保证的一致性是指的生产者事务与发送消息这两个的一致性
+   通过mq解决分布式事务属于本地消息表类型，这种类型适用于事务中参与方支持操作幂等，对一致性要求不高，业务上能容忍数据不一致到一个人工检查周期，事务涉及的参与方、参与环节较少，业务上有对账/校验系统兜底。
+   https://zhuanlan.zhihu.com/p/554481474
+   对于多个下游事务，可以采用广播通知
+   事务消息如果消费者失败，会不断重试
 
 
 ## service mesh
@@ -1238,13 +1314,52 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## 微服务
    ### 简介
    将一个大的服务拆分成为多个小的服务 <br />  
+
+## 分布式事务
+   https://blog.csdn.net/a745233700/article/details/122402303
+   ### 2PC/3PC
+   依赖于数据库，能够很好的提供强一致性和强事务性，但延迟比较高，比较适合传统的单体应用，在同一个方法中存在跨库操作的情况，不适合高并发和高性能要求的场景。
+   ### TCC
+   适用于执行时间确定且较短，实时性要求高，对数据一致性要求高，比如互联网金融企业最核心的三个服务：交易、支付、账务。
+   ### 本地消息表/MQ 事务
+   适用于事务中参与方支持操作幂等，对一致性要求不高，业务上能容忍数据不一致到一个人工检查周期，事务涉及的参与方、参与环节较少，业务上有对账/校验系统兜底。
+   ### Saga 事务
+   由于 Saga 事务不能保证隔离性，需要在业务层控制并发，适合于业务场景事务并发操作同一资源较少的情况。Saga 由于缺少预提交动作，导致补偿动作的实现比较麻烦，例如业务是发送短信，补偿动作则得再发送一次短信说明撤销，用户体验比较差。所以，Saga 事务较适用于补偿动作容易处理的场景
+
+
 ## 设计模式
    ### 代理模式
    https://blog.csdn.net/qq_34609889/article/details/85317582
+   https://blog.csdn.net/weixin_39825906/article/details/126099743
    
 ## 算法
    ### 链表相关题目
    建议在head前添加个哑结点，可以避免掉特殊情况处理
+   https://leetcode.cn/problems/LGjMqU/solution/zhong-pai-lian-biao-by-leetcode-solution-wm25/    （寻找中间结点，反转链表，合并链表）
+   ### 数组的元素删除
+   可以通过让最后一个元素覆盖掉某个下标的元素，来实现o1复杂度的删除
+   ### map
+   使用map要充分利用map的特性，使key可以比较.如果key使对象或者不能比较时，可以尝试换一个key.比如自己生成string/int值作为key(但是这样效率会比较低，优先考虑能不能用数组替代map)
+   ### 数组
+   存储数组元素时，尽量考虑存数组的下标，因为有了下标就可以取到值，而只存值却取不到下标
+   ### java 双端队列
+   linkedlist  arrayDequeue
+   ### 异或
+   一个数跟1做^,得到的一定是12，34，56这样一对数的另一个
+   ### 二分法
+   有时候left与right的起始不在两端
+   ### 有序数组
+   二分查找以及双指针(滑动窗口.)
+   https://leetcode.cn/problems/kLl5u1/solution/pai-xu-shu-zu-zhong-liang-ge-shu-zi-zhi-8tv13/
+   ### 前缀和
+   用来求解数组连续的个数的合是否等于某个值
+   ### 矩阵
+   矩阵题目可以用动态规划，可能涉及到特殊的行,列 对应独特的表达式
+   ### 字符串
+   char可以多考虑使用数组而不是map存储
+   字符串默认排序后可以实现类似分组效果
+   ### priorityqueue
+   PriorityQueue包括arrayDequeu去存map中获取的值，都可以尝试去放数组数据类型，(0放key,1放value这种)以避免重新去map查找等
 ## 编码规范
    ### java代码
    #### 属性命名
