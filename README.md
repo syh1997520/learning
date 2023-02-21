@@ -123,6 +123,9 @@
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### 字符串转义符
    如果绕晕的话，可以想象一下想要的结果用code展示的时候是什么样的
+   ### StrSubstitutor
+   用来动态替换字符串的一个工具类
+   https://blog.csdn.net/m0_46325101/article/details/122405805
    ### string拼接的自动优化
    常量拼接: 直接作为一个拼接好的字符串
    变量拼接: 利用stringbuilder进行优化
