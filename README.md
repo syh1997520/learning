@@ -1050,6 +1050,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    在spring4中引入了@getmapping,@postmapping注解，用来表示指定类型的请求(requestmapping默认接受任何类型) 
    ### 创建多模块
    多模块时需要选取一个父模块来控制依赖版本，以及一个模块来存储公共的实体类和工具类  
+   ### list注入
+   如果属性是list类型，会去查找list对应的类型注入. 通过@order标签决定注入顺序
    ### beanDefination
    存储bean的配置信息，比如是否为单例，类名，懒加载等(一个bean对应一个beanDefination)
    ### spring生命周期
