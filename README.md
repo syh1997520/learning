@@ -119,6 +119,8 @@
    ### javaHome
    javahome配置在path中的顺序可能会影响配置效果<br />
    只要javahome的路径在path中就可以
+   ### idea debug
+   https://blog.csdn.net/future_god_qr/article/details/121250865
    ### javac
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### 字符串转义符
