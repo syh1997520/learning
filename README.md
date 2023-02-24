@@ -1078,6 +1078,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    BeanDefinitionRegistyPostProcessor： 在bean信息注册到beanDefinition时调用，一般通过该接口把自定义注解的类加载为bean。存在的意义就是注册新的bd
    BeanFactoryPostProcessor: 在factory读取到所以bd并且开始实例化之前执行.  存在的意义是对bd信息进行修改
    xxxAware: 在初始化时调用，主要用来获得xxx属性(beanName,beanFactory等)
+   ### ApplicationListener接口
+   https://blog.csdn.net/qq_16504067/article/details/119883430
+   用来做事件监听，比如bean加载完时执行什么代码之类的
    ### 循环依赖解决以及为什么要三层缓存
    https://blog.csdn.net/cristianoxm/article/details/113246104
    https://blog.csdn.net/weixin_44129618/article/details/122839774
