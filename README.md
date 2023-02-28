@@ -123,8 +123,8 @@
    https://blog.csdn.net/future_god_qr/article/details/121250865
    ### javac
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
-   ### 字符串转义符
-   如果绕晕的话，可以想象一下想要的结果用code展示的时候是什么样的
+   ### 抽象类中的构造函数
+   抽象类虽然不能被实例化，但是是有构造方法的，因为子类会隐式调用super(),因此可以用来做一些初始化等行为
    ### StrSubstitutor
    用来动态替换字符串的一个工具类
    https://blog.csdn.net/m0_46325101/article/details/122405805
@@ -1057,6 +1057,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    多模块时需要选取一个父模块来控制依赖版本，以及一个模块来存储公共的实体类和工具类  
    ### list注入
    如果属性是list类型，会去查找list对应的类型注入. 通过@order标签决定注入顺序
+   ### 抽象类
+   抽象类可以声明为bean,但是并不会创建实例
    ### beanDefination
    存储bean的配置信息，比如是否为单例，类名，懒加载等(一个bean对应一个beanDefination)
    ### spring生命周期
@@ -1352,6 +1354,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    使用map要充分利用map的特性，使key可以比较.如果key使对象或者不能比较时，可以尝试换一个key.比如自己生成string/int值作为key(但是这样效率会比较低，优先考虑能不能用数组替代map)
    ### 数组
    存储数组元素时，尽量考虑存数组的下标，因为有了下标就可以取到值，而只存值却取不到下标
+   奇数偶数变量可以考虑放到一个数组里，用下标来定位
    ### java 双端队列
    linkedlist  arrayDequeue
    ### 异或
