@@ -125,6 +125,8 @@
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
    ### 抽象类中的构造函数
    抽象类虽然不能被实例化，但是是有构造方法的，因为子类会隐式调用super(),因此可以用来做一些初始化等行为
+   ### 抽象类的属性
+   抽象类中的属性不同于接口，可以是任意修饰类型，也不一定要加static
    ### StrSubstitutor
    用来动态替换字符串的一个工具类
    https://blog.csdn.net/m0_46325101/article/details/122405805
