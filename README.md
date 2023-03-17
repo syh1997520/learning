@@ -139,6 +139,8 @@
    默认的路径是System.getProperty("user.dir"). 但是这个路径可能是变化的，所以最好还是用绝对路径
    ### public class与class
    在定义class时可以用public或者默认权限修饰. public class必须与文件名相同，所以一个.java中只有一个public class,但是可以有无数个class
+   ### pair
+   一个apache的工具类,用于返回两个值的场景,一个对象有key value两个值
    ### 编译与解释
    解释执行：将编译好的字节码一行一行地翻译为**机器码** 执行。 <br /> 
    编译执行：以方法为单位，将字节码一次性翻译为**机器码** 后执行。<br /> 
