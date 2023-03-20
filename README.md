@@ -1370,6 +1370,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://leetcode.cn/problems/kLl5u1/solution/pai-xu-shu-zu-zhong-liang-ge-shu-zi-zhi-8tv13/
    ### 前缀和
    用来求解数组连续的个数的合是否等于某个值
+   前缀和问题可以考虑能否转化为 -1 1问题，因为这类的前缀和有个特点，只要两个数组值相等，就代表中间的和为0
    ### 矩阵
    矩阵题目可以用动态规划，可能涉及到特殊的行,列 对应独特的表达式
    ### 字符串
@@ -1377,6 +1378,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    字符串默认排序后可以实现类似分组效果
    ### priorityqueue
    PriorityQueue包括arrayDequeu去存map中获取的值，都可以尝试去放数组数据类型，(0放key,1放value这种)以避免重新去map查找等
+   ### 回文字符串
+   回文字符串可以考虑从中间开始判断
 ## 编码规范
    ### java代码
    #### 属性命名
