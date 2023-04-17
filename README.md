@@ -123,6 +123,8 @@
    https://blog.csdn.net/future_god_qr/article/details/121250865
    ### javac
    使用javac xx.java将一个java程序编译为xx.class文件，然后使用java xx执行 ！！(不要加.class)
+   ### 类型强转
+   父类强转子类是会报错的
    ### 抽象类中的构造函数
    抽象类虽然不能被实例化，但是是有构造方法的，因为子类会隐式调用super(),因此可以用来做一些初始化等行为
    ### 抽象类的属性
