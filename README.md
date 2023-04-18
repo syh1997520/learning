@@ -640,7 +640,9 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
    raw可以上传任意格式的文本,一般是选择json
 
 
-
+## lombook
+   ### get/set
+   存在@get/@set时,可以自己重写某个属性的get/set
 
 
 ## 操作系统
