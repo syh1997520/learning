@@ -640,11 +640,6 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
    raw可以上传任意格式的文本,一般是选择json
 
 
-## lombook
-   ### get/set
-   存在@get/@set时,可以自己重写某个属性的get/set
-
-
 ## 操作系统
    ### 并发与并行
    并发是指一个处理器同时处理多个任务。
@@ -901,9 +896,13 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### logger
    logger标签的name属性填写包名. 某个log对象对应哪个logger是通过包名匹配的，先去匹配最深的包名，逐级往上. (如果Threshold等级与输出等级不匹配，就不会输出了)                            
 
-## lombok
+## lombook
    ### 使用
    项目需要下载lombok的依赖，idea需要下载lombok插件
+   ### get/set
+   存在@get/@set时,可以自己重写某个属性的get/set
+   ### @data
+   集成了 @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode,用在子类时会提示异常,因为EqualsAndHashCode默认不会比较父类属性,会被认为不合规,可以通过添加     @EqualsAndHashCode(callSuper = true)或者配置文件解决                      
 
 ## mycat
    一款可以分库分表的数据库中间件，但是已经不在维护，不推荐使用   
