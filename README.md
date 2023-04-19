@@ -24,7 +24,8 @@
    git想要查看关于某一行的几次commit前的改动(正常只能看一次commit),那么可以回到那次commit的文件，再去查看这行当时是谁改的  
 #### git 删除文件
    对于大文件或者私密文件，直接提一个新的commit删除，并不能永久删除，在git clone时依然会下载该文件.所以需要通过filter-branch来删除
-
+#### Git —force
+   git --force前拉一下分支
 
     
 ## Linux
