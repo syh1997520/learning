@@ -334,6 +334,9 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
   1. 标准参数： 以-开头 如-help，后续版本不会改变
   2. -X参数： 以-X开头 ，如 -Xms最小堆  -Xmx最大堆 -Xss栈大小
   3. -XX参数： 以-XX开头，
+   
+## javax.validation
+   一个第三方包,通过在属性上添加注解来完成简单的参数校验
 
 ## MAVEN
    maven的核心是pom文件.所以只要文件夹里有pom.xml就可以视为一个maven project
