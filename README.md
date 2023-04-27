@@ -338,6 +338,8 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
 ## javax.validation
    一个第三方包,通过在属性上添加注解来完成简单的参数校验
    使用时引入依赖,在属性添加注解,需要验证的对象添加@Validated注解
+   @Validated与@Valid区别: https://blog.csdn.net/sunnyzyq/article/details/103527380?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-103527380-blog-127870470.235^v32^pc_relevant_yljh&spm=1001.2101.3001.4242.1&utm_relevant_index=3
+   (这两个注解用在实现类上会报错)
 
 ## MAVEN
    maven的核心是pom文件.所以只要文件夹里有pom.xml就可以视为一个maven project
