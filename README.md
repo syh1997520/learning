@@ -1393,6 +1393,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    PriorityQueue包括arrayDequeu去存map中获取的值，都可以尝试去放数组数据类型，(0放key,1放value这种)以避免重新去map查找等
    ### 回文字符串
    回文字符串可以考虑从中间开始判断
+   ### 多叉树
+   可以考虑用map来模拟多叉树的结构,key是父亲,vaklue是子的list
 ## 编码规范
    ### java代码
    #### 属性命名
