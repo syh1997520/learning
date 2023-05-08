@@ -1299,6 +1299,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://rocketmq.apache.org/zh/docs/4.x/producer/05message1/
    #### 顺序消息
    https://blog.csdn.net/weixin_43767015/article/details/121028059
+   #### 重试机制
+   生产者消费者都有重试,消费者抛出异常就会进行重试
    #### consumer并发与顺序
    ConsumeOrderlyContext MessageListenerConcurrently
    区别是consumer消费时是多线程还是单线程.  如果是并发的话，可能会造成多线程消费同一个queue.对顺序消息产生影响
