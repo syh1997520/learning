@@ -1363,6 +1363,10 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://blog.csdn.net/qq_34609889/article/details/85317582
    https://blog.csdn.net/weixin_39825906/article/details/126099743
    
+## 正则
+   ### 非
+   [^xx] 代表非xx字符
+   
 ## 算法
    ### 链表相关题目
    建议在head前添加个哑结点，可以避免掉特殊情况处理
