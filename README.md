@@ -871,6 +871,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    where作用于表数据过滤，Having作用于组数据的过滤；where在分组和聚合之前选取数据，having在分组和聚合之后选取分组数据
    ### like
    like默认是不区分大小写的
+   ### limit
+   limit a,b 意思是从a开始,后面b个元素.要注意a与b的含义
    ### 配置文件
    ["client"]
    socket =xxxx  来指定客户端使用的socket文件
@@ -1411,13 +1413,13 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    包名全部小写，用点来分割单词<br />
    类名如果使用设计模式要写上设计模式名称，枚举后面跟上enum<br />
    对于boolean类型的变量，不要以isxxx命名（boolean的默认get方法也是isxxx,可能会出现问题）<br />
-   ### 代码格式
+   #### 代码格式
    运算符或关键字左右用空格，小括号内不加<br />
    弃用tab,改为4个空格<br />
    注释与//间留一个空格就好<br />
    链式调用每个·换个行<br />
    空行一次加一个即可，没必要多加<br />
-   ### 书写规范
+   #### 书写规范
    浮点数比较不要用 == 或者equals,可能出现不准的情况，可以采用比较差值<br />
    实体类的基本类型要写成封装类(避免空指针)<br />
    实体类一定要写toString方法<br />
@@ -1425,13 +1427,14 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    switch判断字符串时，要进行非空判断<br />
    使用正则时，要将pattern设置static<br />
    对于 调用频率低，耗时比较长，需要极其稳定或者比较公开的接口，都要去进行参数校验。 校验一般放在controller层<br />
-   ### java书写的一些小技巧
+   #### java书写的一些小技巧
    使用 Objects.equals 方法替换entity.equals方法（可以避免空指针）<br />
    操作集合时多考虑使用stream流<br />
    for循环拼接string使用stringbuilder代替<br />
    创建集合是应该思考一下大概的长度<br />
    字符串比较时最好加一个全转小写<br />
    retry逻辑可以尝试用@RetryOnFailure来实现(依赖问题有点难解决)
+   在设计api时考虑幂等问题!!!
   ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
