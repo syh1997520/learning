@@ -1441,6 +1441,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    字符串比较时最好加一个全转小写<br />
    retry逻辑可以尝试用@RetryOnFailure来实现(依赖问题有点难解决)
    在设计api时考虑幂等问题!!!
+   controller不要抛出异常,而是要把相关信息放在一个response的msg字段里
   ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
