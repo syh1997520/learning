@@ -1122,6 +1122,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://blog.csdn.net/qq_32424581/article/details/127532911
    ### 事务失效
       异常不符合;方法不是public的;由该类的另外一个非事务方法调用;所在的类不是个bean
+   ### main方法
+      bean创建时的init方法,可以用来当作main用
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
