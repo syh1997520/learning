@@ -243,6 +243,9 @@
    stream的并行：https://www.jb51.net/article/149901.htm<br /> 
    stream.findAny  该方法是按照时间返回一个最快找到的对象，所以其实不是用来随机查找的
 
+   ### date与SimpleDateFormat
+   date是没有时区概念的,SimpleDateFormat是有的
+
    ### jre/lib/cacerts
    用来储存可以信任的网站的公钥(类似于浏览器信任证书的功能)
 
