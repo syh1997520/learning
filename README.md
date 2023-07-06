@@ -393,6 +393,8 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
    缓存的单位是一个mapper文件，需要实体类实现serizable接口，不可用于分布式
    ### 注意事项
    select语句必须带上resultMap或者resultType
+   ### 获取pagecount
+   pageCount = (totalCount + pageSize - 1) / pageSize;
 
 
 ## 前端相关
