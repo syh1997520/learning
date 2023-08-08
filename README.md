@@ -1149,6 +1149,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://blog.csdn.net/liuhuiteng/article/details/103348138
    ### 与dubbo关系
    springcloud是在dubbo的基础上建立的，后来又被spring-alibaba包含
+   ## 使用
+   要注意,rpc调用是要在调用的应用里主动声明bean的,指定group与version
    ### 版本
    springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
    ### bootstrap.yml
