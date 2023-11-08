@@ -1462,6 +1462,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    小数类型使用decimal,而不是float/double(可能缺失精度)<br />
    表一定要有的三个列： id,create_time,update_time<br />
    不要使用外键，在应用层处理<br />
+   时间类型设置成bigint<br />
    #### 索引相关
    只要该表的某个字段（或某些字段）具有唯一性，就应该建一个唯一索引。
    多表查询时，要尽量保证关联的字段有索引。
