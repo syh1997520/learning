@@ -627,6 +627,9 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
    ### 粘包与拆包
    https://zhuanlan.zhihu.com/p/394113833
 
+   ### 三地五中心
+   https://zhuanlan.zhihu.com/p/649502572
+
    ### ping
    ping使用icmp协议，不携带端口号，可以关闭电脑的ping功能
    
@@ -1075,7 +1078,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## jenkins
    jenkins的坑： 默认会开启workspace清理，启动时携带-Dhudson.model.WorkspaceCleanupThread.disabled=true将其关闭
    jenkins中的aborted会结束当前执行的命令，并且直到下一个可能hang住的命令才会结束掉该进程(如果该进程是子进程也只结束子进程)
-   
+
 
 ## DGS graphql
    一款用于实现graphql的java框架
