@@ -895,6 +895,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    redolog: 与事务相关，保证事务的一致性。与Binlog类似。但是粒度比binlog小，记载的是对页的操作 （binlog只有在事务结束提交前写入一次，但是redolog则是在事务过程中不断添加，所以可恢复成度也大于binlog）
    undolog: 主要保证回滚的正确性，通过一个指针串联起一行数据的多个版本
    更多redolog和binlog区别： https://blog.csdn.net/weixin_44691915/article/details/122860263
+   ### 锁相关
+   https://blog.csdn.net/weixin_56738054/article/details/128796761, 普通的select语句读的是事务开始时的快照. (如果select尝试加锁,且另一个事务在修改该行,在获取该行数据时就会阻塞住),且锁是事务结束才会释放.在REPEATABLE READ隔离级别下,FOR UPDATE即使是不存在的行,也会进行加锁(范围查询和具体行查询都会的)
    ### 索引
     #### 索引失效
     https://www.cnblogs.com/wdss/p/11186411.html
@@ -1155,6 +1157,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    springcloud是在dubbo的基础上建立的，后来又被spring-alibaba包含
    ## 使用
    要注意,rpc调用是要在调用的应用里主动声明bean的,指定group与version
+   ## 泛化调用
+   泛化调用就是不依赖二方包，通过传入 方法名，方法签名和参数值就可以调用服务，参数及返回值中的所有 POJO均用Map表示. (返回值一般是object,一般转为jsonObject)
    ### 版本
    springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
    ### bootstrap.yml
