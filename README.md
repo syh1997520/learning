@@ -36,6 +36,7 @@
    ### env与 bashrc,profile
    env的东西保存在bashrc和profile里面。<br /> 
    bashrc和profile在/etc和/home中都存在一份，/home中的相同内容会覆盖/etc中的。bashrc和profile本身也稍有区别<br /> 
+   bashrc用于那种登陆完的打开新的终端后执行,而profile是用于远程登录时执行
    https://cloud.tencent.com/developer/article/1174426<br /> 
    
    ### 正则
