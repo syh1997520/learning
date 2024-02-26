@@ -340,38 +340,38 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
   2. -X参数： 以-X开头 ，如 -Xms最小堆  -Xmx最大堆 -Xss栈大小
   3. -XX参数： 以-XX开头，
    
-## javax.validation
-   一个第三方包,通过在属性上添加注解来完成简单的参数校验
-   使用时引入依赖,在属性添加注解,需要验证的对象添加@Validated注解
+### javax.validation
+   一个第三方包,通过在属性上添加注解来完成简单的参数校验<br /> 
+   使用时引入依赖,在属性添加注解,需要验证的对象添加@Validated注解<br /> 
    @Validated与@Valid区别: https://blog.csdn.net/sunnyzyq/article/details/103527380?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-103527380-blog-127870470.235^v32^pc_relevant_yljh&spm=1001.2101.3001.4242.1&utm_relevant_index=3
    (这两个注解用在实现类上会失效)
 
 ## MAVEN
    maven的核心是pom文件.所以只要文件夹里有pom.xml就可以视为一个maven project
    ### maven坐标
-   groupid: 公司域名倒序 + 项目名
-   artifatid: 模块名
-   version: 版本
+   groupid: 公司域名倒序 + 项目名 <br /> 
+   artifatid: 模块名<br /> 
+   version: 版本<br /> 
    ### 与idea的坑
    idea版本需要与maven版本适应才能在idea中使用,并且新的项目总是使用idea自带的Maven
    ### 配置文件
-   repository： 用来指明本地远程库（一个repository代表一个本地远程库）
-   mirror: 用来指明下载远程仓库时的镜像
-   plugin: maven的生命周期每个周期都是执行相应的插件，plguin可以不指定版本，会下载本地远程库的release版本
+   repository： 用来指明本地远程库（一个repository代表一个本地远程库）<br /> 
+   mirror: 用来指明下载远程仓库时的镜像<br /> 
+   plugin: maven的生命周期每个周期都是执行相应的插件，plguin可以不指定版本，会下载本地远程库的release版本<br /> 
    ### dependencyManagement
    用于父pom，对于声明在父pom的该标签下的依赖，子工程可以不写版本号(子工程如果写了以子工程为准),并且父pom不会导入该包
    ### parent & dependency
    dependency标签是parent的子集. 使用parent标签后，子标签除了会import dependency.还会继承一些父类定义的变量值等
    ### 包的管理
-   每次导入的就是坐标文件夹下的Jar包.  
+   每次导入的就是坐标文件夹下的Jar包.  <br /> 
    对于import的类文件来说，是没有group与artifity的. 路径就是jar包中的路径.所以可能会存在不同Group或者artifity里面相同路径名称的类，这时候就只能根据在maven里面的依赖顺序决定使用的是哪个类文件
    ### 内部变量
    ${project.version} ： 用在子模块间互相引用时填写在version中
    ### 一些命令行参数
-   https://www.cnblogs.com/longkui-site/p/15858385.html
-   clean install: 删除target目录，重新生成jar包.并且保存到本地库
-   dependency:purge-local-repository：删除repository中该pom的依赖
-   nsu： maven的repository中可能有snapshot,默认会在使用时查看远端是否存在最新的，然后更新本地的，加上这个参数会停止这个过程(快照默认每次都会去看有没有最新的 https://blog.csdn.net/weixin_38608626/article/details/88011541)
+   https://www.cnblogs.com/longkui-site/p/15858385.html<br /> 
+   clean install: 删除target目录，重新生成jar包.并且保存到本地库<br /> 
+   dependency:purge-local-repository：删除repository中该pom的依赖<br /> 
+   nsu： maven的repository中可能有snapshot,默认会在使用时查看远端是否存在最新的，然后更新本地的，加上这个参数会停止这个过程(快照默认每次都会去看有没有最新的 https://blog.csdn.net/weixin_38608626/article/details/88011541)<br /> 
    -T:  指定线程数
 ## python
    ### python2/python3
@@ -379,8 +379,8 @@ https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
    ### pip
    pip 是 Python 的包安装程序。其实，pip 就是 Python 标准库中的一个包，只是这个包比较特殊，用它可以来管理 Python 标准库中其他的包
    ### virtualenv
-   virtualenv用来建立一个虚拟的python环境，一个专属于项目的python环境,解决了依赖包版本冲突的问题
-   会在当前的目录中创建一个文件夹，这是一个独立的python运行环境，包含了Python可执行文件， 以及 pip 库的一份拷贝，这样就能安装其他包了，不过已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的Python运行环境来
+   virtualenv用来建立一个虚拟的python环境，一个专属于项目的python环境,解决了依赖包版本冲突的问题<br /> 
+   会在当前的目录中创建一个文件夹，这是一个独立的python运行环境，包含了Python可执行文件， 以及 pip 库的一份拷贝，这样就能安装其他包了，不过已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的Python运行环境来<br /> 
    当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。
 
    
