@@ -274,14 +274,14 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
     JVM使用TLAB来避免多线程冲突(比如多个线程同时在堆上创建对象，是需要同步的)，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.<br /> 
     https://blog.csdn.net/xiaomingdetianxia/article/details/77688945<br /> 
 #### 强软弱虚
-   软，弱引用都是在对象没有强引用的情况下发生的
+   软，弱引用都是在对象没有强引用的情况下发生的 <br />
 #### 类加载器
 只有类加载器不同，两个类才不同
 先检查是否已经被加载过，若没有加载则调用父加载器的loadClass方法， 如父加载器为空则默认使用启动类加载器作为父加载器   
 #### 双亲委派
-https://baijiahao.baidu.com/s?id=1710200711945883012&wfr=spider&for=pc
-https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6
-取消双亲委派: 自定义类加载器可以设置是否开启双亲委派.  使用场景: tomcat,每一个war包有自己的类加载器 
+https://baijiahao.baidu.com/s?id=1710200711945883012&wfr=spider&for=pc <br />
+https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6 <br />
+取消双亲委派: 自定义类加载器可以设置是否开启双亲委派.  使用场景: tomcat,每一个war包有自己的类加载器 <br />
 这个问题出现在JDBC中, 启动类加载器加载了JDK自带的DriverManager后, DriverManager用到了MySQL厂商的Driver实现。JVM规定某一类加载器加载A类时发现A用到了B，那么它就得先去加载B。所以启动类加载器就也想加载MySQLDriver, 但这个MySQLDriver实现类不在JAVA_HOME/lib下。所以要打破双亲委派，让父类加载器去使用子类加载器加载原本父类够不到的class文件
 #### 内存分配
    1. 空闲链表（free list）：通过额外的存储记录空闲的地址，将随机 IO 变为顺序 IO，但带来了额外的空间消耗。(标记清除时)<br /> 
