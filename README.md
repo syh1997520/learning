@@ -119,7 +119,7 @@
 ## 
    
 
-   ### javaHome
+   ### Home
    javahome配置在path中的顺序可能会影响配置效果<br />
    只要javahome的路径在path中就可以
    ### idea debug
@@ -156,6 +156,12 @@
    ### java项目不能热重启
    由于class文件只有第一次会加载到内存，所以在不重启jvm的情况下，class的改动是无法识别的
    想要实现热重启，需要给每个类创建一个classloader. (因为同一个类在同一个classloader只能load一次，所以每次更换时，对应的classloader也要更换)
+   ### spi
+   Java SPI（Service Provider Interface）是一种服务发现机制。它允许服务提供者（service providers）注册实现并使服务使用者（service consumers）能够查找和使用这些实现，从而在运行时能够扩展应用程序的功能或替换组件,有点类似于把服务交由第三方来实现,例如jdbc的驱动类 <br /> 
+   定义一个服务接口或者抽象类。 <br /> 
+   服务提供者实现这个接口或抽象类。 <br /> 
+   在服务提供者的jar包中的META-INF/services目录下创建一个命名为该接口全限定名的文件。文件内容是实现类的全限定名，每个名字占一行。 <br /> 
+   使用服务加载器ServiceLoader，在应用程序中动态加载实现。
    ### 数组
    arraylist每次扩容，扩一半长度<br /> 
    ### protobuf
