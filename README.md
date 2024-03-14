@@ -200,7 +200,7 @@
    https://blog.csdn.net/xueping_wu/article/details/124541419
    DCL 添加volitale，是为了防止指令重排，保证第一次获得的对象是完全初始化的（有微小的概率出现显式初始化未完成，但已经返回对线地址的情况）
    https://blog.csdn.net/championhengyi/article/details/77677393
-   volitate的可见性保证每次读到的都是最新的
+   volitate的可见性可以理解为对变量的操作都是针对主内存
    ##### atomic类
    atomic类本身并不能保证线程安全性，只是保证了可见性与原子性。
    多线程下保证atomic在某个范围内
