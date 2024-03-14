@@ -173,6 +173,8 @@
    #### 其他的hash算法
    例如二次探测法(开放地址法的一种)，即当hash冲突时，按照某种算法重新计算hash值. ThreadLocalMap是通过这种方法解决hash冲突的
    https://blog.csdn.net/weixin_47651920/article/details/123602712
+   #### array.aslist
+   在使用Aarrays.asList()生成的list对象，当对对象进行add()方法操作时，会报出UnsupportedOperationException异常问题。
    ### 并发编程   
    #### synchronized锁升级
    https://baijiahao.baidu.com/s?id=1740908287236022841&wfr=spider&for=pc
