@@ -1432,8 +1432,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    二分查找以及双指针(滑动窗口.)
    https://leetcode.cn/problems/kLl5u1/solution/pai-xu-shu-zu-zhong-liang-ge-shu-zi-zhi-8tv13/
    ### 前缀和
-   用来求解数组连续的个数的合是否等于某个值
-   前缀和问题可以考虑能否转化为 -1 1问题，因为这类的前缀和有个特点，只要两个数组值相等，就代表中间的和为0
+   用来求解数组连续的个数的合是否等于某个值,是会算上当前下标的
+   前缀和问题可以考虑能否转化为 -1 1问题，因为这类的前缀和有个特点，只要两个数组值相等，就代表中间的和为0 ： 进阶的话用hash表，储存前缀和及下标，这样可以得到最长的重复长度
    ### 矩阵
    矩阵题目可以用动态规划，可能涉及到特殊的行,列 对应独特的表达式
    ### 字符串
