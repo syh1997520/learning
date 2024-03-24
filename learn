@@ -1,1 +1,473 @@
+FBAE:  fulfillment by Alibaba expression
 
+Cr:  code review.  https://aliyuque.antfin.com/ae-russia-rd/nqwvnh/nqynl2
+
+注意发板 ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
+为什么库存要分成三个？一致性问题
+
+Daily. 日常（开发）环境
+
+外单: 将一个订单(一般是由于库存原因卡单的),重新创建,原始订单一般置为转商家仓(外单只是负责创建一个新的订单,不涉及别的)
+
+pandora： 隔离各模块jar包
+
+根据trace查log
+
+Rpc是通过接口调用，提供方与调用方都保存同一个interface,地址都在各自的code中。 
+
+Oops. 离线表
+
+发货时效: 预计几天送达
+
+分布式数据库？
+
+dto什么意思
+
+HSFSpringProviderBean  可以实现hsf的声明
+
+美杜莎: 多语言配置中心
+
+什么是JIT备货模式？
+“JIT即时送货到仓模式”，是商家备现货在自己仓库，CHOICE商品出单后，商家通过“预约揽收”或者“自寄发货”，按照要求的时间，将正确的商品送到仓库完成履约
+
+铺货强调的是商品的广泛分布，这样消费者在各个地方都能看到并购买到这些商品
+
+控单：把订单hold住(为了防止用户又下一单这样)
+妥投：指快递已送达
+ipm: 前端库存。aic:仓库库存
+
+Fulfillment package  由菜鸟回传(出库时)
+Warehouse order 拆单时生成
+
+转商家仓: 一般是卡单时才需要触发
+
+阿里云openservice. iscomplete为false时需要重试请求（为什么要设计成这样）
+
+
+外部单:  指自己根据xml生成订单信息，触发履约单生成
+
+FY： 财政年度
+
+pmo 项目管理办公室,可以理解为pm的集合
+
+Lazada: 东南亚最大的在线购物电商之一
+
+qa 测试
+
+jit:  (Just In Time）通过销售订单驱动采购(以销定采,根据销量决定库存数量)
+
+voyager： 发布镜像,本身是基于aone的
+
+uop ：履约
+
+Pmo: 营销  折扣
+
+Kr: ??
+
+pudo: 单元测试
+
+Scitem. 后端商品(货品)
+
+Item: 前端商品
+
+Biz:  business
+
+Pudo point 埋点？   收集用户事件的代码
+
+生态仓:  把优质的商家仓纳入平台管控
+
+逆向单：取消订单
+
+AE供应链分为 服务表达、库存、履约三个域
+
+服务表达：计算路线
+
+Roc:  逆向
+
+Consign:  仓单
+
+Aer针对俄罗斯买家
+
+global-uop-app-aegs-warehouse 优选仓
+
+global-uop-app-ae-choice-logistics-warehouse 自营全托管
+
+Pdp: (Product Detail Page)商品详情页
+
+FulfillmentConsignDecideServiceImpl 到达时效
+
+
+havana是存有整个阿里巴巴集团的用户，包括淘系，支付宝，阿里云等BU.主要提供用注册(join)，登录(auth)，帐号中心(update)服务
+
+画系统设计(时序图)与详细设计 (具体到接口的每个字段是干嘛的,在接口中的作用)
+
+result.getScenarioResult().setTargetFulfillmentOrderLineIds(fulfillmentOrderLineIds);  这里的list是仓单过滤掉取消和废弃的后,所有仓子单对应的履约子单
+
+
+trackingnumber. 运单号,快递单号
+Outbizid.  物流单号,菜鸟单号
+wlbid: 仓单号 
+
+
+warehouseorderitem与orderitem是有多对一关系的
+
+履约：  电商侧的履约主要指线上用户下单（支付成功）后，供应链系统从接到订单到把货物送达到买家手中的整个过程
+
+
+改warehouseitem的status与bizStatus.    改fullfillmentorder的status与biz status.  检查菜鸟物流单是否取消。 检查库存是否占用。 调用接口发送履约状态更新消息
+
+https://aliyuque.antfin.com/ae-russia-rd/nqwvnh/ut4uyuw77mcgpgks
+
+
+ascp的重新下发功能,调用的是FulfillmentOrderCombineStatusResendFacadeImpl的batchsend方法,这个方法对于没有接单的订单,会去重新调用接单拆单下发接口
+
+创单:  根据交易单号查询有无已存在子单.子单随履约单一起创建（子单信息会一起发过来），初始化id,status等，收货人卖家,自提点信息,featuretre,trade信息等。  根据extendParam 参数对履约单类型进行赋值.  发送消息GLOBAL-UOP-ORDER-CREATED
+
+接单： 消费GLOBAL-UOP-ORDER-CREATED消息 hold单,创建定时任务,然后由schedulerx2触发任务,后续进行接单拆单下发操作(hold单动作不在bpm中),(创建重试任务,在重试任务中进行接单拆单下发)赠品进行占用. 对货品信息进行补充,对履约单信息进行补充(货品信息打标: 履约单清单总金额打标,履约子单feature设置税费信息; sender信息补充: 调服务查到仓信息,补充到sender中; bizstatus改为100340).  进行合单决策,查看是否可以合单控单,如果可以的话,创建合单控单任务(并设置下次执行时间)
+
+
+jit接单: 走的是jitlogistics的bpm
+jit只关注一个备货期(出库时间). 如果超过了这个时间,就会尝试触发关单
+
+合单控单: 管道里面创建合单任务,修改履约单状态为hold,task捞取任务,然后再在管道里执行 
+
+拆单：  物流源路由(根据owner查找用户订购的仓列表,判断仓是否可用)——》 判断库存是否充足,库存扣减 ——> 拆单, 拆单时拆成多个子单,最后转化成仓单（先根据组合货品来拆,根据组合货品拆成多个子单(这个子单是个中间状态),组合货品由几个货品构成就拆成几个). 根据仓来拆，然后根据物理要素来拆（此时调用菜鸟接口））,更新bizstatus为DELIVERY_SOURCE_DECIDED
+
+下发: 下发是以仓单为单位的,下发是调菜鸟接口,菜鸟侧会有相关的校验来决定是否成功.下发成功时会返回lp单号,将仓单状态修改为500,打标保存lp单号,履约单不做修改
+
+(接单,拆单,下发这三步是顺序执行的)
+
+取消:  取消物流,取消库存,更新仓单信息和履约单信息
+
+收货时间确认:  在履约发送妥投消息给trade后,开始触发倒计时
+
+买家退货:  买家退货时需要得到退货地址,com.alibaba.global.uop.ae.api.ReverseOrderFacade#queryWarehouseAddress, 通过这个服务(内部逻辑是履约传过去一个仓code,然后调用物流商服务得到对应的地址)
+
+为什么必须要履约，而不是让交易和菜鸟直接沟通呢？原因主要有两点：一是划分清楚职能，为了商货品分离，物流只保障货品的存储和运输，不管理商品相关。二是履约发货的过程中涉及到的域之间的交互很多，交易、结算、供应链、物流等等，如果混在一起很难保障发货链路有效进行
+
+下发仓库: 下发仓库这里会有段判断,如果满足某些条件,会重新走一遍接单流程com.alibaba.global.uop.ae.platform.server.facade.impl.FulfillmentOrderCombineStatusResendFacadeImpl#batchSend/handScItemInfo
+
+
+shaoyonghui.syh@alibaba-inc.com
+
+已取消的订单不能再操作了
+
+ 
+Intercept:  判断履约单状态以及shippingtype,(纯配不支持intercept)
+把菜鸟的物流单取消掉 (已发货/菜鸟没有接单也没有拒单 不允许intercept)
+将履约单,履约子弹以及仓单,仓子单都转为new create,并且在feature上打上标记。.(履约或仓单已取消不可拦截)。
+（intercept可以理解为回退到拆单完成的状态）
+
+
+转商家仓(partialTransformWoToDelivery,如果只有一个仓单会变成调用transformToDelivery): 
+ 关闭物流单 ——> 取消库存。——》
+创建包裹单,履约单打标,将仓单改为取消并发送取消消息
+包裹单设置为COMPLETE_SHIPPING
+履约子单设置成PARTIAL_SHIPPING或者COMPLETE_SHIPPING
+履约单状态也该为部分出库或者全部出库
+发送GLOBAL-UOP-ORDER-STATUS-UPDATE 消息
+(转商家仓有些条件不能执行,比如已全部出库)
+(商家仓库存不会做修改)
+
+转商家仓分为两步: 转纯配与声明发货 (转商家仓其实也有两个意思,一个就是只转纯配,还有就是一起带上声明发货)
+1. 拦截履约单,取消库存,修改履约主单和子单类型为纯配,业务身份也变为纯配,状态改为新建,仓单状态改为删除 (transformToDelivery)
+2. 声明发货会通过hsf actualOnEvent走到callback的bpm中(call back bpm 有专门对纯配事件作处理)
+
+
+到达目的国: 声明发货和到达目的国事件都会走到到达目的国打标逻辑,但是声明发货不会打标
+
+
+重新下发:  
+拦截(需要提前调用拦截) —》 更新履约单
+将之前的仓单改为废弃状态(保证之前仓单对应的lp单已经取消掉了),新建克隆仓单
+重新调用下发菜鸟的接口(consign bpm)
+(仓品库存主要与scitem和tradenumber有关,因此重新下发时不需要取消库存)
+
+重新下发有两种,一种是下发老的仓单,一种是下发克隆仓单.下发老的仓单主要适用于下发失败的场景
+
+状态重推: resendFOStatusChangedMsg, 重新发送‘GLOBAL-UOP-ORDER-STATUS-UPDATE’ 消息,其中初始状态与结束状态都为当前状态
+
+模拟菜鸟出库消息: consignOrder ,从sls日志中捞取出库的log,通过hsf调用仓出库的bpm
+
+纯配单出库时 通过hsf服务执行event callback bpm(纯配没有仓单信息,如果走正常的消息是走不通的)
+
+仓单-400为废弃状态
+
+取消订单只能由逆向发起  :   先调履约单取消,再调交易侧
+
+已经取消的履约单不能取消库存了
+
+利用grep “FO1713310603978512” *.log来找日志
+
+合规: 归属US的用户的数据应该在US机房，同理，RU用户数据归属RU机房
+
+取消:  取消仓单(菜鸟侧), 取消库存, 重新创建仓单(因为可能涉及到部分仓单取消,所以会把不需要取消的仓单新建一下,并且重新占一下库存) ,仓子单状态改为取消,仓单状态更新为取消.  将需要修改的履约子单设置为取消,所有子单全部取消则主单状态改为取消
+
+
+global-uop-app-ae-digital 虚拟商品,不需要发货的
+global-uop-app-ae-choice-warehouse 全托管,商家只需要定下供货价,具体出售价格由平台决定
+global-uop-app-aem-warehouse    aer官方旗舰店 (本对本)
+global-uop-app-aer-warehouse aer (本对本)
+global-uop-app-ae-oversea-warehouse (aer 非本对本海外仓)
+global-uop-app-aegs-warehouse 优选仓
+
+
+逆向有两个含义,一个是指的逆向那个项目,一个是履约中的逆向.履约中的逆向是指的包裹的反方向运输,也就是说有了包裹才有逆向这个行为. 逆向根据发起者的不同,分为两种,一种是菜鸟发起的,一种是’逆向‘发起的(这种是消费者主动退货)
+
+区域标:  在创单时根据买家的区域进行一个打标操作
+
+resendFOStatusChangedMsg:  状态改变通知
+
+
+仓单,履约单状态更新:
+Statemachine:  getStateMachineId().  ——>.  beanname: deliveryReverseStateMachine/warehouseReverseStateMachine
+
+
+eventCallbackParam.setStateMachineConfig((workflowConfig.getStateMachineId(
+    new StateMachineConfigRequest(fulfillmentOrderLine, request.getExtraParams()))));
+最后会找到一个更新策略
+
+
+getBusinessScenario. ———> buildFulfillmentParam
+
+单元:  机房的不同区域 (消息默认不跨单元消费,既中心机房只能消费中心机房的消息)
+
+Pair: 
+
+consignOrder#WH1713310009586110;1679308859;1680059970
+
+FO1713310603978512 and WH1713310009586110  and bizCode: "WarehouseOrderFacadeImpl#warehouseOutbound"
+
+纯配:  商家主动声明发货,菜鸟通知履约侧发货 (合单时 发送PKG_INFO_UPDATE eventcode 事件,并且打ParcelNumber)
+
+异常一般来说直接往外抛,在最底层catch一下打一下log, 最外层可以吧异常封装一下再给用户
+
+
+ascp 拆单前查看履约单 拆单后查看仓单
+
+履约的重要性,状态机各状态已经是否终态,参数名
+
+路由:  保证逻辑一直在同一区域的机房处理(一般来说所有订单都会打区域标)
+
+dto与extra关系。enrichFulfillmentOrderDO
+
+Aone 会根据默认分支与提交分枝共同构建出一个新的分支
+
+在ascp页面下发仓库(订单管理的+号里面)
+
+@RoutingAnnotation(routeType = RouteType.PARAMETER,parameterName ="{0}") 指根据第一个参数(一般是用户id,进行路由)
+
+自提线路: 最后的送达地是某个自提点
+
+幂等校验: 检查状态是否小于某个状态值(最后要把幂等值置为false)
+前置校验: 检测状态机变化能否成功
+
+纯配也是逆向来取消
+履约子单也是以sku维度的,仓单是以scitem
+ownerid是指的货主id
+
+com.alibaba.global.uop.ae.platform.server.service.FulfillmentOrderFulfillService#doFulfillmentOrder (接单/拆单/下发)
+
+aer与aeg通过收货地来判断,属于jv国家的就是aer
+
+监控: 成功数量,失败数量
+
+交易状态更新:  部分出库/全部出库状态比较的是履约子单状态,其他事件比较的是主单状态. 妥投不会更新状态,只会修改收货倒计时
+
+
+自增主键可以考虑用个next计数器来生成,因为这样可以自定义起始值
+
+
+MetaQ当前的逻辑是，各个环境之间数据隔离，每个单元发的消息只有该单元的消费者才能收到
+跨单元方法(将消费者订阅到该单元):  1. 启动时new consumer然后设置unitName
+2. 在diamond中配置 global.landlord.protocol.mode.AE_HZ=pre
+3. global.landlord.metaq.consumer.custom[0].modes=@AE_HZ|RAWglobal.landlord.metaq.consumer.custom[0].list=CID_GLOBAL_UOP_WAREHOSUE_FULFILL_KERNEL_GROUP_RU,CID_GLOBAL_UOP_EVENT_CALLBACK_KERNEL_GROUP_RU,CID_GLOBAL_UOP_TRACKING_EVENT_CALLBACK_RU_GROUP_RU
+第一行代表环境,第三行可以理解为在接收消息的机房创建一个同名的consumerId,来作为跨单元的cusmerId.
+
+妥投消息一个trance可能有多个订单
+
+纯配声明发货有两种,一种是利用菜鸟发货,一种是自己填个运单号来发货
+
+Sunfire监控需要开头打印时间,否则可能取不到数据
+
+履约打印日志封装了一个专门的类,会对格式做一些处理
+
+class文件内容是搜不到的
+
+到达ru的仓,只有ru以及uz仓. aer本地仓与俄向海外仓的区别就是,俄向海外仓是归aliexpress管理的(现在aer本地仓已经基本不走aliexpress)
+
+pageCount = (totalCount + pageSize - 1) / pageSize; //推荐写法
+
+定仓是在下单的时候就定好了,fortress的feature里面的wc代表仓
+
+库存占用的幂等码是交易单号加交易子单号
+
+Gd代表承诺达线路,是路线的一种
+
+po采购单,co 入库单, fo头程单
+
+itextpdf 操作pdf
+
+Zxing(需要服务器使用oracleJdk), Barbecue生成条形码
+
+天启回放卡点
+
+逆向: aer逆向只有物流不可达这个场景. 首先菜鸟发送消息,创建逆向单.然后逆向单执行创单接单拆单下发,并且把库存状态改为消退在途.最后货品重新入库以后,菜鸟发送入库消息,履约释放库存
+
+本对本到达目的国只发送出库事件,然后就会执行到达目的国代码(到ru的仓只有来自ru,uz,中国的)
+
+metaq生产者必须改环境控制台有topic创建,但是消费者不要求有topic
+
+租户: 可以理解为团队
+
+交易子弹根据sku来区分
+
+simpledateformat Locale does not have a proper timezone,而是代表日期的显示格式相关
+
+simpledateformat 县城不安全 https://blog.csdn.net/servermanage/article/details/102497276
+
+组合货品可能只对应一个scitem
+
+对账告警: 复制告警的仓单号,小二工作台执行orderInventoryCheck#,将结果复制到https://alidocs.dingtalk.com/spreadsheetv2/8P1MNGDLs0ja5Pj4/edit?dontjump=true&type=s&cid=47473078034&dentryKey=8P1MNGDLs0ja5Pj4&editNotify=true&docKey=JZWGl03D0B4AO34Y&from_scene=2002,群里通知更新
+
+商品对应多个sku(在创建商品时,每创建一个颜色就是一个新的sku),每个sku去ascp关联某一个货品
+
+改api要思考兼容性
+
+maven仓库不带SNAPSHOT的,不让重新发布
+
+NumberUtils.createLong(null) --> null
+
+Cod: 货到付款
+
+Pudo: 自提
+
+Owner: owner是ascp平台的概念,跟sellerid在商家后台的意义是一样的
+
+灰度商家入驻: 设置白名单,邀请商家入驻
+
+BWH: 保税仓
+
+PlanB: 纯配线路,不走履约系统 
+
+Hsf的端口与controller暴露的端口不一定是一样的
+
+Spring-web服务会启动探活机制,检查7001端口
+
+alibabacloud.com/nativeLivenessProbe: 'false'
+
+预发机器请求可能跑到隔离环境去!!!!!!!
+
+Ipm库存释放
+
+1.
+aone是一种有代码管理、测试（单元+集成）、发布于一体，的平台；DevOps的实践；
+2.
+AppStack 相当于是 Aone 和 Koastline 借助 ASI 和云产品 搭建的一个云原生应用发布平台，基于DevOps的gitOps演进。
+
+Hsf服务消费者生产者要在自己项目这里注册(也可能有些二方包自己注册了) !!!!!!!!!!!!!!!!!
+
+Owner意识!!!! 主动负责问题!!!!
+
+AIDC(Alibaba International Digital Commerce, 阿里巴巴国际数字商业集团)
+
+卖家机房如果不在ru,那么逆向取消时可能有问题
+
+从hsf服务去找对应的应用
+
+两个应用一起发布时,要注意参数的兼容
+
+开关要尽量往前加 !!!!!!!
+
+RequestCtxUtil.setTargetCluster(HsfUnitUtil.getSgTargetCluster());
+修改hsf服务调用单元
+
+Idea比较两个分支: 右击项目文件夹,git,比较
+
+头程还有个补单场景
+
+https://hsf.alibaba-inc.com/hsfops/qos/qosSearch.htm?envType=vpc-sg-pre&ip=33.1.28.100&port=12201&app=[aer-logistics-seller-center-s]
+
+库存释放但是已发货: 订正为已发货,但是无法查看物流信息,且库存要一致(减一)
+
+Cr步骤: 介绍下改了什么,背景,以及一些改动点.  分块讲 ,监控
+
+货主id: 二级供应商id
+
+阿尔萨斯实现热更新: redefine 命令(重新加载单个文件): https://blog.csdn.net/javageektech/article/details/103142263
+https://www.zhihu.com/question/61040749/answer/184199515
+不允许新增方法和属性是因为会影响内存分布
+
+idea JDI ReloadFile: 有点类似于debug然后热改动
+
+服务订购: 订购-》审核 -〉 发消息给结算
+
+把日志里的request放到json.cn
+
+option键实现列选中
+
+机器人要用线上服务.机器人意图不能带特殊符号
+
+发布前跑一下天启
+
+声明发货: 菜鸟和自定义物流发货,填写发货通知是根据子单维度
+
+路线是子单维度的,一个子单一个路线
+
+包是否冲突看的是jar包里的包名  https://appstack.aone.alibaba-inc.com/app/235938/pipeline/55052/publish 在appstack上创建环境
+
+auto-config.xml????
+
+Application has been compiled by a more recent version of the Java Runtime
+
+创建应用 :aone申请应用,云原生升级,appstack创建环境
+
+Mapper要跟mapper.xml放在一个文件夹下,然后再pom里面允许配置文件编译 https://www.jianshu.com/p/2bd1e5313b66
+
+b_i_r子单组合货品id list
+
+12226
+
+影子标:  代表这个流量是个影子流量,会打到影子库/影子表
+
+建表: dms新建表结构, meta-data绑定appname,精卫同步数据
+
+测的时候测一下多个履约单
+
+线上发货:  使用平台提供的服务来发货
+声明发货: 已经发货了,填一下单号就好了
+
+不同环境的配置,可以放到diamond里面
+
+查看机器组id echo $ALIYUN_LOGTAIL_USER_DEFINED_ID
+
+要注意mybatis里面声明的是resultmap,只能用来做查询结果的返回值,而不是insert语句的入参
+
+FulfillmentOrderCreateReturnFacadeImpl#createReturnFulfillmentOrder 逆向单创建接口
+
+消息是可以复用的,在消息体设置幂等字段 (设计api时都要考虑幂等问题)
+
+退供单: 把国内仓的商品出库,发往国外仓
+
+Maven dependency分析: 右边maven, dependency
+
+目前的customerunitprice字段 : 接单时从ascp获取,但是会自己计算一遍,所以不一定是跟ascp的值相等. 下发时取的仓子单的feature里的customerunitprice字段
+
+接单log可能看不到完整的日志
+
+运费模版: 一个大的模版,配置多个路线,多个收货地
+
+运费策略: 设置运费的价格范围,所属的场景,以及作用的品,店铺等
+
+集邮: 第二件免邮
+
+DefaultWarehouseOrderByRefundInbound
+
+查找声明发货要用交易子单来找
+
+B2身份为自营
+
+要记得表一般是根据sellerId来分表的
+
+结束时打日志
