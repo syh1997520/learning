@@ -873,7 +873,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### mysql语句执行顺序
       from子句组装来自不同数据源的数据；where子句基于指定的条件对记录行进行筛选；group by子句将数据划分为多个分组；使用聚集函数进行计算；
    使用having子句筛选分组(having一般要带着聚集函数一起使用)；计算所有的表达式(此时相同分组的数据只保留一条)；使用order by对结果集进行排序；select 集合输出。
-   ### left join 与 right join
+   ### left join 与 right join,inner join
+   inner join与不加join的where是类似的.而且现在更偏向带inner join的写法
    在mysql 都需要写on. 但是inner join可以省略on. left join即使有数据在on中不满足，也会将左部分生成一行，右表填null值(有点像group by,把多行合并成一行返回，不过这里是0行变成一行返回) 也就是说,left join的结果里，左表的所有行，至少存在一条，可能存在多条
    https://blog.csdn.net/weixin_38418951/article/details/102696929
    https://blog.csdn.net/weixin_42039228/article/details/125074625 
