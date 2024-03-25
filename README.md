@@ -880,6 +880,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### mysql语句执行顺序
       from子句组装来自不同数据源的数据；where子句基于指定的条件对记录行进行筛选；group by子句将数据划分为多个分组；使用聚集函数进行计算；
    使用having子句筛选分组(having一般要带着聚集函数一起使用)；计算所有的表达式(此时相同分组的数据只保留一条)；使用order by对结果集进行排序；select 集合输出。
+   ### ON DUPLICATE KEY
+   用于防止重复插入. 会根据主键或唯一键来判断是否重复
    ### union, union all
    UNION
    连接数据集关键字，可以将两个查询结果集拼接为一个，会过滤掉相同的记录
