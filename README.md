@@ -1277,6 +1277,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### nacos
    #### 简介
    服务注册与配置中心(naming config service)   eureka + config + bus
+   #### ap与cp
+   nacos支持ap与cp模式的切换,比如 当nacos服务器出现宕机时,要进行重新选举,ap可以在重新选举时依然保证服务可用(选举时未宕机的机器依然可以提供服务),而cp模式下只有当选举完成才会继续提供服务
+   一般来说服务注册是ap,配置中心是cp
    #### 服务注册
    默认端口8848
    由于nacos继承了ribbon，所以自带负载均衡
@@ -1289,6 +1292,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    nacos上的文件名格式 ${spring.application.name}-${appliction中配置的文件名}.${bootstrat中配置的文件后缀} 
    实时刷新
    由dataID,groupId,namespace三部分组成： namespace是可以用于区分部署环境的，Group和DataID逻辑上区分两个目标对象
+   ##### 共享配置
+   nacos中可以设置共享配置,也就是多个应用用同一个配置.
+   shared-dataids来指定配置的dataId(当然也可以把这个文件作为一个普通的配置文件来引入)
    #### 持久化
    nacos一些数据，例如配置文件等，需要进行持久化。单机会存于一个nacos内嵌的数据库derby中，但是使用集群时要使用一个统一的mysql存储
    
