@@ -1447,6 +1447,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    linkedlist  arrayDequeue
    ### 异或
    一个数跟1做^,得到的一定是12，34，56这样一对数的另一个
+   ### 双指针
+   有序就要考虑是否能用双指针
    ### 二分法
    有时候left与right的起始不在两端
    ### 有序数组
