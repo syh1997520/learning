@@ -924,6 +924,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://zhuanlan.zhihu.com/p/213770128
    binlog: 存储所执行的sql语句
    redolog: 与事务相关，保证事务的一致性。与Binlog类似。但是粒度比binlog小，记载的是对页的操作 （binlog只有在事务结束提交前写入一次，但是redolog则是在事务过程中不断添加，所以可恢复成度也大于binlog）
+   redolog是用于事务恢复的,当一个事务还没执行完,数据库宕机,启动时可以重新执行该事务.
    undolog: 主要保证回滚的正确性，通过一个指针串联起一行数据的多个版本
    更多redolog和binlog区别： https://blog.csdn.net/weixin_44691915/article/details/122860263
    ### 锁相关
