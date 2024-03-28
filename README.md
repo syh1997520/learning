@@ -889,6 +889,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    连接数据集关键字，可以将两个查询结果集拼接为一个，会过滤掉相同的记录
    UNION ALL
    连接数据集关键字，可以将两个查询结果集拼接为一个，不会过滤掉相同的记录
+   ### 自增主键
+   当子增主键用光的时候,会报错
    ### left join 与 right join,inner join
    inner join与不加join的where是类似的.而且现在更偏向带inner join的写法
    在mysql 都需要写on. 但是inner join可以省略on. left join即使有数据在on中不满足，也会将左部分生成一行，右表填null值(有点像group by,把多行合并成一行返回，不过这里是0行变成一行返回) 也就是说,left join的结果里，左表的所有行，至少存在一条，可能存在多条
