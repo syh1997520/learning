@@ -936,6 +936,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 索引
     #### 索引失效
     https://www.cnblogs.com/wdss/p/11186411.html
+    #### 索引下推
+    可以简单理解为,如果要查询的两个列有联合索引,会优先用联合索引,而不是单列索引,这样效率会更高
    
 
 ## druid
