@@ -697,7 +697,9 @@ jdbc: 这个问题出现在JDBC中, 启动类加载器加载了JDK自带的Drive
    过期时间的最小单位是key,对于map,list等结构，一次清除，全部清除（redisson中具有实现value过期的map）,默认会 定期+惰性删除，既二者都有
    https://zhuanlan.zhihu.com/p/148584952
    ### redis分片
-   分片相当于多个master,存储时会把分片存到某个master上. 但是一旦有某个master宕级就会导致集群挂掉
+   多个master时,每个master维护一部分的槽.分片相当于多个master,存储时会把分片存到某个master上. 但是一旦有某个master宕级就会导致集群挂掉
+   ### 红锁
+   由于分布式锁,key一般是一样的,所以可能一个master挂掉的话,分布式锁失效的情况.红锁的基本理念就是把锁弄到多个分片上,防止单节点故障
    ### list数据结构
    list在数据比较少时，使用zipList,数据比较多时使用双向链表. ziplist是类似数组的连续结构，因为链表需要额外的前后指针，占空间大一些
    ### redis分布式锁
