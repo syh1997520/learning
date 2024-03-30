@@ -1452,6 +1452,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    奇数偶数变量可以考虑放到一个数组里，用下标来定位
    ### java 双端队列
    linkedlist  arrayDequeue
+   ### 求数组前几位的最大值
+   小根堆是用来求多个最小值的，但是如果只需要保存一个最小值信息，可以使用数组，有一点动态规划的意思在里面
    ### 异或
    一个数跟1做^,得到的一定是12，34，56这样一对数的另一个
    ### 双指针
