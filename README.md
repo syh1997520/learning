@@ -1188,7 +1188,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    直接修改port再重启一次即可  
    ### 启动过程
     @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
-
+    spring.factories文件: https://blog.csdn.net/itScholar001/article/details/131394751
    
     
 ## springcloud
