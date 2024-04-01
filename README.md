@@ -1160,6 +1160,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### ApplicationListener接口
    https://blog.csdn.net/qq_16504067/article/details/119883430
    用来做事件监听，比如bean加载完时执行什么代码之类的
+   ### 不同pom
+   1. 不同pom的classpath是不一样的
+   2. 直接在pom里面的某个文件声明为bean,不会被加载的。因为包扫描时只会扫描启动类及其子包，除非在哪里进行了配置
    ### 循环依赖解决以及为什么要三层缓存
    https://blog.csdn.net/cristianoxm/article/details/113246104
    https://blog.csdn.net/weixin_44129618/article/details/122839774
@@ -1184,7 +1187,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 简单的集群项目
    直接修改port再重启一次即可  
    ### 启动过程
-   
+    @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
 
    
     
