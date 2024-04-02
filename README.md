@@ -712,7 +712,9 @@ jdbc: 这个问题出现在JDBC中, 启动类加载器加载了JDK自带的Drive
 ## zookeeper
    ### 节点类型
    持久节点：该数据节点被创建后，就会一直存在于zookeeper服务器上，直到有删除操作来主动删除这个节点。
-   临时节点：临时节点的生命周期和客户端会话绑定在一起，客户端会话失效，则这个节点就会被自动清除。   
+   临时节点：临时节点的生命周期和客户端会话绑定在一起，客户端会话失效，则这个节点就会被自动清除。
+   ### raft算法
+   https://tongyi.aliyun.com/qianwen/?spm=5176.28326591.0.0.40f76ee1xe5WRl&sessionId=0e9890657def40518b4d2bb54b5f36eb
 
 ## ELK
    ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana(由于后面又有一些新的组件加入，所以又称为elasticStack es)
