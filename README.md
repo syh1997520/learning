@@ -1478,6 +1478,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    字符串默认排序后可以实现类似分组效果
    ### priorityqueue
    PriorityQueue包括arrayDequeu去存map中获取的值，都可以尝试去放数组数据类型，(0放key,1放value这种)以避免重新去map查找等
+   ### DFS与BFS
+   深度搜索一般适用于找到一个解的问题，而广度优先则适用于找到最小/最短解的问题
    ### 回文字符串
    回文字符串可以考虑从中间开始判断
    ### 多叉树
