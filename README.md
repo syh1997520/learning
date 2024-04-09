@@ -710,6 +710,10 @@ jdbc: 这个问题出现在JDBC中, 启动类加载器加载了JDK自带的Drive
    https://blog.csdn.net/justin_jia_92/article/details/125618923
    ### redission使用手册
    https://www.bookstack.cn/read/redisson-wiki-zh
+   ### redis架构
+   主从/哨兵： 单个主节点，多个从节点
+   集群： 每个都是主节点，由互为从节点
+   哨兵只是用于主从模式，跟集群模式没有关系
 
 ## zookeeper
    ### 节点类型
