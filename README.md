@@ -1138,6 +1138,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## spring
    ### spring3
    无法在spring3中使用lmbda
+   ### bean
+   bean创建的时候不是new出来的，而是通过反射创建的，这样做的好处一个是可以更好的通过配置设置值。因为new对象时，是需要具体的对象的，而生成Class只需要路径就可以
    ### requestmapping
    在spring4中引入了@getmapping,@postmapping注解，用来表示指定类型的请求(requestmapping默认接受任何类型) 
    ### 创建多模块
