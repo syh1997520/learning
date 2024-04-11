@@ -181,6 +181,7 @@
    ### hashmap
    采用链地址法解决hash冲突
    hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变<br /> 
+   在获得hashcode时，还有一步异或操作，即将hashcode的高16位与低16位进行异或操作，得到一个16位hashcode，再去与长度进行与运算
    #### 其他的hash算法
    例如二次探测法(开放地址法的一种)，即当hash冲突时，按照某种算法重新计算hash值. ThreadLocalMap是通过这种方法解决hash冲突的
    https://blog.csdn.net/weixin_47651920/article/details/123602712
@@ -1495,6 +1496,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    回文字符串可以考虑从中间开始判断
    ### 多叉树
    可以考虑用map来模拟多叉树的结构,key是父亲,vaklue是子的list
+   ### 位运算
+   当没什么思路时，可以思考是否可以通过位运算，如与,或，^异或，~^同或
 ## 编码规范
    ### java代码
    #### 属性命名
