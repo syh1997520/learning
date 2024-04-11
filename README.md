@@ -1191,6 +1191,10 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
       异常不符合;方法不是public的;由该类的另外一个非事务方法调用;所在的类不是个bean
    ### main方法
       bean创建时的init方法,可以用来当作main用
+   ### aop
+   切面： 将代理类上面通过@Aspect声明为切面
+   切入点：  @Pointcut(被代理的包路径)  ，声明一个代理方法
+   通知： 前置通知，后置通知（类似finally）,返回通知(成功调用)，不同的通知对应不同的注解，注解中传入切入点的方法名，做一个映射
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
