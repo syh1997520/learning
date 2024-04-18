@@ -1312,6 +1312,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    #### ap与cp
    nacos支持ap与cp模式的切换,比如 当nacos服务器出现宕机时,要进行重新选举,ap可以在重新选举时依然保证服务可用(选举时未宕机的机器依然可以提供服务),而cp模式下只有当选举完成才会继续提供服务
    一般来说服务注册是ap,配置中心是cp
+   #### nacos心跳
+   nacos心跳分为两种，一种是固定ip,一种是动态ip,动态ip由provider每5秒发送一个心跳，固定ip则是由nacos去发送心跳探活
    #### 服务注册
    默认端口8848
    由于nacos继承了ribbon，所以自带负载均衡
