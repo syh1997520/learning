@@ -1320,7 +1320,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    默认端口8848
    由于nacos继承了ribbon，所以自带负载均衡
    nacos支持cp与ap切换，发送一条post请求
-
+   注意，nacos的调用端会保存一份调用方的缓存，然后会有个失效时间，如果nacos中途突然断了的话，这个缓存并不会消失，所以服务调用方依然可以访问服务
    #### 配置中心
    配置文件位置由之前的git改为了nacos上
    bootstrap.yml用来存放nacos的地址信息
