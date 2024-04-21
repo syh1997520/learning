@@ -899,6 +899,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### mysql语句执行顺序
       from子句组装来自不同数据源的数据；where子句基于指定的条件对记录行进行筛选；group by子句将数据划分为多个分组；使用聚集函数进行计算；
    使用having子句筛选分组(having一般要带着聚集函数一起使用)；计算所有的表达式(此时相同分组的数据只保留一条)；使用order by对结果集进行排序；select 集合输出。
+   ### 页
+   mysql中页是存储单位，一般为16k,所有的数据都记录在页上。页是固定大小，不会扩容。（索引中的叶子节点与非叶子节点都是以页为单位，但是非叶子上只存储了索引键值以及指向下一级节点的指针）
    ### ON DUPLICATE KEY
    用于防止重复插入. 会根据主键或唯一键来判断是否重复
    ### union, union all
