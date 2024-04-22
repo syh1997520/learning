@@ -313,7 +313,9 @@ jdbc: 这个问题出现在JDBC中, 启动类加载器加载了JDK自带的Drive
 3. map中的key： 当map的key为对象时（string除外），可能会发生key泄露的事。可以使用weakedHashmap<br /> 
 4. hashcode变化导致内存泄露： 如果hashcode是可变的，那么会出现无法remove掉set中存在的hashcode,所以一直有引用指向这个对象。 因此hashcode可以改变的对象，在使用哈希表时，要在Hash值改变之前先从Hash表移除<br /> 
 当我们创建的引用不想去影响对象的生命周期时，就去使用弱/软引用<br /> 
-在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(Collections.newSetFromMap();如果后续要进行遍历，则不能用weadxx)<br /> 
+在list,set等集合中，对于不使用的内部元素，要及时置Null,或者使用weakedxxx(Collections.newSetFromMap();如果后续要进行遍历，则不能用weadxx)<br />
+#### oopmap
+作用是用来保存某个安全点的gcroot信息，方便高效的进行可达性分析
 #### 垃圾回收
 ##### cms
 - 为什么不采用标记整理
