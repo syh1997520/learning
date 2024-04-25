@@ -952,7 +952,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
     无符号类型
    ### log类型
    https://zhuanlan.zhihu.com/p/213770128
-   binlog: 存储所执行的sql语句
+   binlog: 存储所执行的sql语句,落盘时间在sql提交完后的一段时间
    redolog: 与事务相关，保证事务的一致性。与Binlog类似。但是粒度比binlog小，记载的是对页的操作 （binlog只有在事务结束提交前写入一次，但是redolog则是在事务过程中不断添加，所以可恢复成度也大于binlog）
    redolog是用于事务恢复的,当一个事务还没执行完,数据库宕机,启动时可以重新执行该事务. redolog在执行commit前一定保证落盘
    undolog: 主要保证回滚的正确性，通过一个指针串联起一行数据的多个版本,记录的数据主要是事务语句的逆向操作
