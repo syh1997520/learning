@@ -1392,6 +1392,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    用来解决分布式事务问题的服务
    https://blog.csdn.net/qq_41910252/article/details/122517092
    TC： seata服务器    TM：需要注解的方法   RM：连接的数据库
+   https://blog.csdn.net/m0_62436868/article/details/134285648
 
 ## rocketmq
    ### 官方文档
