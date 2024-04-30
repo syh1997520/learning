@@ -1462,6 +1462,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
 ## 分布式事务
    https://blog.csdn.net/a745233700/article/details/122402303
+   ### at模式
+   https://blog.csdn.net/m0_62436868/article/details/134285648
+   seata采用的一个模式，核心是没有代码侵入，原理是使用中间层记录以及使用快照，在更新前后都记录快照
    ### 2PC/3PC
    依赖于数据库，能够很好的提供强一致性和强事务性，但延迟比较高，比较适合传统的单体应用，在同一个方法中存在跨库操作的情况，不适合高并发和高性能要求的场景。
    ### TCC
