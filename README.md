@@ -905,6 +905,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    发起死锁检测， 主动回滚一条事务， 让其他事务继续执行（innodb_deadlock_detect=on）
    ### mysql的执行流程
    https://tongyi.aliyun.com/qianwen/?spm=5176.28326591.0.0.40f76ee1V3NlLC&sessionId=dd81fd13f6924107817884fadc1e1cb6
+   ### buffer pool
+   innodb在查询时，会把一些页缓存在buffer pool里面，以加速查找。可以通过提升buffer pool大小来增加效率
    ### mysql语句执行顺序
       from子句组装来自不同数据源的数据；where子句基于指定的条件对记录行进行筛选；group by子句将数据划分为多个分组；使用聚集函数进行计算；
    使用having子句筛选分组(having一般要带着聚集函数一起使用)；计算所有的表达式(此时相同分组的数据只保留一条)；使用order by对结果集进行排序；select 集合输出。
