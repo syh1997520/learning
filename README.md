@@ -247,7 +247,7 @@
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0<br />  
    为什么value不作为弱引用   https://www.zhihu.com/question/399087116<br />  
-
+   threadlocalmap中，key使用了weakReference,而value没有，所以value不会自动释放，而weakhashmap是给整个entry使用的，所以Key、value会一起释放
    ### nio
    #### 零拷贝
    https://blog.csdn.net/weixin_39879073/article/details/123054799   零拷贝的核心是减少了从内核缓冲区copy到jvm内存这个过程
