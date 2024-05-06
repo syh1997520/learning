@@ -148,6 +148,8 @@
    ### string拼接的自动优化
    常量拼接: 直接作为一个拼接好的字符串
    变量拼接: 利用stringbuilder进行优化
+   ### lambda
+   在lambda表达式中，如果使用外部的变量，必须是final或者没有修改过的。不然会造成歧义，因为实际lambda中操作的是堆对象，是一个固定的
    ### ClassPath
    在安装java时需要配置classpath,用于搜索.class文件位置。但是1.5以后已经不需要配了<br /> 
    ### 默认路径
