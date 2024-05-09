@@ -1209,6 +1209,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    1. 不同pom的classpath是不一样的
    2. 直接在pom里面的某个文件声明为bean,不会被加载的。因为包扫描时只会扫描启动类及其子包，除非在哪里进行了配置
    ### 循环依赖解决以及为什么要三层缓存
+   https://blog.csdn.net/qq_37265364/article/details/134654694
    https://blog.csdn.net/cristianoxm/article/details/113246104
    https://blog.csdn.net/weixin_44129618/article/details/122839774
    首先，在不涉及循环依赖的情况下，bean生命周期是用不到三级缓存的,只需要一个一级缓存存最后的bean. 也就是说bean自己属性赋值实例化等等，是不需要从缓存去取bean的
