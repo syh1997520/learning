@@ -38,7 +38,11 @@
    bashrc和profile在/etc和/home中都存在一份，/home中的相同内容会覆盖/etc中的。bashrc和profile本身也稍有区别<br /> 
    bashrc用于那种登陆完的打开新的终端后执行,而profile是用于远程登录时执行
    https://cloud.tencent.com/developer/article/1174426<br /> 
-   
+
+   ### linux的io模型
+   阻塞io;
+   多路复用（非阻塞io,监听多个连接的事件），分为select,poll,epoll
+   异步io
    ### 正则
    (.+)与(.+?)： (.+)默认是贪婪匹配 (.+?)为惰性匹配   https://www.cnblogs.com/ysk123/p/9896850.html<br /> 
    []中括号中的字符都被视为原始字符，既不带特殊含义
