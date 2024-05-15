@@ -241,8 +241,8 @@
         }
    ```
    #### countdownlunch与cyclebarrier，Semaphore
-   countdownlunch: 等待其他几个任务执行完毕之后才能执行,并且是不可重用的
-   cyclebarrier: 栅栏，实现让一组线程等待至某个状态之后再全部同时执行，是可重用的
+   countdownlunch: 等待其他几个任务执行完毕之后才能执行,并且是不可重用的(一般是让一个线程等待)
+   cyclebarrier: 栅栏，实现让一组线程等待至某个状态之后再全部同时执行，是可重用的（一般是让多个线程等待）
    Semaphore：车位，控制同时访问的线程个数，通过 acquire() 获取一个许可，如果没有就等待，而 release() 释放一个许可
    ### try-catch-with-resource
    java7中的一种新语法，用于try-catch需要关闭资源时使用，很方便。只要资源实现了autoclose接口就可以使用<br /> 
