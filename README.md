@@ -191,7 +191,9 @@
    ### hashmap
    采用链地址法解决hash冲突
    hashmap中的Node节点有Hashcode值，因此在扩容时不会重新获取key的hash值，即使key的hash值改变<br /> 
-   在获得hashcode时，还有一步异或操作，即将hashcode的高16位与低16位进行异或操作，得到一个16位hashcode，再去与长度进行与运算
+   在获得hashcode时，还有一步异或操作，即将hashcode的高16位与低16位进行异或操作，得到一个16位hashcode，再去与长度进行与运算<br /> 
+   hashmap的链表部分采用头插法，因为一般来说新的访问可能性大。<br /> 
+   多线程冲突的一个场景：一个线程get,一个线程扩容中，有可能导致找不到
    #### 其他的hash算法
    例如二次探测法(开放地址法的一种)，即当hash冲突时，按照某种算法重新计算hash值. ThreadLocalMap是通过这种方法解决hash冲突的
    https://blog.csdn.net/weixin_47651920/article/details/123602712
