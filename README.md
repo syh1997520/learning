@@ -1356,7 +1356,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    bootstrap.yml用来存放nacos的地址信息
    application.yml用来指定要使用的文件名
    nacos上的文件名格式 ${spring.application.name}-${appliction中配置的文件名}.${bootstrat中配置的文件后缀} 
-   实时刷新
+   默认是由客户端轮询
    由dataID,groupId,namespace三部分组成： namespace是可以用于区分部署环境的，Group和DataID逻辑上区分两个目标对象
    ##### 共享配置
    nacos中可以设置共享配置,也就是多个应用用同一个配置.
