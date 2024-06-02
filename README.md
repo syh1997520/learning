@@ -1592,3 +1592,6 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    分页时利用子查询来优化查找
    使用count(*)而不是count(列名)，第二种会导致忽略掉null值的列
    尽量避免select * ,而是要指定返回的列
+   ### cr技巧
+   https://www.cnblogs.com/lovesqcc/p/14856658.html
+   空指针，日志，并发性，注释，try-catch,变量名与代码格式
