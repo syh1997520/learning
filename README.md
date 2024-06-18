@@ -26,7 +26,8 @@
    对于大文件或者私密文件，直接提一个新的commit删除，并不能永久删除，在git clone时依然会下载该文件.所以需要通过filter-branch来删除
 #### Git —force
    git --force前拉一下分支
-
+#### sub module
+https://www.cnblogs.com/chien/p/17617336.html
     
 ## Linux
    
