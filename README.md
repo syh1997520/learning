@@ -1474,7 +1474,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    负责调度mapreduce
    ResourceManager: 整个集群的资源(内存和cpu)调度节点
    NodeManager: 管理某台机器的资源(会把某台机器的资源分成很多container)
-
+### 数仓与数分
+   #### ETL
+   ETL是将业务系统的数据经过抽取（Extract）、清洗转换（Transform）之后加载（Load）到数据仓库的过程
 ## 微服务
    ### 简介
    将一个大的服务拆分成为多个小的服务 <br />  
