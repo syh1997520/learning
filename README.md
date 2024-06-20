@@ -1476,11 +1476,16 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    负责调度mapreduce
    ResourceManager: 整个集群的资源(内存和cpu)调度节点
    NodeManager: 管理某台机器的资源(会把某台机器的资源分成很多container)
-   ### 流处理与批处理
+### 流处理与批处理
    #### 流处理
    对数据进行实时计算
    #### 批处理
    离线计算
+### flink
+   专门做流处理的框架
+   #### 无界流与有界流
+   无界指没有终止点，例如kafka数据
+   有节指有终止点，例如文件
 ### 数仓与数分
    #### ETL
    ETL是将业务系统的数据经过抽取（Extract）、清洗转换（Transform）之后加载（Load）到数据仓库的过程
