@@ -1481,6 +1481,11 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    对数据进行实时计算
    #### 批处理
    离线计算
+### OLAP与OLTP
+#### OLTP
+事务处理系统，例如mysql这种，需要增删改查
+#### OLAP
+分析型数据库，一般只用来查询，如clickhouse，支持复杂的分析操作，数据量很大
 ### flink
    专门做流处理的框架
    #### 无界流与有界流
