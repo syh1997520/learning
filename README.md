@@ -1486,6 +1486,11 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 事务处理系统，例如mysql这种，需要增删改查
 #### OLAP
 分析型数据库，一般只用来查询，如clickhouse，支持复杂的分析操作，数据量很大
+### 行存与列存
+#### 行存
+以行为单位存储，如mysql,一般用于存业务数据，根据id来找一行数据
+#### 列存
+以列为单位存储，一般是用于大数据分析，olap场景
 ### flink
    专门做流处理的框架
    #### 无界流与有界流
