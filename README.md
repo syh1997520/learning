@@ -202,6 +202,9 @@ https://www.cnblogs.com/chien/p/17617336.html
    https://blog.csdn.net/weixin_47651920/article/details/123602712
    #### array.aslist
    在使用Aarrays.asList()生成的list对象，当对对象进行add()方法操作时，会报出UnsupportedOperationException异常问题。
+   #### java agent
+   Java Agent 是 Java 虚拟机提供的一整套后门，通过这套后门可以对虚拟机方方面面进行监控与分析，甚至干预虚拟机的运行
+   https://blog.csdn.net/perfect2011/article/details/125594137
    ### 并发编程   
    #### synchronized锁升级
    https://baijiahao.baidu.com/s?id=1740908287236022841&wfr=spider&for=pc
@@ -387,6 +390,10 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    使用时引入依赖,在属性添加注解,需要验证的对象添加@Validated注解<br /> 
    @Validated与@Valid区别: https://blog.csdn.net/sunnyzyq/article/details/103527380?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-103527380-blog-127870470.235^v32^pc_relevant_yljh&spm=1001.2101.3001.4242.1&utm_relevant_index=3
    (这两个注解用在实现类上会失效)
+
+## 阿尔萨斯
+    jvm诊断工具
+    https://blog.csdn.net/qq_34491508/article/details/131537930
 
 ## MAVEN
    maven的核心是pom文件.所以只要文件夹里有pom.xml就可以视为一个maven project
