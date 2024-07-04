@@ -747,6 +747,7 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    ### bitmap
    位图，是有自定义个0-1二进制组成的
    ### 跳表
+   zset根据score排序时使用
    https://www.bilibili.com/video/BV1QK4y1Y7mS/?spm_id_from=333.337.search-card.all.click&vd_source=648acd0f84093572b84e9f08a560139e
    跳表是一个多级索引，最底层是整个数据链表，上一级是去掉一半个数的一个链表，再上一级又是一半，以此类推，类似于二分查找的模式
    ### redis架构
