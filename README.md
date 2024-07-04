@@ -925,6 +925,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## mysql
    ### 联表与子查询
    联表查询一般是快于子查询的
+   联表查询时，mysql内部使用join buffer，把被驱动表（大表）的内容缓存，加快循环速度
    ### 死锁处理
    等待， 直到超时（innodb_lock_wait_timeout=50s） 。
    发起死锁检测， 主动回滚一条事务， 让其他事务继续执行（innodb_deadlock_detect=on）
