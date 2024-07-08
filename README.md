@@ -215,6 +215,8 @@ https://www.cnblogs.com/chien/p/17617336.html
    如何实现线程池：  依靠blockingqueue来实现，核心线程一直while循环来消费队列中的任务  https://www.cnblogs.com/wxwall/p/7050698.html<br /> 
    什么时候使用： 需要去新建线程完成一些small task时（需要频繁创建销毁，并且执行时间不长.如果持续时间很长的job就没必要使用线程池了,线程池一个很大的优点就是没有创建与销毁线程的开销）
    核心线程可以理解为数量的下限，最大线程是系统处理的上限，根据cpu和io密集型选择数量
+   ##### 如何优先用最大线程而不是阻塞队列
+   新建一个阻塞队列,重写offer方法
    #### copyonwrite
    https://jishuin.proginn.com/p/763bfbd30730
    ##### ScheduledExecutorService 
