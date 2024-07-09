@@ -948,6 +948,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    mysql中页是存储单位，一般为16k,所有的数据都记录在页上。页是固定大小，不会扩容。（索引中的叶子节点与非叶子节点都是以页为单位，但是非叶子上只存储了索引键值以及指向下一级节点的指针），叶子节点内的查找是顺序查找
    ### ON DUPLICATE KEY
    用于防止重复插入. 会根据主键或唯一键来判断是否重复
+   ### MGR,MHA
+   https://blog.csdn.net/lzyever/article/details/137651774
+   是mysql用于高可用的架构，一般是通过第三方框架来实现的。
    ### union, union all
    UNION
    连接数据集关键字，可以将两个查询结果集拼接为一个，会过滤掉相同的记录
