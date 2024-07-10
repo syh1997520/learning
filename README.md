@@ -951,6 +951,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### MGR,MHA
    https://blog.csdn.net/lzyever/article/details/137651774
    是mysql用于高可用的架构，一般是通过第三方框架来实现的。
+
+   mysql高可用架构
+   https://blog.csdn.net/meser88/article/details/133523855
    ### union, union all
    UNION
    连接数据集关键字，可以将两个查询结果集拼接为一个，会过滤掉相同的记录
