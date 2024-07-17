@@ -416,6 +416,10 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    ### 包的管理
    每次导入的就是坐标文件夹下的Jar包.  <br /> 
    对于import的类文件来说，是没有group与artifity的. 路径就是jar包中的路径.所以可能会存在不同Group或者artifity里面相同路径名称的类，这时候就只能根据在maven里面的依赖顺序决定使用的是哪个类文件
+   ### jar包文件
+   在下载好的jar路径下，会有这么几种文件： <br />
+   xx.lastUpdated: 这个是当下载出现问题，用来记录日志的。这个文件存在的话，有可能maven短时间不再下载 <br />
+   remote.repository: 记录该jar/pom包属于哪个仓库
    ### 内部变量
    ${project.version} ： 用在子模块间互相引用时填写在version中
    ### 一些命令行参数
