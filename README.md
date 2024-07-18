@@ -434,6 +434,11 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    镜像仓库配置：如果 settings.xml 中配置了镜像仓库，并且镜像仓库的 <mirrorOf> 标签与 pom.xml 中的仓库 ID 相匹配，Maven 会使用镜像仓库的 URL 来下载依赖。镜像仓库的配置可以重写项目仓库的 URL。<br />
 
    默认仓库：如果没有在 pom.xml 或 settings.xml 中找到匹配的仓库或镜像仓库配置，Maven 会使用默认的中央仓库 URL（通常是 https://repo.maven.apache.org/maven2/）。<br />
+   ### settings.xml
+   server标签: 用来配置访问某个源的用户名和密码
+   mirror标签：用来指定镜像（与一个或多个源绑定，如果有多个镜像指向一个源，则取第一个）
+   ### pom.xml
+   
 ## python
    ### python2/python3
    Python2和Python3分别是Python的两个版本，按照Python官方的计划，Python2只支持到2020年。为了不带入过多的累赘，Python3在设计的时候没有考虑向下相容，许多针对早期Python版本设计的程序都无法在Python3上正常执行 
