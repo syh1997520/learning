@@ -428,6 +428,12 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    dependency:purge-local-repository：删除repository中该pom的依赖<br /> 
    nsu： maven的repository中可能有snapshot,默认会在使用时查看远端是否存在最新的，然后更新本地的，加上这个参数会停止这个过程(快照默认每次都会去看有没有最新的 https://blog.csdn.net/weixin_38608626/article/details/88011541)<br /> 
    -T:  指定线程数
+   ### 依赖的查找顺序
+   项目仓库配置：Maven 首先查找 pom.xml 中的 <repository> 标签。如果项目中定义了仓库地址，Maven 会尝试从这些地址下载依赖。<br />
+
+   镜像仓库配置：如果 settings.xml 中配置了镜像仓库，并且镜像仓库的 <mirrorOf> 标签与 pom.xml 中的仓库 ID 相匹配，Maven 会使用镜像仓库的 URL 来下载依赖。镜像仓库的配置可以重写项目仓库的 URL。<br />
+
+   默认仓库：如果没有在 pom.xml 或 settings.xml 中找到匹配的仓库或镜像仓库配置，Maven 会使用默认的中央仓库 URL（通常是 https://repo.maven.apache.org/maven2/）。<br />
 ## python
    ### python2/python3
    Python2和Python3分别是Python的两个版本，按照Python官方的计划，Python2只支持到2020年。为了不带入过多的累赘，Python3在设计的时候没有考虑向下相容，许多针对早期Python版本设计的程序都无法在Python3上正常执行 
