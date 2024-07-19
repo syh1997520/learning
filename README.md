@@ -776,6 +776,15 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    ### rdb
    存储快照，一般是按时间进行一次存储，比如900秒有一次key操作则rdb.rdb是后台进程，不会阻塞正常命令，也可以用BGSAVE手动rdb
 
+## mongodb
+   ### database,collection,documents,field
+   在 MongoDB 中，一个 database 是数据的逻辑容器，类似于关系型数据库中的数据库。<br />
+   一个 collection 相当于关系型数据库中的一个表（table），用于存储一组文档（documents） <br />
+   文档是 MongoDB 中的基本数据单元，类似于关系型数据库中的行（row） <br />
+   字段是文档中的键值对，每个字段都有一个名称（键）和一个关联的值
+   ### _id
+   每一个document都生成一个自动标识_id
+   
 ## zookeeper
    ### 节点类型
    持久节点：该数据节点被创建后，就会一直存在于zookeeper服务器上，直到有删除操作来主动删除这个节点。
