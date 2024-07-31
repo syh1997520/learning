@@ -1463,7 +1463,16 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://blog.csdn.net/qq_41910252/article/details/122517092
    TC： seata服务器    TM：需要注解的方法   RM：连接的数据库
    https://blog.csdn.net/m0_62436868/article/details/134285648
-
+## springBatch
+   ### 简介
+   Springbatch用于批处理，可以对任务进行流程管理，需要连接数据库
+   ### 概念
+   Joblaunch: 管理任务
+   Job: 一个具体的任务，一个job由多个setp组成
+   Step: 把任务拆分成多个步骤
+   ### Job
+   job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,只会创建一个instacne）
+   job execution: 由jobinstance创建，每次执行生成一个job execution
 ## rocketmq
    ### 官方文档
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
