@@ -1472,7 +1472,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    Step: 把任务拆分成多个步骤
    ### Job
    job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,只会创建一个instacne）
-   job execution: 由jobinstance创建，每次执行生成一个job execution
+   job execution: 由jobinstance创建，每次执行生成一个job execution,可以看到instance是否成功以及重试等
 ## rocketmq
    ### 官方文档
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
