@@ -1219,7 +1219,11 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    一款用于实现graphql的java框架
    使用时在resource文件夹中创建schema文件，来指定返回值的类型。
    通过@DGSComponent注解声明一个fetcher,一般一个返回值对应一个同名方法 通过配置resolver来进行分表查询
-   自带一个前端页面来方便进行graphql查询  
+   自带一个前端页面来方便进行graphql查询
+   
+## FSM
+   一款用于状态机的框架，将内容存储在mongodb或其他数据库中。
+   
 ## spring
    ### spring3
    无法在spring3中使用lmbda
