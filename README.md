@@ -1475,7 +1475,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    Job: 一个具体的任务，一个job由多个setp组成
    Step: 把任务拆分成多个步骤
    ### Job
-   job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,只会创建一个instacne,同一个instance只能成功执行一次）
+   job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,且参数相同，只会创建一个instacne,同一个instance只能成功执行一次)
    job execution: 由jobinstance创建，每次执行生成一个job execution,可以看到instance是否成功以及重试等
 ## rocketmq
    ### 官方文档
