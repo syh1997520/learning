@@ -1478,9 +1478,12 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,且参数相同，只会创建一个instacne,同一个instance只能成功执行一次)
    job execution: 由jobinstance创建，每次执行生成一个job execution,可以看到instance是否成功以及重试等
    ### context
-job -> jobInstance -> JobContext -> jobExecution -> ExecutionContext
-
-Step -> stepContext -> stepExecution -> ExecutionContext
+   job -> jobInstance -> JobContext -> jobExecution -> ExecutionContext
+   
+   Step -> stepContext -> stepExecution -> ExecutionContext
+   ### RemotePartitioner 
+   是一个具有分片功能的远程执行组件，可以将任务拆分成多片，然后到多个机器上执行。(拆分任务的逻辑需要自己实现)
+   一般通过消息来进行不同服务器间的传递
 ## rocketmq
    ### 官方文档
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
