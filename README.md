@@ -1589,6 +1589,12 @@ Step -> stepContext -> stepExecution -> ExecutionContext
 ## 正则
    ### 非
    [^xx] 代表非xx字符
+## cron
+   ### spring shecduler
+   spring sheduler的cron与常规的cron不一样，由六个参数构成
+   https://stackoverflow.com/questions/30887822/spring-cron-vs-normal-cron
+   ### 0/2
+   当需要每隔一段时间执行一次时，需要用到这种表示，比如在分钟位，0代表从第几分钟开始，2代表每隔两分钟一次
    
 ## 算法
    ### 链表相关题目
