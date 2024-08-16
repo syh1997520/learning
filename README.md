@@ -1477,6 +1477,10 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### Job
    job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,且参数相同，只会创建一个instacne,同一个instance只能成功执行一次)
    job execution: 由jobinstance创建，每次执行生成一个job execution,可以看到instance是否成功以及重试等
+   ### tasklet
+   参数: stepCintribution，步骤信息对象，用于保存当前步骤执行情况
+   返回值：只有两种，continue,finish,  continue会导致任务重复执行，只有finish可以停止。 如果抛出异常，则执行失败
+   chunk: 当一个step又可以分成多个task时，可以用这个处理，tasklet的某种特殊实现
    ### context
    job -> jobInstance -> JobContext -> jobExecution -> ExecutionContext
    
