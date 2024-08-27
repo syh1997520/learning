@@ -1497,6 +1497,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    一般通过消息来进行不同服务器间的传递
    https://docs.spring.io/spring-batch/reference/spring-batch-integration/sub-elements.html#remote-partitioning
    job -> 主步骤 -> 分区处理器 -> 分区器 -> 从步骤12345
+   partition: 入参为分区数量，返回值为一个map<string, executionContext> 其中string代表分步骤名称，executionContext代表上下文参数
 ## rocketmq
    ### 官方文档
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
