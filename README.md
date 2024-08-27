@@ -1480,7 +1480,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    通过next,fromto等方法来做流程控制
    ### tasklet
    step具体执行逻辑的地方
-   参数: stepCintribution，步骤信息对象，用于保存当前步骤执行情况
+   参数: stepCintribution，步骤信息对象，用于保存当前步骤执行情况; chunkcontext: 记录上下文,获取上下文参数
    返回值：只有两种，continue,finish,  continue会导致任务重复执行，只有finish可以停止。 如果抛出异常，则执行失败
    #### chunk
    一种特殊的tasklet类型，由三部分组成，read -> process -> wirte
