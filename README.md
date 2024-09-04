@@ -1306,6 +1306,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    注意：如果不需要数据库操作，不要导入mysql相关包，会报错的
    ### 简单的集群项目
    直接修改port再重启一次即可  
+   ### 分环境配置
+   https://www.kancloud.cn/mini-enjoy/sprintboot/3067851
+   https://blog.csdn.net/kfepiza/article/details/131297093
    ### 启动过程
     @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
     spring.factories文件: https://blog.csdn.net/itScholar001/article/details/131394751
