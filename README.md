@@ -800,6 +800,11 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    ### raft算法
    https://tongyi.aliyun.com/qianwen/?spm=5176.28326591.0.0.40f76ee1xe5WRl&sessionId=0e9890657def40518b4d2bb54b5f36eb
 
+## oauth
+   https://cloud.tencent.com/developer/article/1497573
+   例如扫码登陆。
+
+
 ## ELK
    ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana(由于后面又有一些新的组件加入，所以又称为elasticStack es)
    logstash收集信息 ----》es数据库 -----》kibana数据展示
