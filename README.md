@@ -1390,12 +1390,13 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 服务网关
    网关是微服务的入口，nginx的流量打到网关（网关其实就类似于一个nginx模块，但是功能比nginx多，可以额外做权限啦之类的事情）
    #### gateway
-   基于netty实现的，非阻塞,支持websocket
-   路由： URL
-   断言： 指请求头中的参数，url路径等，还可以设置before after来进行时间相关的限制，设置是否携带某个cookie
-   过滤： 过滤器,主要是用来给修饰请求的，一般是实现自定义的（给请求头添加点东西之类的或者自己对请求做一些判断等）
-   核心： 路由转发+执行过滤链
-   与ribbon的区别是ribbon是客户端负载均衡，而gateway是服务端实现
+   基于netty实现的，非阻塞,支持websocket.一般位于nginx后面<br/>
+   顺序：请求 -> gateway mapping (寻找匹配的路由) -> gateway handler(过滤链)
+   路由： URL <br/>
+   断言： 指请求头中的参数，url路径等，还可以设置before after来进行时间相关的限制，设置是否携带某个cookie <br/>
+   过滤： 过滤器,主要是用来给修饰请求的，一般是实现自定义的（给请求头添加点东西之类的或者自己对请求做一些判断等） <br/>
+   核心： 路由转发+执行过滤链 <br/>
+   与ribbon的区别是ribbon是客户端负载均衡，而gateway是服务端实现 <br/>
    ### 服务配置
    #### spring-cloud-config
    用来统一管理配置文件的地方，提供中心化的外部配置（一般是与gitlab连用，既指定配置文件所在的gitlab地址） 
