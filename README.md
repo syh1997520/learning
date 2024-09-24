@@ -1316,6 +1316,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 分环境配置
    https://www.kancloud.cn/mini-enjoy/sprintboot/3067851
    https://blog.csdn.net/kfepiza/article/details/131297093
+   通过profile来指定环境时，会先加载application.yml，再去加载相应的环境配置，所以会产生覆盖
    ### 启动过程
     @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
     spring.factories文件: https://blog.csdn.net/itScholar001/article/details/131394751
@@ -1393,7 +1394,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    基于netty实现的，非阻塞,支持websocket.一般位于nginx后面<br/>
    顺序：请求 -> gateway mapping (寻找匹配的路由) -> gateway handler(过滤链)
    路由： URL <br/>
-   断言： 指请求头中的参数，url路径等，还可以设置before after来进行时间相关的限制，设置是否携带某个cookie <br/>
+   断言： 指请求头中的参数，url路径等，还可以设置before after来进行时间相关的限制，设置是否携带某个cookie (只有满足断言要求的请求会走相应的路由) <br/>
    过滤： 过滤器,主要是用来给修饰请求的，一般是实现自定义的（给请求头添加点东西之类的或者自己对请求做一些判断等） <br/>
    核心： 路由转发+执行过滤链 <br/>
    与ribbon的区别是ribbon是客户端负载均衡，而gateway是服务端实现 <br/>
