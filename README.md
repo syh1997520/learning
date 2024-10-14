@@ -283,6 +283,10 @@ https://www.cnblogs.com/chien/p/17617336.html
    date是没有时区概念的,SimpleDateFormat是有的.
    SimpleDateFormate是线程不安全的.创建时有个locale参数,这个参数不是代表时区,而是代表时间打印格式的
 
+   ### java时间类
+   https://blog.csdn.net/imbzz/article/details/128835680
+   简单来说，date和Calender都是比较早期的时间类，现在已经不推荐使用了，现在一般用localDate和locaTime
+
    ### jre/lib/cacerts
    用来储存可以信任的网站的公钥(类似于浏览器信任证书的功能)
 
