@@ -751,7 +751,11 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    ### mono与flux
    mono代表返回值为0或1个，flex代表多个返回值
    
-
+## 权限认证
+   ### oauth
+   ### jwt token
+   ### basic
+   ### api key
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
