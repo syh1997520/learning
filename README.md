@@ -812,6 +812,9 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    每一个document都生成一个自动标识_id
    ### ISOdate
    mongodb存储时间的类型，单位是UAT时间
+   ### 注意
+   mongodb最好不要存map类型，因为key不允许包括$和.<br/>
+   mongodb是支持监听机制的<br/>
    
 ## zookeeper
    ### 节点类型
