@@ -761,6 +761,9 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    ### oauth
    用于设计第三方系统的。一般来说流程是这样</br>
    前端重定向到第三方的认证系统，认证完后拿到授权码等信息，然后去第三方的资源服务器拿role</br>
+   ouath2.0 refresh token: 在ouath2中，有refresh token这个概念，是用来跳过sso重新获得accesstoken的。因为accesstoken一般
+比较短，refresh token一般会比较长，当检测到accesstoken快过期时，就可以通过refresh token来重新获得一个accesstoken(refresh token
+可以视作一个密码。一般是前端来保存refresh token。 使用refresh token时，根据策略不同，refresh token可能更新也可能不更新)
    ### api key
    一般是阿里云等云服务提供的，一个key来调用服务
 ## Redis
