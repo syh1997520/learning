@@ -801,7 +801,6 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    因为需要额外自己开发一些功能，比如节点改动的监听等等
    ### rdb
    存储快照，一般是按时间进行一次存储，比如900秒有一次key操作则rdb.rdb是后台进程，不会阻塞正常命令，也可以用BGSAVE手动rdb
-
 ## mongodb
    ### database,collection,documents,field
    在 MongoDB 中，一个 database 是数据的逻辑容器，类似于关系型数据库中的数据库。<br />
@@ -1754,3 +1753,5 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### cr技巧
    https://www.cnblogs.com/lovesqcc/p/14856658.html
    空指针，日志，并发性，注释，try-catch,变量名与代码格式
+   ### 场景优化
+   对于redis热点key的问题，可以考虑将key分散到不同分区。即把一个key的内容分散到多个key.减少单个分片的压力
