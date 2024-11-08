@@ -1754,4 +1754,5 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://www.cnblogs.com/lovesqcc/p/14856658.html
    空指针，日志，并发性，注释，try-catch,变量名与代码格式
    ### 场景优化
-   对于redis热点key的问题，可以考虑将key分散到不同分区。即把一个key的内容分散到多个key.减少单个分片的压力
+   对于redis热点key的问题，可以考虑将key分散到不同分区。即把一个key的内容分散到多个key.减少单个分片的压力<br/>
+   多尝试去使用context上下文，可以减轻一层一层的看变量来源的过程<br/>
