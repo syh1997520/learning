@@ -1293,7 +1293,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    @configuration:  用来表明该类有bean的创建<br/>
    @PathVariable: 例如/blogs/1<br/>
    @RequestParam，例如blogs?blogId=1<br/>
-   @RequestBody, controller用来接收对象参数<br/>
+   @RequestBody, controller用来接收body<br/>
    @lazy: 用于懒加载.可以放在类和属性上(放在类上基本没用，放在属性上一开始注入一个cglib对象，使用时再去将属性赋值. 一般用来解决构造器循环依赖)<br/>
    @autowired 与 resource :  都是进行注入用的，resource是java自带的注解，autowired是spring的. 当有多个实现类时，要用autoired去qualified一起使用
    ### bean创建锁
@@ -1324,9 +1324,11 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### main方法
       bean创建时的init方法,可以用来当作main用
    ### aop
-   切面： 将代理类上面通过@Aspect声明为切面
-   切入点：  @Pointcut(被代理的包路径)  ，声明一个代理方法
-   通知： 前置通知，后置通知（类似finally）,返回通知(成功调用)，不同的通知对应不同的注解，注解中传入切入点的方法名，做一个映射
+   切面： 将代理类上面通过@Aspect声明为切面<br/>
+   切入点：  @Pointcut(被代理的包路径)  ，声明一个代理方法<br/>
+   通知： 前置通知，后置通知（类似finally）,返回通知(成功调用)，不同的通知对应不同的注解，注解中传入切入点的方法名，做一个映射<br/>
+   ### controller
+   controller的参数，如果是对象的话，要保证相关属性都定义了，没定义的属性是接收不到传参的
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
