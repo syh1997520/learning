@@ -751,6 +751,16 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    注意，reactor是指的一种模型，(netty使用的模型，由dispatcher和worker构成的)。响应式编程的reactor是一个第三方包
    ### mono与flux
    mono代表返回值为0或1个，flex代表多个返回值
+
+## java validation
+   java提供的对于java bean的验证
+   ### 使用场景
+   主要用于controller参数的校验
+   ### 用法
+   将需要验证的bean使用@valid 注解
+   ### 注意
+   1. 会忽略掉null值的属性(但是一些字符串注解如@notnull等，还是会校验是否为空)
+   2. 反射生成对象时，验证会失效，因为反射生成的是没有注解的
    
 ## 权限认证
    ### 单点登录
