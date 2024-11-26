@@ -462,7 +462,9 @@ https://www.imooc.com/article/3339
 ### github flow
 这些概念: master,feature
 流程比较简单，只需要维护一个master分支，所有feature直接合到master
-### gitlab 
+### gitlab flow
+属于git flow和github flow的结合。每个env维护一个主分支，merge流程总是自上而下的。
+
    
 ## mybatis
    ### retruntype map
