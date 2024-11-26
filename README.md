@@ -1292,6 +1292,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 ## jwt
    用于token认证的工具
    ### 加密算法
+   (这里的加密解密是指的token的validate)<br/>
    有多种加密算法，加密解密方式也不一样<br/>
    比如rsa256加密，加密需要使用私钥，认证签名时则需要公钥，需要非对称加密(这里的公钥与私钥和ssl的过程代表的不太一样，不过一般都是ssh key) <br/>
    还有对称加密，也就是加密与解密的key是同一个 <br/>   
