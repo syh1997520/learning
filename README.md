@@ -453,6 +453,9 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
    会在当前的目录中创建一个文件夹，这是一个独立的python运行环境，包含了Python可执行文件， 以及 pip 库的一份拷贝，这样就能安装其他包了，不过已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的Python运行环境来<br /> 
    当import代码时，virtualenv将优先采取本环境中安装的包，而不是系统Python目录中安装的包。
 
+## git分支模型
+https://www.imooc.com/article/3339
+### git flow
    
 ## mybatis
    ### retruntype map
