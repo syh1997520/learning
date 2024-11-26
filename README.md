@@ -456,6 +456,13 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
 ## git分支模型
 https://www.imooc.com/article/3339
 ### git flow
+有这些概念： master,relase,dev,feature<br/>
+简单来说需要维护两个长期分支master和dev. 开发时基于dev创建feature. relase是用来测试的。<br/>
+这个模型相对来说比较死板。
+### github flow
+这些概念: master,feature
+流程比较简单，只需要维护一个master分支，所有feature直接合到master
+### gitlab 
    
 ## mybatis
    ### retruntype map
