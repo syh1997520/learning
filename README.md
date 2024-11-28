@@ -1763,9 +1763,10 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    for循环拼接string使用stringbuilder代替<br />
    创建集合是应该思考一下大概的长度<br />
    字符串比较时最好加一个全转小写<br />
-   retry逻辑可以尝试用@RetryOnFailure来实现(依赖问题有点难解决)
-   在设计api时考虑幂等问题!!!
-   controller不要抛出异常,而是要把相关信息放在一个response的msg字段里
+   retry逻辑可以尝试用@RetryOnFailure来实现(依赖问题有点难解决)<br/>
+   在设计api时考虑幂等问题!!!<br/>
+   controller不要抛出异常,而是要把相关信息放在一个response的msg字段里<br/>
+   抛出异常时需要考虑下异常的类型，不要总是抛出runtimeException (如invalidParam)
   ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
