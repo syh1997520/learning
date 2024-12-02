@@ -1326,7 +1326,10 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    @PathVariable: 例如/blogs/1<br/>
    @RequestParam，例如blogs?blogId=1<br/>
    @RequestBody, controller用来接收body<br/>
-   @lazy: 用于懒加载.可以放在类和属性上(放在类上基本没用，放在属性上一开始注入一个cglib对象，使用时再去将属性赋值. 一般用来解决构造器循环依赖)<br/>
+   @lazy: 用于懒加载.可以放在类和属性上(放在类上基本没用，放在属性上一开始注入一个cglib对象，使用时再去将属性赋值. 一般用来解决构造器循环依赖)
+   如果懒加载的Bean是通过自动装配（autowiring）注入的，那么在注入它的Bean创建时，懒加载的Bean会被初始化。
+可以将需要懒加载的autowired的地方，再添加init（可以理解为autowired的lazy init）
+   <br/>
    @autowired 与 resource :  都是进行注入用的，resource是java自带的注解，autowired是spring的. 当有多个实现类时，要用autoired去qualified一起使用
    ### bean创建锁
    在bean实例化开始时，会进行加锁操作，保证多个线程同一个bean只有一个会在创建(加锁时只在查找二三级缓存加锁)
