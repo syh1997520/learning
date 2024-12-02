@@ -770,6 +770,8 @@ https://www.imooc.com/article/3339
    注意，reactor是指的一种模型，(netty使用的模型，由dispatcher和worker构成的)。响应式编程的reactor是一个第三方包
    ### mono与flux
    mono代表返回值为0或1个，flex代表多个返回值
+   ### webclient
+   reactive webclient是线程安全的。一个连接只需要一个就好
 
 ## java validation
    java提供的对于java bean的验证
