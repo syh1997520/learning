@@ -1100,7 +1100,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
     https://www.cnblogs.com/wdss/p/11186411.html
     #### 索引下推
     可以简单理解为,如果要查询的两个列有联合索引,会优先用联合索引,而不是单列索引,这样效率会更高
-   
+   ### hash索引
+   mysql8开始会启用hash索引来提升效率.以表为单位，开辟一段空间来存储索引。但是也有弊端，比如很多不怎么用的表，内存不会释放
 
 ## druid
    连接池技术，是目前最快的连接池
