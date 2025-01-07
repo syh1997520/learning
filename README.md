@@ -717,10 +717,10 @@ export const routes: Routes = [
    颁发的证书一般有三部分： 公钥，私钥，证书，其中证书一般与公钥是在一起的 <br />
    颁发的私钥一般是加密的，需要解密后才可以使用
    #### ssl过程
-   完成时为对称加密的形式(客户端与服务端共用一个key进行数据传输)
-   https://www.cnblogs.com/hld123/p/15255526.html 
+   完成时为对称加密的形式(客户端与服务端共用一个key进行数据传输) <br />
+   https://www.cnblogs.com/hld123/p/15255526.html  <br />
 
-   双向验证： https://www.jianshu.com/p/fb5fe0165ef2
+   双向验证： https://www.jianshu.com/p/fb5fe0165ef2 <br />
 
    客户端向服务器发送“Client Hello”消息，包括客户端支持的加密方法。 <br />
    服务器回复“Server Hello”消息，选择一种加密方法，并发送自己的证书（包含公钥）。 <br />
@@ -746,6 +746,10 @@ export const routes: Routes = [
 
    ### ping
    ping使用icmp协议，不携带端口号，可以关闭电脑的ping功能
+
+   ### rbac
+   rbac本身是一种权限认证的模型，其他的还有acl (没有角色概念，一个人对应一套读写权限) ABAC（相比rbac添加很多维度，即资源会根据角色、日期、地点来绑定。适合更加复杂的场景）<br/>
+   https://m.elecfans.com/article/2066340.html
    
    ### htpp请求
    #### time_wait
@@ -1317,7 +1321,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    (这里的加密解密是指的token的validate)<br/>
    有多种加密算法，加密解密方式也不一样<br/>
    比如rsa256加密，加密需要使用私钥，认证签名时则需要公钥，需要非对称加密(这里的公钥与私钥和ssl的过程代表的不太一样，不过一般都是ssh key) <br/>
-   还有对称加密，也就是加密与解密的key是同一个 <br/>   
+   还有对称加密，也就是加密与解密的key是同一个 <br/> 
+
    
 ## spring
    ### spring3
