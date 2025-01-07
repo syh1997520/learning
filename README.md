@@ -1587,33 +1587,33 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 简介
    Springbatch用于批处理，可以对任务进行流程管理，需要连接数据库
    ### 概念
-   Joblaunch: 管理任务
-   Job: 一个具体的任务，一个job由多个setp组成
-   Step: 把任务拆分成多个步骤
+   Joblaunch: 管理任务 <br/>
+   Job: 一个具体的任务，一个job由多个setp组成 <br/>
+   Step: 把任务拆分成多个步骤 <br/>
    ### Job
-   job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,且参数相同，只会创建一个instacne,同一个instance只能成功执行一次)
-   job execution: 由jobinstance创建，每次执行生成一个job execution,可以看到instance是否成功以及重试等
-   通过next,fromto等方法来做流程控制
+   job Instance: 由job名称与参数构成，启动一个job的时候会在数据库创建job instace。（如果不改变job name,且参数相同，只会创建一个instacne,同一个instance只能成功执行一次) <br/>
+   job execution: 由jobinstance创建，每次执行生成一个job execution,可以看到instance是否成功以及重试等 <br/>
+   通过next,fromto等方法来做流程控制 <br/>
    ### tasklet
-   step具体执行逻辑的地方
-   参数: stepCintribution，步骤信息对象，用于保存当前步骤执行情况; chunkcontext: 记录上下文,获取上下文参数
-   返回值：只有两种，continue,finish,  continue会导致任务重复执行，只有finish可以停止。 如果抛出异常，则执行失败
+   step具体执行逻辑的地方 <br/>
+   参数: stepCintribution，步骤信息对象，用于保存当前步骤执行情况; chunkcontext: 记录上下文,获取上下文参数 <br/>
+   返回值：只有两种，continue,finish,  continue会导致任务重复执行，只有finish可以停止。 如果抛出异常，则执行失败 <br/>
    #### chunk
-   一种特殊的tasklet类型，由三部分组成，read -> process -> wirte
-   wirte只在read返回null时开始写入，且只执行一次，process和read是可能会重复执行的
+   一种特殊的tasklet类型，由三部分组成，read -> process -> wirte <br/>
+   wirte只在read返回null时开始写入，且只执行一次，process和read是可能会重复执行的 <br/>
    ### listener
-   stepListener
-   jobListener
+   stepListener <br/>
+   jobListener <br/>
    ### context
-   job -> jobInstance -> JobContext -> jobExecution -> ExecutionContext
+   job -> jobInstance -> JobContext -> jobExecution -> ExecutionContext <br/>
    
-   Step -> stepContext -> stepExecution -> ExecutionContext
+   Step -> stepContext -> stepExecution -> ExecutionContext <br/>
    ### RemotePartitioner 
-   是一个具有分片功能的远程执行组件，可以将任务拆分成多片，然后到多个机器上执行。(拆分任务的逻辑需要自己实现)
-   一般通过消息来进行不同服务器间的传递
-   https://docs.spring.io/spring-batch/reference/spring-batch-integration/sub-elements.html#remote-partitioning
-   job -> 主步骤 -> 分区处理器 -> 分区器 -> 从步骤12345
-   partition: 入参为分区数量，返回值为一个map<string, executionContext> 其中string代表分步骤名称，executionContext代表上下文参数
+   是一个具有分片功能的远程执行组件，可以将任务拆分成多片，然后到多个机器上执行。(拆分任务的逻辑需要自己实现) <br/>
+   一般通过消息来进行不同服务器间的传递 <br/>
+   https://docs.spring.io/spring-batch/reference/spring-batch-integration/sub-elements.html#remote-partitioning <br/>
+   job -> 主步骤 -> 分区处理器 -> 分区器 -> 从步骤12345 <br/>
+   partition: 入参为分区数量，返回值为一个map<string, executionContext> 其中string代表分步骤名称，executionContext代表上下文参数<br/>
 ## rocketmq
    ### 官方文档
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
