@@ -753,9 +753,7 @@ export const routes: Routes = [
    ### ping
    ping使用icmp协议，不携带端口号，可以关闭电脑的ping功能
 
-   ### rbac
-   rbac本身是一种权限认证的模型，其他的还有acl (没有角色概念，一个人对应一套读写权限) ABAC（相比rbac添加很多维度，即资源会根据角色、日期、地点来绑定。适合更加复杂的场景）<br/>
-   https://m.elecfans.com/article/2066340.html
+
    
    ### htpp请求
    #### time_wait
@@ -826,6 +824,9 @@ export const routes: Routes = [
 可以视作一个密码。一般是前端来保存refresh token。 使用refresh token时，根据策略不同，refresh token可能更新也可能不更新)
    ### api key
    一般是阿里云等云服务提供的，一个key来调用服务
+   ### rbac
+   rbac本身是一种权限认证的模型，其他的还有acl (没有角色概念，一个人对应一套读写权限) ABAC（相比rbac添加很多维度，即资源会根据角色、日期、地点来绑定。适合更加复杂的场景）<br/>
+   https://m.elecfans.com/article/2066340.html
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
@@ -874,6 +875,8 @@ export const routes: Routes = [
    ### 注意
    mongodb最好不要存map类型，因为key不允许包括$和.<br/>
    mongodb是支持监听机制的<br/>
+   ### ttl索引
+   mongodb一种索引类型，设置在时间类型的字段上。设置后会根据配置的时间定期删除某个document
    
 ## zookeeper
    ### 节点类型
