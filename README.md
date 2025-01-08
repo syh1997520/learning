@@ -1619,6 +1619,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    https://docs.spring.io/spring-batch/reference/spring-batch-integration/sub-elements.html#remote-partitioning <br/>
    job -> 主步骤 -> 分区处理器 -> 分区器 -> 从步骤12345 <br/>
    partition: 入参为分区数量，返回值为一个map<string, executionContext> 其中string代表分步骤名称，executionContext代表上下文参数<br/>
+   远程分区任务中，默认哪个matser发送消息，哪个master收到响应
 ## rocketmq
    ### 官方文档
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
