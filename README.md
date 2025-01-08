@@ -1417,7 +1417,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
     @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
     spring.factories文件: https://blog.csdn.net/itScholar001/article/details/131394751
    
-    
+## springsecurity
+   ## 注意
+   springsecurity 即使某个请求加了permitAll,如果请求携带了authorization.依然会去校验token
 ## springcloud
    https://yunyanchengyu.blog.csdn.net/?type=blog
    https://blog.csdn.net/liuhuiteng/article/details/103348138
