@@ -1162,6 +1162,13 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 简介
    simple log facade for java 简单日志门面.slf4j不是具体的日志解决方案，它只服务于各种各样的日志系统。按照官方的说法，SLF4J是一个用于日志系统的简单Facade，允许最终用户在部署其应用时使用其所希望的日志系统.一般是与一个具体的日志系统一起使用的                           
                               
+## objectmapper
+ ### 简介
+ jackson下的一个组件，主要用来做对象和string(json) convert的。本身是支持多线程安全的(但是请避免在运行时修改mapper的配置)
+ ### 使用
+ objectmapper在convertValue时，默认如果目标属性不存在，会报错。可以通过mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); 解决 <br/>
+ 在objectmapper将string转成list时，list内的泛型使用typeReference来指定 <br/>
+
 
 ## lombook
    ### 使用
