@@ -499,7 +499,7 @@ https://www.imooc.com/article/3339
 
 ## 前端相关
    ### mdn
-   web开发手册，包含js的使用规则等等
+   开发手册，包含js的使用规则等等
    ### DOM与BOM
    BOM是浏览器对象模型，DOM是文档对象模型，前者是对浏览器本身进行操作，而后者是对浏览器（可看成容器）内的内容进行操作<br /> 
    每个浏览器提供操作dom bom的api<br />
@@ -511,7 +511,7 @@ https://www.imooc.com/article/3339
    this: js的this指向调用者(当函数通过xx.func调用时指向xx，直接调用时指向window)
    当函数作为属性时，调用时的this似乎一直跟赋值时的this相等，不会再改变（不确定）
    call()方法： 改变函数的所有者(也可以理解为改变调用时的this)  https://www.w3school.com.cn/js/js_function_call.asp
-   js中操作集合，使用foreach前，先想想有没有替代品（foreach能做的事比较多，没法直接看出来要干什么，而some,erery等函数则可以方便看清，并且代码量少）：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
+   js中操作集合，使用foreach前，先想想有没有替代品（foreach能做的事比较多，没法直接看出来要干什么，而some,erery等函数则可以方便看清，并且代码量少）：https://developer.mozilla.org/zh-CN/docs//JavaScript/Reference/Global_Objects/Array
    ### spa应用
    单页面应用，指只有一个页面。 点击页面中的链接不会刷新页面，而是局部刷新组件
    ### webpack与vite 
@@ -800,6 +800,7 @@ export const routes: Routes = [
    mono代表返回值为0或1个，flex代表多个返回值
    ### webclient
    reactive webclient是线程安全的。一个连接只需要一个就好
+   webflux,如果收到400、500的返回，收到的repose会是一个HttpClientResponseException。默认会不包含body信息。所以如果想获得body的内容，需要显示获取 <br/>
 
 ## java validation
    java提供的对于java bean的验证
