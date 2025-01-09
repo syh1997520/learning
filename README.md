@@ -1694,7 +1694,10 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 #### 行存
 以行为单位存储，如mysql,一般用于存业务数据，根据id来找一行数据
 #### 列存
-以列为单位存储，一般是用于大数据分析，olap场景
+以列为单位存储，一般是用于大数据分析，olap场景.例如学生表，用列存的方式类似于： <br/>
+学生姓名：... <br/>
+学生id: ... <br/>
+将某一列的所有值存在一起，不再关心具体某个学生的信息
 ### flink
    专门做流处理的框架
    #### 无界流与有界流
