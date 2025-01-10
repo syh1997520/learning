@@ -1616,6 +1616,9 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### tasklet
    step具体执行逻辑的地方 <br/>
    参数: stepCintribution，步骤信息对象，用于保存当前步骤执行情况; chunkcontext: 记录上下文,获取上下文参数 <br/>
+   StepContribution 更专注于步骤执行的状态（如计数、ExitStatus 等），它通过 StepExecution 的 ExecutionContext 存储数据。<br/>
+   ChunkContext 更关注的是批量数据块（chunk）的处理过程，它通过 StepExecution 的 ExecutionContext 存储当前块处理的数据。 <br/>
+二者的生命周期不同 <br/>
    返回值：只有两种，continue,finish,  continue会导致任务重复执行，只有finish可以停止。 如果抛出异常，则执行失败 <br/>
    #### chunk
    一种特殊的tasklet类型，由三部分组成，read -> process -> wirte <br/>
