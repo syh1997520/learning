@@ -1229,6 +1229,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    主要是k8s是面向多服务器，而docker-compose是面向单机
    ### 安装
    机器初始化(关闭防火墙，禁止swap分区等). 安装docker,kubelet,kubeadmin,kubectl.  kubeadmin init
+   ### openshift
+   openshift跟k8s类似，属于k8s的封装版  openshift route https://blog.csdn.net/weixin_33806509/article/details/91691604
 
    #### master
    ##### ApiServer
