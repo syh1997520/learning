@@ -815,21 +815,24 @@ export const routes: Routes = [
 ## 权限认证
    ### 单点登录
    意思是只需要一次登录就可以访问所有服务
-   ### basic
+   ### 四种常见登录类型
+   #### basic
    最早期的认证方式，每次请求携带用户名和密码(base64编码)。一般用于内部系统
-   ### jwt token
+   #### jwt token
    最常用的，登陆后生成token，然后请求携带token
-   ### oauth
+   #### oauth
    用于设计第三方系统的。一般来说流程是这样</br>
    前端重定向到第三方的认证系统，认证完后拿到授权码等信息，然后去第三方的资源服务器拿role</br>
    ouath2.0 refresh token: 在ouath2中，有refresh token这个概念，是用来跳过sso重新获得accesstoken的。因为accesstoken一般
 比较短，refresh token一般会比较长，当检测到accesstoken快过期时，就可以通过refresh token来重新获得一个accesstoken(refresh token
 可以视作一个密码。一般是前端来保存refresh token。 使用refresh token时，根据策略不同，refresh token可能更新也可能不更新)
-   ### api key
+   #### api key
    一般是阿里云等云服务提供的，一个key来调用服务
    ### rbac
    rbac本身是一种权限认证的模型，其他的还有acl (没有角色概念，一个人对应一套读写权限) ABAC（相比rbac添加很多维度，即资源会根据角色、日期、地点来绑定。适合更加复杂的场景）<br/>
    https://m.elecfans.com/article/2066340.html
+   ### sso
+   sso是一种登录服务器的简称，是用来单点登录的。如ldap,一般会用在oauth中，作为第一步登录的验证
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
