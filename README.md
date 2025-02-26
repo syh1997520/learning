@@ -1840,7 +1840,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    在设计api时考虑幂等问题!!!<br/>
    controller不要抛出异常,而是要把相关信息放在一个response的msg字段里<br/>
    抛出异常时需要考虑下异常的类型，不要总是抛出runtimeException (如invalidParam)
-  ### mysql相关
+   ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
    表名全部小写<br />
@@ -1864,3 +1864,4 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 场景优化
    对于redis热点key的问题，可以考虑将key分散到不同分区。即把一个key的内容分散到多个key.减少单个分片的压力<br/>
    多尝试去使用context上下文，可以减轻一层一层的看变量来源的过程<br/>
+   当update批量更新数据时，如果数据量很大且时，可以考虑先把数据的id查出来，然后根据id去批量update。(主要思路是大的update语句拆分成多批次) <br/>
