@@ -1643,6 +1643,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    job -> 主步骤 -> 分区处理器 -> 分区器 -> 从步骤12345 <br/>
    partition: 入参为分区数量，返回值为一个map<string, executionContext> 其中string代表分步骤名称，executionContext代表上下文参数<br/>
    springbatch分区job中，如果想在master和slave进行参数的传递，需要将结果聚合 <br/>
+   springbatch分区任务，aftertep和afterjob一定是在本机，但是parition的回告不一定<br/>
    ### 注意
    springbatch 在afterstep中抛出异常，并不能让这个step失败，还需要手动返回faild状态
 
