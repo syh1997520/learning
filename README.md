@@ -1052,7 +1052,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
    
 ## truststore
-   在java的jre\lib\security 文件夹下有一个cacerts文件，也被称作truststore,是用来存放受信任的证书的
+   在java的jre\lib\security 文件夹下有一个cacerts文件，也被称作truststore,是用来存放受信任的证书的,其本质也是keystore,但是一般只存放证书，没有公钥
 
 
 
