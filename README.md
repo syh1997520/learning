@@ -1045,6 +1045,7 @@ export const routes: Routes = [
 ## keytool与keystore
 Keytool 是一个JAVA环境下的安全钥匙与证书的管理工具，Keytool将密钥（key）和证书（certificates）存在一个称为keystore 的文件(受密码保护)中。keystore生成时自带证书，只能先删除原有的。 <br/>
 文件类型可以是.jks,p12 <br/>
+简单来说keystore一般是同时存公钥与证书的，用来https时需要双向认证的情况<br/>
 openssl pkcs12 -export -in cert.pem -inkey key.pem -out cacert.p12 <br/>
 keytool -importkeystore -destkeystore /opt/fastrun.app/conf/tomcat.keystore -srckeystore cacert.p12 -srcstoretype pkcs12 <br/>
 keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cacert.p12 -srcstoretype pkcs12   <br/>
@@ -1414,6 +1415,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    通知： 前置通知，后置通知（类似finally）,返回通知(成功调用)，不同的通知对应不同的注解，注解中传入切入点的方法名，做一个映射<br/>
    ### controller
    controller的参数，如果是对象的话，要保证相关属性都定义了，没定义的属性是接收不到传参的
+   
 ## springboot
    ### yml配置
    一定要注意空格关系！！！！
@@ -1430,6 +1432,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    ### 启动过程
     @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
     spring.factories文件: https://blog.csdn.net/itScholar001/article/details/131394751
+   ### server.ssl
+   spring可以通过server.ssl. xxx(key-store/trust-store)来配置http请求使用的keystore/trust-store
    
 ## springsecurity
    ## 注意
