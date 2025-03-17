@@ -1043,13 +1043,13 @@ export const routes: Routes = [
    SOA粗暴理解：把系统按照实际业务，拆分成刚刚好大小的、合适的、独立部署的模块，每个模块之间相互独立。
 
 ## keystore
-Keytool 是一个JAVA环境下的安全钥匙与证书的管理工具，Keytool将密钥（key）和证书（certificates）存在一个称为keystore 的文件(受密码保护)中。keystore生成时自带证书，只能先删除原有的。
-.p12文件是用来给keystore使用的，由证书和私钥生成
-openssl pkcs12 -export -in cert.pem -inkey key.pem -out cacert.p12
-keytool -importkeystore -destkeystore /opt/fastrun.app/conf/tomcat.keystore -srckeystore cacert.p12 -srcstoretype pkcs12
-keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cacert.p12 -srcstoretype pkcs12   
-还有个类似的文件时.jks文件，这个文件是通过Android studio生成的，本质跟.keystore文件一样
-一个keystore可以存多个privatekey-cert组合，但是不建议这么做
+Keytool 是一个JAVA环境下的安全钥匙与证书的管理工具，Keytool将密钥（key）和证书（certificates）存在一个称为keystore 的文件(受密码保护)中。keystore生成时自带证书，只能先删除原有的。 <br/>
+.p12文件是用来给keystore使用的，由证书和私钥生成 <br/>
+openssl pkcs12 -export -in cert.pem -inkey key.pem -out cacert.p12 <br/>
+keytool -importkeystore -destkeystore /opt/fastrun.app/conf/tomcat.keystore -srckeystore cacert.p12 -srcstoretype pkcs12 <br/>
+keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cacert.p12 -srcstoretype pkcs12   <br/>
+还有个类似的文件时.jks文件，这个文件是通过Android studio生成的，本质跟.keystore文件一样<br/>
+一个keystore可以存多个privatekey-cert组合，但是不建议这么做<br/>
 
    
 ## truststore
