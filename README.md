@@ -1373,6 +1373,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    销毁 Destruction
    ### 一些常用注解
    @PostConstruct： 用于注解在init方法上，在赋值后执行<br/>
+   ApplicationRunner.run也是一个生命周期方法，会在所有bean初始化结束后执行。 但是执行周期也在程序启动前<br/>
    @configuration:  用来表明该类有bean的创建<br/>
    @PathVariable: 例如/blogs/1<br/>
    @RequestParam，例如blogs?blogId=1<br/>
