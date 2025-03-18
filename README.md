@@ -30,8 +30,8 @@
 https://www.cnblogs.com/chien/p/17617336.html
 #### git fork
 git fork可以理解为复制某个项目的git内容(所有分支)。可以配置是否自动与远端同步
-#### git http与git ssl
-SSH 克隆使用加密的 SSH 协议进行通信，数据在传输过程中是加密的，因此更安全 <br/>
+#### git http与git ssh
+SSH 克隆使用加密的 SSH 协议进行通信，数据在传输过程中是加密的，因此更安全,但是需要上传ssh公钥 <br/>
 http克隆其实也是使用的https协议，不过需要携带用户名密码，所以麻烦一些 <br/>    
 ## Linux
    
