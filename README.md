@@ -805,6 +805,9 @@ export const routes: Routes = [
    ### webclient
    reactive webclient是线程安全的。一个连接只需要一个就好
    webflux,如果收到400、500的返回，收到的repose会是一个HttpClientResponseException。默认会不包含body信息。所以如果想获得body的内容，需要显示获取 <br/>
+   webflux中，所有的流是懒执行的，需要订阅或者block或者toFuture()才会执行里面的map等转换方法。（如果直接controller返回，相当于自动订阅了）<br/>
+   webflux中有个subscribeOn方法，但是这个方法只是指定了在哪里执行subscribe,并不会主动执行subscribe，还是需要手动调用下<br/>
+   
 
 ## java validation
    java提供的对于java bean的验证
