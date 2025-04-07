@@ -140,6 +140,8 @@ http克隆其实也是使用的https协议，不过需要携带用户名密码�
    ### Home
    javahome配置在path中的顺序可能会影响配置效果<br />
    只要javahome的路径在path中就可以
+   ### ssl
+   java应用默认会校验证书的有效性，但是可以通过使用insecure的trustmanager来跳过
    ### 面向对象与非面向对象
    在面向对象编程中，数据（如name）通常被封装在对象内部，我们通过对象的方法来访问和操作这些数据。在过程式编程中，数据和函数是分离的，我们通过传递数据到函数来执行操作。
 
@@ -896,6 +898,10 @@ export const routes: Routes = [
    mongodb一种索引类型，设置在时间类型的字段上。设置后会根据配置的时间定期删除某个document
    ### 索引
    mongodb的find 和sort会走索引，max这种聚合函数不会走索引
+   ### unwind
+   在MongoDB中，$unwind 操作是聚合管道（Aggregation Pipeline）中的一个阶段，<br/>
+它用于将文档中的数组字段分解（展开）成多个文档，每个文档都包含数组中的一个元素。<br/>
+这样做的目的是将数组中的每个元素转换为单独的文档，以便可以在后续的聚合阶段对这些元素进行进一步的处理。<br/>
    
 ## zookeeper
    ### 节点类型
