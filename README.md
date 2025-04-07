@@ -807,6 +807,7 @@ export const routes: Routes = [
    webflux,如果收到400、500的返回，收到的repose会是一个HttpClientResponseException。默认会不包含body信息。所以如果想获得body的内容，需要显示获取 <br/>
    webflux中，所有的流是懒执行的，需要订阅或者block或者toFuture()才会执行里面的map等转换方法。（如果直接controller返回，相当于自动订阅了）<br/>
    webflux中有个subscribeOn方法，但是这个方法只是指定了在哪里执行subscribe,并不会主动执行subscribe，还是需要手动调用下<br/>
+   webclient block 可能导致死锁 . 因为 Netty 线程在等 block() 完成，而 block() 也在等 Netty 线程的响应。controller的连接是通过netty线程池创建的，webclient发送请求也需要一个新的netty worker, 当线程池数量不足或者都在block的情况下，就会出现死锁 <br/>
    
 
 ## java validation
