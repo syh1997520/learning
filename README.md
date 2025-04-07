@@ -891,6 +891,8 @@ export const routes: Routes = [
    mongodb是支持监听机制的<br/>
    ### ttl索引
    mongodb一种索引类型，设置在时间类型的字段上。设置后会根据配置的时间定期删除某个document
+   ### 索引
+   mongodb的find 和sort会走索引，max这种聚合函数不会走索引
    
 ## zookeeper
    ### 节点类型
@@ -1853,7 +1855,8 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
    retry逻辑可以尝试用@RetryOnFailure来实现(依赖问题有点难解决)<br/>
    在设计api时考虑幂等问题!!!<br/>
    controller不要抛出异常,而是要把相关信息放在一个response的msg字段里<br/>
-   抛出异常时需要考虑下异常的类型，不要总是抛出runtimeException (如invalidParam)
+   抛出异常时需要考虑下异常的类型，不要总是抛出runtimeException (如invalidParam)<br/>
+   写代码时要去考虑需不需要try catch <br/>
    ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
