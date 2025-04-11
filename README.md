@@ -882,6 +882,9 @@ export const routes: Routes = [
    ### rdb
    存储快照，一般是按时间进行一次存储，比如900秒有一次key操作则rdb.rdb是后台进程，不会阻塞正常命令，也可以用BGSAVE手动rdb
 ## mongodb
+   ### mongodb索引
+   使用的b树。 b树与b+树的主要区别，是根节点存不存数据，以及叶子节点支不支持遍历。<br/>
+   b树根节点会存值，所以一个根节点能存的key也会少，导致树的高度会增加。但是如果找到了可以直接返回，不需要走到叶子节点
    ### database,collection,documents,field
    在 MongoDB 中，一个 database 是数据的逻辑容器，类似于关系型数据库中的数据库。<br />
    一个 collection 相当于关系型数据库中的一个表（table），用于存储一组文档（documents） <br />
