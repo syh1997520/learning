@@ -1194,6 +1194,7 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
  ### 使用
  objectmapper在convertValue时，默认如果目标属性不存在，会报错。可以通过mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); 解决 <br/>
  在objectmapper将string转成list时，list内的泛型使用typeReference来指定 <br/>
+ jackson在转json时，会根据get方法来转换，尤其要注意当命名不符合驼峰的列，可能get方法转成json后，属性名字不一样了<br/>
 
 
 ## lombook
