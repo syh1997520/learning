@@ -307,7 +307,7 @@ http克隆其实也是使用的https协议，不过需要携带用户名密码�
 
    ### java时间类
    https://blog.csdn.net/imbzz/article/details/128835680
-   简单来说，date和Calender都是比较早期的时间类，现在已经不推荐使用了，现在一般用localDate和locaTime
+   简单来说，date和Calender都是比较早期的时间类，现在已经不推荐使用了，现在一般用localDate和locaTime，ZonedDateTime
 
    ### jre/lib/cacerts
    用来储存可以信任的网站的公钥(类似于浏览器信任证书的功能)
