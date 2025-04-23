@@ -1241,6 +1241,22 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cace
 
    自定义网络: 可以创建一个自定义的bridge网络  docker network create  --driver bridge，创建container时指定该网络，就可以实现使用服务名访问container
 
+## 漏洞扫描
+### 漏洞CVE
+CVE 全称是：Common Vulnerabilities and Exposures 中文意思是：“公共漏洞与暴露编号” <br/>
+格式例如 CVE-2023-45678，它的含义是 <br/>
+CVE：漏洞系统的前缀 <br/>
+2023：这个漏洞是在 2023 年被记录的 <br/>
+45678：这个漏洞在当年分配的唯一编号 <br/>
+### twistlock 
+Twistlock 使用在docker build的时候，可以检测你使用的依赖（比如 Maven 或 Gradle 里的 jar 包, 或者image使用的操作系统控件，如某个版本的curl等）是否存在已知漏洞<br/>
+在build image时，会把应用编译产生的jar文件打包进image,Twistlock会去扫描这个jar
+### nexusiq
+帮你管理、评估和控制你的项目中所用的开源依赖（比如 jar、npm 包、Python 包）是否安全、合法、符合公司策略<br/>
+NEXUSIQ主要扫描的是pom
+### SonarQube
+SonarQube 是一个开源平台，用来自动检测代码质量和代码安全问题。
+
 
 ## argocd
    ### 简介
