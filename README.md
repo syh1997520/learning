@@ -1295,8 +1295,7 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    主要是k8s是面向多服务器，而docker-compose是面向单机
    ### 安装
    机器初始化(关闭防火墙，禁止swap分区等). 安装docker,kubelet,kubeadmin,kubectl.  kubeadmin init
-   ### openshift
-   openshift跟k8s类似，属于k8s的封装版  openshift route https://blog.csdn.net/weixin_33806509/article/details/91691604
+   91604
 
    #### master
    ##### ApiServer
@@ -1391,6 +1390,17 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
 ## jenkins
    jenkins的坑： 默认会开启workspace清理，启动时携带-Dhudson.model.WorkspaceCleanupThread.disabled=true将其关闭
    jenkins中的aborted会结束当前执行的命令，并且直到下一个可能hang住的命令才会结束掉该进程(如果该进程是子进程也只结束子进程)
+
+## openshift
+   ### 简介
+   openshift跟k8s类似，属于k8s的封装版  openshift route https://blog.csdn.net/weixin_33806509/article/details/916
+   ### route
+   openshift上，所有service前面都套了个route。service对应的url也是指向的route <br/>
+   route与service共有三种交互类型，Edge，Passthrough ，Re-encrypt <br/>
+   edge： 客户端 —(HTTPS)—> Router —(HTTP)—> Backend Pod  只有route跟client进行ssl,后端服务不进行ssl. 后端服务不能只开启 HTTPS（SSL）模式，必须支持非加密的 HTTP 通信。 <br/>
+   Passthrough ： 客户端 —(HTTPS)—> Router —(HTTPS)—> Backend Pod    route只负责传递，不负责ssl <br/>
+   Re-encrypt： 客户端 —(HTTPS)—> Router —(HTTPS)—> Backend Pod（使用不同的证书） <br/>
+
 
 
 ## DGS graphql
