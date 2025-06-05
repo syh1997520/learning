@@ -193,8 +193,9 @@ http克隆其实也是使用的https协议，不过需要携带用户名密码�
    编译器看到的都是字节码文件！！！！！ <br /> 
    https://www.cnblogs.com/lingz/archive/2018/07/31/9394238.html<br /> 
    ### java项目不能热重启
-   由于class文件只有第一次会加载到内存，所以在不重启jvm的情况下，class的改动是无法识别的
-   想要实现热重启，需要给每个类创建一个classloader. (因为同一个类在同一个classloader只能load一次，所以每次更换时，对应的classloader也要更换)
+   由于class文件只有第一次会加载到内存，所以在不重启jvm的情况下，class的改动是无法识别的 <br/>
+   想要实现热重启，需要给每个类创建一个classloader. (因为同一个类在同一个classloader只能load一次，所以每次更换时，对应的classloader也要更换) <br/>
+   且热重启时所有该类的引用也会一并替换，这样旧的类就会被当作垃圾回收
    ### spi
    Java SPI（Service Provider Interface）是一种服务发现机制。它允许服务提供者（service providers）注册实现并使服务使用者（service consumers）能够查找和使用这些实现，从而在运行时能够扩展应用程序的功能或替换组件,有点类似于把服务交由第三方来实现,例如jdbc的驱动类 <br /> 
    定义一个服务接口或者抽象类。 <br /> 
