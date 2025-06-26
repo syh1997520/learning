@@ -1935,6 +1935,7 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    controller不要抛出异常,而是要把相关信息放在一个response的msg字段里<br/>
    抛出异常时需要考虑下异常的类型，不要总是抛出runtimeException (如invalidParam)<br/>
    写代码时要去考虑需不需要try catch <br/>
+   service层和controller层的参数可以考虑使用注解来校验<br/>
    ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
