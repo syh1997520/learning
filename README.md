@@ -1523,10 +1523,11 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    https://blog.csdn.net/liuhuiteng/article/details/103348138
    ### 与dubbo关系
    springcloud是在dubbo的基础上建立的，后来又被spring-alibaba包含
-   ## 使用
+   ### 使用
    要注意,rpc调用是要在调用的应用里主动声明bean的,指定group与version
-   ## 泛化调用
-   泛化调用就是不依赖二方包，通过传入 方法名，方法签名和参数值就可以调用服务，参数及返回值中的所有 POJO均用Map表示. (返回值一般是object,一般转为jsonObject)
+   ### 泛化调用
+   泛化调用就是不依赖二方包，通过传入 方法名，方法签名和参数值就可以调用服务，参数及返回值中的所有 POJO均用Map表示. (返回值一般是object,一般转为jsonObject) <br/>
+   每一个rpc框架提供的泛化调用api是不一样的
    ### 版本
    springcloud版本以英文字母命名A-Z ,与springboot会有版本依赖
    ### bootstrap.yml
