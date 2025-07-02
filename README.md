@@ -1392,8 +1392,8 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    kubectl scale 弹性伸缩
 
 ## jenkins
-   jenkins的坑： 默认会开启workspace清理，启动时携带-Dhudson.model.WorkspaceCleanupThread.disabled=true将其关闭
-   jenkins中的aborted会结束当前执行的命令，并且直到下一个可能hang住的命令才会结束掉该进程(如果该进程是子进程也只结束子进程)
+   jenkins的坑： 默认会开启workspace清理，启动时携带-Dhudson.model.WorkspaceCleanupThread.disabled=true将其关闭 <br/>
+   jenkins中的aborted会结束当前执行的命令，并且直到下一个可能hang住的命令才会结束掉该进程(如果该进程是子进程也只结束子进程) <br/>
 
 ## openshift
    ### 简介
