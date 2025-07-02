@@ -1393,7 +1393,7 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
 
 ## jenkins
    jenkins的坑： 默认会开启workspace清理，启动时携带-Dhudson.model.WorkspaceCleanupThread.disabled=true将其关闭 <br/>
-   jenkins中的aborted会结束当前执行的命令，并且直到下一个可能hang住的命令才会结束掉该进程(如果该进程是子进程也只结束子进程) <br/>
+   Jenkins 在中止构建（Aborted）时，会尝试中断当前执行的脚本，但 如果当前脚本或子命令没有响应中断信号，Jenkins 只能等到它下一个可能响应的位置（例如阻塞或系统调用）才真正停止。 <br/>
 
 ## openshift
    ### 简介
