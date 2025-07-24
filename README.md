@@ -1429,7 +1429,8 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    
 ## spring
    ### spring3
-   无法在spring3中使用lmbda
+   无法在spring3中使用lmbda <br/>
+   从 Spring Boot 2.6 开始，该配置项默认变为：spring.main.allow-circular-references=false 即默认禁止循环依赖 <br/>
    ### bean
    bean创建的时候不是new出来的，而是通过反射创建的，这样做的好处一个是可以更好的通过配置设置值。因为new对象时，是需要具体的对象的，而生成Class只需要路径就可以
    并且对于属性注入的时候，也是通过反射拿到set方法，去进行的一个属性注入
