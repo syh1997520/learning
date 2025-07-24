@@ -1743,6 +1743,8 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    所以最好是做成异步的。并且设置成手动提交模式。<br/>
    kafka消息是基于offset的，同一个partition msg,如果有个消费失败，会导致后面的不再消费了(有点像rock mq的顺序消息)。每次pull的时候会基于当前的offset去拉取，如果还没有消费完，会重新拉取一遍
    kafka注册的时候是以partition为单位的。就是当consumer有多个机器时，可能一台机器只对应一个partition这样子 <br/>
+   ### consumer group
+   同一个消费者组可以同时消费多个 topic，且 共享 topic 上的分区，这与 RocketMQ 不同，后者将 topic 和 consumer group 绑定，隔离开来。<br/>也就是说，kafka中不同的topic，最好用不同的consumer group消费
    
    
 ## rocketmq
