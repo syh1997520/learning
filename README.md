@@ -350,7 +350,10 @@ https://baijiahao.baidu.com/s?id=1710200711945883012&wfr=spider&for=pc <br />
 https://www.seaxiang.com/blog/b0e97bf8dc0544bb964e836e4c529f74#menu_6 <br />
 取消双亲委派: 自定义类加载器可以设置是否开启双亲委派.  
 使用场景: tomcat,每一个war包有自己的类加载器,因为tomcat本身也是个java应用,如果在这个应用的基础上去启动其他应用,可能会影响到其他应用的包加载,所以优先在自己的包里找,与双亲委派相悖 <br />
-jdbc: 这个问题出现在JDBC中, 启动类加载器加载了JDK自带的DriverManager后, DriverManager用到了MySQL厂商的Driver实现。JVM规定某一类加载器加载A类时发现A用到了B，那么它就得先去加载B。所以启动类加载器就也想加载MySQLDriver, 但这个MySQLDriver实现类不在JAVA_HOME/lib下。所以要打破双亲委派，让父类加载器去使用子类加载器加载原本父类够不到的class文件
+jdbc:jdbc有两种注册方法，
+第一种在代码里直接调用Class.forName("xx"),这种会由当前类的类加载器来加载。不会有问题<br/>
+第二种是通过spi,第三方包在META-INF里面声明具体的实现。这种方式会在DriverManager(由bootstrap类加载器)init的时候去调用Class.forname但是如果是双亲委派机制的情况下，会找不到这个class(Class.forName("xx"),会由当前类的类加载器来加载)。所以DriverManager里面加了个Thread.currentThread().getContextClassLoader()方法，获取当前线程的类加载器(main线程，会是application类加载器)。所以可以加载到。
+不到的class文件<br/>
 #### 内存分配
    1. 空闲链表（free list）：通过额外的存储记录空闲的地址，将随机 IO 变为顺序 IO，但带来了额外的空间消耗。(标记清除时)<br /> 
    2. 碰撞指针（bump  pointer）：通过一个指针作为分界点，需要分配内存时，仅需把指针往空闲的一端移动与对象大小相等的距离，分配效率较高，但使用场景有限。（标记整理时）<br /> 
