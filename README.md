@@ -939,6 +939,13 @@ OpenID Connect (OIDC) 是建立在 OAuth 2.0 之上的身份认证（Authenticat
    ### 注意
    mongodb最好不要存map类型，因为key不允许包括$和.<br/>
    mongodb是支持监听机制的<br/>
+   ###  mongo并发
+https://medium.com/mongodb-performance-tuning/tuning-mongodb-transactions-354311ab9ed6
+mongodb如果并发对一行进行更新的话，可能会直接抛出事务异常。需要自己处理。 比如加重试或者加transcation注解
+总结: mongodb不是很适合作为第三方lib的dao repository。对并发性适配比较差
+
+注意，transication注解不能在子线程生效
+
    ### ttl索引
    mongodb一种索引类型，设置在时间类型的字段上。设置后会根据配置的时间定期删除某个document
    ### 索引
