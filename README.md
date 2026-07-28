@@ -872,6 +872,9 @@ export const routes: Routes = [
    ouath2.0 refresh token: 在ouath2中，有refresh token这个概念，是用来跳过sso重新获得accesstoken的。因为accesstoken一般
 比较短，refresh token一般会比较长，当检测到accesstoken快过期时，就可以通过refresh token来重新获得一个accesstoken(refresh token
 可以视作一个密码。一般是前端来保存refresh token。 使用refresh token时，根据策略不同，refresh token可能更新也可能不更新)
+### oidc
+OpenID Connect (OIDC) 是建立在 OAuth 2.0 之上的身份认证（Authentication）标准层。<br/>
+如果说 OAuth 2.0 解决的是**“授权（Authorization）”问题，那么 OIDC 解决的就是“认证（Authentication）”**问题。它通过引入一个全新的 ID Token，让第三方应用不仅能安全地获取资源，还能真正、标准地确认“当前登录的用户到底是谁”。
    #### api key
    一般是阿里云等云服务提供的，一个key来调用服务
    ### rbac
