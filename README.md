@@ -889,6 +889,12 @@ OpenID Connect (OIDC) 是建立在 OAuth 2.0 之上的身份认证（Authenticat
    https://m.elecfans.com/article/2066340.html
    ### sso
    sso是一种登录服务器的简称，是用来单点登录的。如ldap,一般会用在oauth中，作为第一步登录的验证
+
+## Liquibase
+liquibase的一个修改单位为changelog. 会自己维护一个table DATABASECHANGELOG,每次执行一个changelog会记录一条记录 <br/>
+rollback时推荐用tag进行rollback,因此每个changelog最好加个tag. <br/>
+对于新建和插入，都可以自动去rollback，即不需要手写rollback内容。但是删除与update，需要手动写语句才能rollback <br/>
+   
 ## Redis
    ### 默认配置
    redis默认的内存是0，既无上限。默认清除策略是不清除。所以要设置过期时间
