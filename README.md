@@ -1123,6 +1123,11 @@ keytool -importkeystore -destkeystore /opt/fastrun.app/conf/tomcat.keystore -src
 keytool -importkeystore -destkeystore /opt/fastrun.app/conf/ca -srckeystore cacert.p12 -srcstoretype pkcs12   <br/>
 一个keystore可以存多个privatekey-cert组合，但是不建议这么做<br/>
 
+## cacert
+CN（Common Name）：传统上，CN 用来指定证书保护的主机名（域名），例如 CN=www.example.com。只能指定一个名称（单个域名）。
+现代浏览器和操作系统逐渐不再仅依赖 CN 来验证域名，而是更依赖 SAN <br/>
+SAN （Subject Alternative Name）
+用于指定一个或多个备用名称，支持多域名、多IP、多种类型的标识。现代浏览器和操作系统在验证证书时，优先检查 SAN 字段中的域名。<br/>
    
 ## truststore
    在java的jre\lib\security 文件夹下有一个cacerts文件，也被称作truststore,是用来存放受信任的证书的,其本质也是keystore,但是一般只存放证书，没有公钥
