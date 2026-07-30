@@ -880,15 +880,16 @@ export const routes: Routes = [
 比较短，refresh token一般会比较长，当检测到accesstoken快过期时，就可以通过refresh token来重新获得一个accesstoken(refresh token
 可以视作一个密码。一般是前端来保存refresh token。 使用refresh token时，根据策略不同，refresh token可能更新也可能不更新)
 ### oidc
-OpenID Connect (OIDC) 是建立在 OAuth 2.0 之上的身份认证（Authentication）标准层。<br/>
-如果说 OAuth 2.0 解决的是**“授权（Authorization）”问题，那么 OIDC 解决的就是“认证（Authentication）”**问题。它通过引入一个全新的 ID Token，让第三方应用不仅能安全地获取资源，还能真正、标准地确认“当前登录的用户到底是谁”。
+OpenID Connect（OIDC）是一个基于OAuth 2.0协议的简单身份认证层。它的目的是在OAuth 2.0的授权框架上提供身份验证功能，以确保可以安全、便捷地确认用户身份。OIDC解决了OAuth 2.0在纯授权场景中的认证需求，并广泛应用于Web和移动设备应用的身份认证管理系统中。
+oidc里面有两个概念，id_token与 /userinfo api,id_token主要用来保存用户名，邮箱等信息，userinfo用来返回用户角色等
    #### api key
    一般是阿里云等云服务提供的，一个key来调用服务
    ### rbac
    rbac本身是一种权限认证的模型，其他的还有acl (没有角色概念，一个人对应一套读写权限) ABAC（相比rbac添加很多维度，即资源会根据角色、日期、地点来绑定。适合更加复杂的场景）<br/>
    https://m.elecfans.com/article/2066340.html
    ### sso
-   sso是一种登录服务器的简称，是用来单点登录的。如ldap,一般会用在oauth中，作为第一步登录的验证
+  sso是单点登录，意为登录同一个子系统时，只需要登陆一次(类似淘宝天猫)。 原理是有个sso服务器，然后登录任何系统之前，跳转到这个sso服务器，看看这个sso服务器有没有浏览器的session信息，有的话就不用登陆了。
+sso本身是一个技术，不是协议。可以用ouath协议来实现sso
 
 ## Liquibase
 liquibase的一个修改单位为changelog. 会自己维护一个table DATABASECHANGELOG,每次执行一个changelog会记录一条记录 <br/>
