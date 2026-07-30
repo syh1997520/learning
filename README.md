@@ -952,7 +952,9 @@ mongodb如果并发对一行进行更新的话，可能会直接抛出事务异�
 总结: mongodb不是很适合作为第三方lib的dao repository。对并发性适配比较差
 
 注意，transication注解不能在子线程生效
-
+### mongodb背压
+mongodb提供了异步背压机制，允许result像文件流一样，分批去读取 <br/>
+而mysql基本都是同步阻塞的api.当然也可以尝试使用第三方框架来使mysql支持。原理是TCP滑动窗口<br/>
    ### ttl索引
    mongodb一种索引类型，设置在时间类型的字段上。设置后会根据配置的时间定期删除某个document
    ### 索引
