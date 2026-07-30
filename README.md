@@ -238,6 +238,9 @@ RetentionPolicy.RUNTIME:注解不仅保留在 .class 文件中，而且在程序
    在获得hashcode时，还有一步异或操作，即将hashcode的高16位与低16位进行异或操作，得到一个16位hashcode，再去与长度进行与运算<br /> 
    hashmap的链表部分采用头插法，因为一般来说新的访问可能性大。<br /> 
    多线程冲突的一个场景：一个线程get,一个线程扩容中，有可能导致找不到
+   ## concurrentHashmap
+concurrentHashmap不允许value为null,但是Hashmap允许。这个是因为在hashmap中，可以通过判断key是否存在，来判断value到底是null还是不存在。但是在多线程下，无法通过这个判断 <br/>
+concurrent hashmap的contains方法方法是containsValue
    #### 其他的hash算法
    例如二次探测法(开放地址法的一种)，即当hash冲突时，按照某种算法重新计算hash值. ThreadLocalMap是通过这种方法解决hash冲突的
    https://blog.csdn.net/weixin_47651920/article/details/123602712
