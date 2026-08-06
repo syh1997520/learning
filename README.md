@@ -368,7 +368,8 @@ https://blog.csdn.net/hollis_chuang/article/details/80922794<br />
 ##### 栈
 - TLAB (Thread Local Allocation Buffer)
     JVM使用TLAB来避免多线程冲突(比如多个线程同时在堆上创建对象，是需要同步的)，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率.<br /> 
-    https://blog.csdn.net/xiaomingdetianxia/article/details/77688945<br /> 
+    https://blog.csdn.net/xiaomingdetianxia/article/details/77688945<br />
+  java成员变量，都是在堆上的，就算是基本类型。只有方法内的局部变量是在栈上的
 #### 强软弱虚
    软，弱引用都是在对象没有强引用的情况下发生的 <br />
 #### 类加载器
