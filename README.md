@@ -294,6 +294,7 @@ concurrent hashmap的contains方法方法是containsValue
             }
         }
    ```
+底层是用了unsafe方法(是用c语言实现的一些基础方法，调用操作系统的api)， 会有ABA问题，可以通过加时间戳来解决
    #### countdownlunch与cyclebarrier，Semaphore
    countdownlunch: 等待其他几个任务执行完毕之后才能执行,并且是不可重用的(一般是让一个线程等待)
    cyclebarrier: 栅栏，实现让一组线程等待至某个状态之后再全部同时执行，是可重用的（一般是让多个线程等待）
