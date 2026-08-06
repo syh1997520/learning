@@ -308,6 +308,11 @@ concurrent hashmap的contains方法方法是containsValue
 AQS内部维护一个state状态位，尝试加锁的时候通过CAS(CompareAndSwap)修改值，如果成功设置为1，并且把当前线程ID赋值，则代表加锁成功，一旦获取到锁，其他的线程将会被阻塞进入阻塞队列自旋，获得锁的线程释放锁的时候将会唤醒阻塞队列中的线程，释放锁的时候则会把state重新置为0，同时当前线程ID置为空。<br />
 阻塞队列中的线程，只有第一个会去尝试替换state,其他线程都是yied状态。<br />
 是通过LockSupport.park(this)来将线程进行休眠的 <br />
+
+### LockSupport.park
+在 LockSupport 出现之前，Java 只能用 Object.wait() 让线程休眠，但 park() 有两个颠覆性的优势：<br />
+摆脱了锁块限制：Object.wait() 必须在 synchronized 同步块内调用，否则抛出异常。而 park() 可以在任何地方直接调用。 <br />
+允许“先唤醒，后休眠”：如果线程 A 先调用了 Object.notify()，线程 B 随后才调用 Object.wait()，线程 B 会永久死锁（错过了通知）。如果线程 A 先调用了 LockSupport.unpark(B)（此时许可变为 1），线程 B 随后调用 LockSupport.park() 时，会直接消耗掉这个许可而不被阻塞，顺畅通过。这完美解决了并发环境下的时序死锁问题。
    
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0<br />  
