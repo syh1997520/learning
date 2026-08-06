@@ -303,6 +303,11 @@ concurrent hashmap的contains方法方法是containsValue
    资源不释放可能导致连接无法断开，尽管有些连接操作会把关闭写在finalize里，但是会有不确定性<br /> 
    https://www.cnblogs.com/barrywxx/p/9993005.html  <br /> 
    https://blog.csdn.net/hengyunabc/article/details/18459463<br /> 
+
+   ### AQS
+AQS内部维护一个state状态位，尝试加锁的时候通过CAS(CompareAndSwap)修改值，如果成功设置为1，并且把当前线程ID赋值，则代表加锁成功，一旦获取到锁，其他的线程将会被阻塞进入阻塞队列自旋，获得锁的线程释放锁的时候将会唤醒阻塞队列中的线程，释放锁的时候则会把state重新置为0，同时当前线程ID置为空。<br />
+阻塞队列中的线程，只有第一个会去尝试替换state,其他线程都是yied状态。<br />
+是通过LockSupport.park(this)来将线程进行休眠的 <br />
    
    ### ThreadLocal
    https://www.jianshu.com/p/640f2c0ac4b0<br />  
