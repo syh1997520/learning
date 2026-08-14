@@ -333,7 +333,8 @@ AQS内部维护一个state状态位，尝试加锁的时候通过CAS(CompareAndS
    foreach与collect无法同时使用，filter作用于不同的结束符效果也不一样
    stream的并行：https://www.jb51.net/article/149901.htm<br /> 
    stream.findAny  该方法是按照时间返回一个最快找到的对象，所以其实不是用来随机查找的
-
+### stream流parallel
+ForkJoinPool 采用“分治法”（Split-and-Conquer）。如果你的 stream 列表里只有 2 到 4 条数据，JVM 认为切分给两个线程就足够处理了，不会浪费资源去动用更多线程。因此建议如果需要paralla的stream时，自己建个线程池。
    ### date与SimpleDateFormat
    date是没有时区概念的,SimpleDateFormat是有的.
    SimpleDateFormate是线程不安全的.创建时有个locale参数,这个参数不是代表时区,而是代表时间打印格式的
