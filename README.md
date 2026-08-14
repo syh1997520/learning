@@ -980,6 +980,9 @@ mongodb如果并发对一行进行更新的话，可能会直接抛出事务异�
 ### mongodb背压
 mongodb提供了异步背压机制，允许result像文件流一样，分批去读取 <br/>
 而mysql基本都是同步阻塞的api.当然也可以尝试使用第三方框架来使mysql支持。原理是TCP滑动窗口<br/>
+### mongo插入
+mongo.insert会把需要插入的数据做一次深拷贝，转成document。<br/>
+mongo.getCollection.insertmany则只接受document对象，不会有额外的转换过程
    ### ttl索引
    mongodb一种索引类型，设置在时间类型的字段上。设置后会根据配置的时间定期删除某个document
    ### 索引
