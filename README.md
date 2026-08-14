@@ -1676,6 +1676,7 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    网关是微服务的入口，nginx的流量打到网关（网关其实就类似于一个nginx模块，但是功能比nginx多，可以额外做权限啦之类的事情）
    #### gateway
    基于netty实现的，非阻塞,支持websocket.一般位于nginx后面<br/>
+   使用netty作为请求工具，默认会有90s超时<br/ >
    顺序：请求 -> gateway mapping (寻找匹配的路由) -> gateway handler(过滤链) <br/>
    路由： URL <br/>
    断言： 指请求头中的参数，url路径等，还可以设置before after来进行时间相关的限制，设置是否携带某个cookie (只有满足断言要求的请求会走相应的路由) <br/>
