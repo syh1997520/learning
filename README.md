@@ -414,6 +414,12 @@ zgc像是g1加cms的一个结合体，并且在其基础上进行了一些新功
 ##### jvm问题分析步骤
 栈类型（cpu飙高等）： top查看cpu占用率高的进程，然后使用jstack查看这个进程，可以得到相应的栈方法
 堆类型（内存相关）： 使用jmap来获取dump文件,然后利用jvisualvm来解析，查看大对象
+##### oom
+一般情况下，发生oom的时候，pod本身是不会自动重启的，而如果不自动重启，可能会导致发生一些异常行为，因此建议发生oom就抛出去并重启服务。<br/ >
+-XX:+HeapDumpOnOutOfMemoryError <br/ >
+-XX:HeapDumpPath=/logs/dumps/oom.hprof <br/ >
+-XX:OnOutOfMemoryError="kill -9 %p"<br/ >
+
 ##### 调优指标
 1. stw时间   
 2. 吞吐量（运行时间与总时间的比值）
