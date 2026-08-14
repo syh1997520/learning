@@ -175,6 +175,8 @@ opam代表Observability and Application Performance Management （可观测性 +
    抽象类中的属性不同于接口，可以是任意修饰类型，也不一定要加static
    ### default关键字
    用在接口的方法中,代表默认实现,子类可以不用实现该方法
+   ### _JAVA_OPTIONS变量
+在 Linux 和容器环境中，_JAVA_OPTIONS 是一个被 Java 虚拟机（JVM）内核底层直接识别的特殊环境变量。 在 Docker 或 Kubernetes (K8s) 环境中，如果你无法修改容器镜像内部的启动命令（Command/Args），你只需要在 Pod 或容器的 env 配置中添加 _JAVA_OPTIONS，就能强行控制该容器内所有 Java 进程的堆内存（如 -Xmx）、垃圾回收策略（GC）或系统属性（-D）。
    ### StrSubstitutor
    用来动态替换字符串的一个工具类
    https://blog.csdn.net/m0_46325101/article/details/122405805
