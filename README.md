@@ -991,6 +991,8 @@ mongo.getCollection.insertmany则只接受document对象，不会有额外的转
    在MongoDB中，$unwind 操作是聚合管道（Aggregation Pipeline）中的一个阶段，<br/>
 它用于将文档中的数组字段分解（展开）成多个文档，每个文档都包含数组中的一个元素。<br/>
 这样做的目的是将数组中的每个元素转换为单独的文档，以便可以在后续的聚合阶段对这些元素进行进一步的处理。<br/>
+### mongo多节点
+mongodb，包括MySQL,有多节点时，都可能出现查询时查到从节点导致数据不一致的情况。
  ## mongodb session
 mongodb连接后，就不会验证用户名密码了。所以期间如果改密码，是不会下线的 <br/>
 
