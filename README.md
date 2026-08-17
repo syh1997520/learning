@@ -2022,6 +2022,11 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    switch判断字符串时，要进行非空判断<br />
    使用正则时，要将pattern设置static<br />
    对于 调用频率低，耗时比较长，需要极其稳定或者比较公开的接口，都要去进行参数校验。 校验一般放在controller层<br />
+   #### 实体类
+DO (Data Object)： 与数据库对应的实体类 <br />
+BO (Business Object)： 业务对象，一般是DO的上一层<br />
+DTO (Data Transfer Object)：用于层与层之间 / 服务与服务之间传输数据 常用于：Controller ↔ Service<br />
+VO（View Object): 专门给前端使用的对象
    #### java书写的一些小技巧
    使用 Objects.equals 方法替换entity.equals方法（可以避免空指针）<br />
    操作集合时多考虑使用stream流<br />
