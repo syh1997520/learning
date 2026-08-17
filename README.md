@@ -344,8 +344,10 @@ AQS内部维护一个state状态位，尝试加锁的时候通过CAS(CompareAndS
 ### stream流parallel
 ForkJoinPool 采用“分治法”（Split-and-Conquer）。如果你的 stream 列表里只有 2 到 4 条数据，JVM 认为切分给两个线程就足够处理了，不会浪费资源去动用更多线程。因此建议如果需要paralla的stream时，自己建个线程池。
    ### date与SimpleDateFormat
-   date是没有时区概念的,SimpleDateFormat是有的.
-   SimpleDateFormate是线程不安全的.创建时有个locale参数,这个参数不是代表时区,而是代表时间打印格式的
+   date是没有时区概念的,SimpleDateFormat是有的.<br />
+   SimpleDateFormate是线程不安全的.创建时有个locale参数,这个参数不是代表时区,而是代表时间打印格式的<br />
+   SimpleDateFormat 即使不去update对象属性，多线程下使用依然会有问题<br />
+当你调用 format() 或 parse() 方法时，SimpleDateFormat 内部会频繁地操作这个共享的 calendar
 
    ### java时间类
    https://blog.csdn.net/imbzz/article/details/128835680
