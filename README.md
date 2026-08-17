@@ -122,7 +122,8 @@ MD5 算法的输出是一个 **128 位（16 字节）**的哈希值。通常我�
 MD5 不是加密算法，而是哈希算法，它是不可逆的，只能用于验证数据一致性等用途，不适合安全加密场景
 ### smtp与esmtp
 
-SMTP（简单邮件传输协议）和 ESMTP（扩展简单邮件传输协议）的核心区别在于安全性（身份验证）和功能扩展性。简单来说，ESMTP 是 SMTP 的“升级强化版”。 esmtp发送时需要验证用户身份
+SMTP（简单邮件传输协议）和 ESMTP（扩展简单邮件传输协议）的核心区别在于安全性（身份验证）和功能扩展性。简单来说，ESMTP 是 SMTP 的“升级强化版”。 esmtp发送时需要验证用户身份<br />
+curl命令内置了--mail-from参数，它是 curl 专门为 SMTP 协议设计的参数。--mail-from 用于在 SMTP 会话的握手阶段发送 MAIL FROM:<...> 指令。这在邮件传输层面（Envelope Level）告诉 SMTP 服务器：“这封邮件是谁发的，如果发失败了，错误报告退回给谁。”
 ### oapm
 opam代表Observability and Application Performance Management （可观测性 + 应用性能管理）
 简单来说就是系统监控体系的统称
