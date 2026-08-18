@@ -2045,6 +2045,16 @@ VO（View Object): 专门给前端使用的对象
    抛出异常时需要考虑下异常的类型，不要总是抛出runtimeException (如invalidParam)<br/>
    写代码时要去考虑需不需要try catch <br/>
    service层和controller层的参数可以考虑使用注解来校验<br/>
+   #### clean code
+1. 函数名要用动词，因为是做一件事 <br />
+2. 单个函数的内容要尽量短，让reader可以随时quit. <br />
+3. 参数数量尽量不要超过三个，如果很多参数的话考虑划分为一个类 <br />
+4. 尽量不要将boolean值作为参数。因为传入的话方法一定里面会有个if else,可以考虑把这个拆成两个方法去调用 <br />
+5. 尽量避免使用switch. 因为switch可能会漏掉break。不是很遵守开闭原则。所以最好是通过父子类，每次加一个case的时候多一个实现类这样 <br />
+6. try catch时，把整个代码try起来 <br />
+7.一行不要太长。30-50个字符 <br />
+8. 变量的名字，随着作用范围变长。 函数名字，随着作用范围变短 <br />
+9. 不要有魔法值 <br />
    ### mysql相关
    #### 建表的规范
    表达是与否类型的字段，使用is_xxx命名，类型为unsigned tinyint(mysql中其实没有boolean,boolean就是tinyint(1))<br />
