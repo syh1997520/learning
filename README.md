@@ -1549,6 +1549,10 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    多模块时需要选取一个父模块来控制依赖版本，以及一个模块来存储公共的实体类和工具类  
    ### list注入
    如果属性是list类型，会去查找list对应的类型注入. 通过@order标签决定注入顺序
+   ### bean注入
+尽量使用Construct注入以及@RequiredArgsConstructor来替代@autowired <br />
+因为Construct对于写unit test case会好很多，而且可以把bean设为为final的，而@autowired是不行的 <br />
+@RequiredArgsConstructor 可以把所有private final且未赋值的，尝试注入
    ### 抽象类
    抽象类可以声明为bean,但是并不会创建实例
    ### beanDefination
