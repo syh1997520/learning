@@ -117,6 +117,21 @@ http克隆其实也是使用的https协议，不过需要携带用户名密码�
    linux的图形化桌面
    ### adb
    adb的全称为Android Debug Bridge. 用来给安卓设备debug用. 可以通过adb软件向安卓设备传输apk
+   ### 单元测试与集成测试(integration test)
+
+单元测试是对软件中最小可测试单元（通常是单个函数或类）进行验证，而集成测试则是将多个模块组合在一起，验证它们之间的交互和接口是否正确。单元测试的外部服务一般都是mock的，而集成测试一般是真实的 <br />
+```
+ @Test
+    public void testCreateOrderSuccess() throws Exception {
+        // 1. 模拟前端发送真实的下单请求
+        mockMvc.perform(post("/api/orders").content("{\"productId\": 1, \"count\": 2}"))
+               .andExpect(status().isOk());
+
+        // 2. 程序员直接去真实的测试数据库里查，看数据是不是真的存进去了
+        boolean exists = orderRepository.existsByProductId(1);
+        assertTrue(exists); // 验证数据库中是否存在该订单
+    }
+```
    ### MD5
 MD5 算法的输出是一个 **128 位（16 字节）**的哈希值。通常我们看到的结果是将这 16 字节用 32 个十六进制字符来表示<br/>
 MD5 不是加密算法，而是哈希算法，它是不可逆的，只能用于验证数据一致性等用途，不适合安全加密场景
