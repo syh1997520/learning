@@ -1216,8 +1216,10 @@ SAN （Subject Alternative Name）
 ## truststore
    在java的jre\lib\security 文件夹下有一个cacerts文件，也被称作truststore,是用来存放受信任的证书的,其本质也是keystore,但是一般只存放证书，没有公钥
 
-
-
+## claude code
+### mcp
+MCP 就是claude code的“USB 接口”与“手脚”。它是一个由 Anthropic 发起的开源标准协议，专门用于安全、标准化地将大语言模型连接到外部数据源、API 和工具上 <br />
+以连接db为例，可以写个jar包，去吧sql发给数据库，然后在claude code里面配置上这个jar包。这样claude code就可以访问你的db了
 ## mysql
    ### 联表与子查询
    联表查询一般是快于子查询的
