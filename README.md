@@ -1399,6 +1399,11 @@ MySQL 主从同步（Master-Slave Replication）的核心原理是基于二进�
    container: 与某个container共享ip
 
    自定义网络: 可以创建一个自定义的bridge网络  docker network create  --driver bridge，创建container时指定该网络，就可以实现使用服务名访问container
+   ### docker file
+在 Dockerfile 中，RUN 和 CMD 都是用于执行命令的指令，但它们的核心区别在于执行的时机和目的不同。简单来说，RUN 是在镜像构建时执行的，而 CMD 是在容器启动时执行的。<br />
+Run: 用于安装软件包、编译代码、配置环境等操作，构建镜像的层。每次使用 RUN 都会生成一个新的镜像层。 <br />
+CMD: 为启动的容器指定默认要运行的程序或参数。一个 Dockerfile 中如果有多个 CMD，只有最后一个会生效。只要用户在 docker run 后面加了任何内容，Dockerfile 中的 CMD 就会被整体抹去，替换成用户输入的命令。 <br />
+ENTRYPOINT： ENTRYPOINT 指定要运行的命令，ENTRYPOINT 定义的命令不会被 docker run 后面附带的普通参数直接覆盖，而是将这些外部参数当做追加的变量传递给它。<br />
 
 ## 漏洞扫描
 ### 漏洞CVE
