@@ -135,6 +135,12 @@ http克隆其实也是使用的https协议，不过需要携带用户名密码�
    ### MD5
 MD5 算法的输出是一个 **128 位（16 字节）**的哈希值。通常我们看到的结果是将这 16 字节用 32 个十六进制字符来表示<br/>
 MD5 不是加密算法，而是哈希算法，它是不可逆的，只能用于验证数据一致性等用途，不适合安全加密场景
+### cookie,local storage, session storage的区别
+
+Cookie、LocalStorage 和 SessionStorage 的核心区别在于：数据生命周期、存储大小、以及是否自动与服务器通信 <br />
+cookie: 由服务器或本地设置过期时间，过期前一直有效.  每次 HTTP 请求都会自动携带在 Header 中 <br />
+LocalStorage: 永久有效，除非手动清除或代码删除 <br />
+SessionStorage: 仅在当前标签页有效，关闭标签页或浏览器即清除 <br />
 ### smtp与esmtp
 
 SMTP（简单邮件传输协议）和 ESMTP（扩展简单邮件传输协议）的核心区别在于安全性（身份验证）和功能扩展性。简单来说，ESMTP 是 SMTP 的“升级强化版”。 esmtp发送时需要验证用户身份<br />
