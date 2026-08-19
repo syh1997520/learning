@@ -271,6 +271,15 @@ concurrent hashmap的contains方法方法是containsValue
    #### 其他的hash算法
    例如二次探测法(开放地址法的一种)，即当hash冲突时，按照某种算法重新计算hash值. ThreadLocalMap是通过这种方法解决hash冲突的
    https://blog.csdn.net/weixin_47651920/article/details/123602712
+   #### GC
+YGC（Young GC / Minor GC）的核心触发条件是年轻代（Eden 区）空间不足，而 FGC（Full GC）的核心触发条件是老年代、元空间不足，或者受到系统人为触发 <br />
+
+如果你不手动配置 -Xms 和 -Xmx，JVM 会启动自适应的人机工程学（Ergonomics）机制，根据你当前服务器/电脑的物理内存（RAM）大小来动态计算默认值  <br />
+
+一般设置-Xms=-Xmx，这样可以获得固定大小的堆内存，减少GC的次数和耗时，可以使得堆相对稳定  <br />
+
+默认最大堆内存（对应 -Xmx）计算公式：物理内存的 1/4（25%）  <br />
+
    #### array.aslist
    在使用Aarrays.asList()生成的list对象，当对对象进行add()方法操作时，会报出UnsupportedOperationException异常问题。
    #### java agent
