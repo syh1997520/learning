@@ -1290,6 +1290,15 @@ sql查询时，如果根据某个字段去做排序，那么这个字段要加�
    undolog: 主要保证回滚的正确性，通过一个指针串联起一行数据的多个版本,记录的数据主要是事务语句的逆向操作<br/>
    relaylog: 用于主从的log,从服务器读取主服务器的binlog,然后把内容存到本地的relaylog里<br/>
    更多redolog和binlog区别： https://blog.csdn.net/weixin_44691915/article/details/122860263<br/>
+   ### mysql主从
+MySQL 主从同步（Master-Slave Replication）的核心原理是基于二进制日志（Binlog）的异步数据复制。简单来说，就是主库（Master）记录所有导致数据变更的 SQL 语句或行变化，然后通过网络发送给从库（Slave），从库再重放（Replay）这些记录以保持数据一致。 <br />
+
+主库：Binlog Dump 线程 (Binlog Dump Thread)当从库连接主库时，主库会创建一个 Binlog Dump 线程。当主库的二进制日志（Binlog）发生变化时，该线程会读取 Binlog 内容并推送给从库。 <br />
+
+两种模式：<br />
+异步复制（Asynchronous Replication）机制：默认模式。主库写入 Binlog 并提交事务后，直接返回成功给客户端，不关心从库是否收到或处理。特点：性能最高，但如果主库宕机且日志未传到从库，可能会丢失数据。<br />
+半同步复制（Semi-Synchronous Replication）机制：主库写入 Binlog 并提交事务后，必须等待至少一个从库接收到 Binlog 并写入 Relay Log 返回确认（ACK），主库才会返回成功给客户端。特点：保证了数据的安全性（至少两个节点有数据），但会略微增加网络事务延迟。
+
    ### 锁相关
    https://blog.csdn.net/weixin_56738054/article/details/128796761, 普通的select语句读的是事务开始时的快照. (如果select尝试加锁,且另一个事务在修改该行,在获取该行数据时就会阻塞住),且锁是事务结束才会释放.在REPEATABLE READ隔离级别下,FOR UPDATE即使是不存在的行,也会进行加锁(范围查询和具体行查询都会的)
    ### 索引
