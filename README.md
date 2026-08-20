@@ -1588,6 +1588,19 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
 尽量使用Construct注入以及@RequiredArgsConstructor来替代@autowired <br />
 因为Construct对于写unit test case会好很多，而且可以把bean设为为final的，而@autowired是不行的 <br />
 @RequiredArgsConstructor 可以把所有private final且未赋值的，尝试注入
+### @Notnull注解： 
+有两个包都有这个注解，Jakarta Validation与JetBrains Annotation，其中JetBrains Annotation只是一个规范注解，实际不会生效的。在使用 @Validated（Spring 框架提供的注解）或 @Valid 时，只有 jakarta.validation.constraints.NotNull 会生效。<br/>
+
+并且spring是基于代理来做的validation,如果你在同一个类中，方法 A 调用了方法 B，那么方法 B 上的 @NotNull 会失效。<br/>
+对于内部方法，建议采用
+```
+// 做法 1：原生 Java 方式（抛出 NullPointerException）
+    Objects.requireNonNull(id, "ID 不能为空");
+
+    // 做法 2：Spring 断言方式（抛出 IllegalArgumentException）
+    Assert.notNull(id, "ID 不能为空");
+
+```
    ### 抽象类
    抽象类可以声明为bean,但是并不会创建实例
    ### beanDefination
