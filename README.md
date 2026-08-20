@@ -1358,7 +1358,8 @@ MySQL 主从同步（Master-Slave Replication）的核心原理是基于二进�
  objectmapper在convertValue时，默认如果目标属性不存在，会报错。可以通过mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); 解决 <br/>
  在objectmapper将string转成list时，list内的泛型使用typeReference来指定 <br/>
  jackson在转json时，会根据get方法来转换，尤其要注意当命名不符合驼峰的列，可能get方法转成json后，属性名字不一样了<br/>
-
+### json null
+json如果值为null，会对应一个Null的node节点(不是Java的null),如果这个节点去getText会返回字符串"null"。因此除了判断key是否存在，最好还要判断是否为nullNode
 
 ## lombook
    ### 使用
