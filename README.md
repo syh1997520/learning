@@ -1035,6 +1035,24 @@ mongo.getCollection.insertmany则只接受document对象，不会有额外的转
 这样做的目的是将数组中的每个元素转换为单独的文档，以便可以在后续的聚合阶段对这些元素进行进一步的处理。<br/>
 ### mongo多节点
 mongodb，包括MySQL,有多节点时，都可能出现查询时查到从节点导致数据不一致的情况。
+### group
+Mongo $group 会把分组字段放进 _id<br/>
+group时会这个样<br/>
+```
+{
+  $group: {
+    _id: "$country",
+    sum_sales: { $sum: "$sales" }
+  }
+}
+```
+得到的结果为
+```
+[
+  { "_id": "China", "sum_sales": 1000 },
+  { "_id": "USA", "sum_sales": 800 }
+]
+```
 ### trasncation注解
  mongodb的trasncation注解，对于单机mongo是不生效的.<br/>
  注意，transication注解不能在子线程生效
