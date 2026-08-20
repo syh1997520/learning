@@ -1572,7 +1572,8 @@ ag-Grid 是一个功能强大、高性能的前端数据表格组件库，广泛
    edge： 客户端 —(HTTPS)—> Router —(HTTP)—> Backend Pod  只有route跟client进行ssl,后端服务不进行ssl. 后端服务不能只开启 HTTPS（SSL）模式，必须支持非加密的 HTTP 通信。 <br/>
    Passthrough ： 客户端 —(HTTPS)—> Router —(HTTPS)—> Backend Pod    route只负责传递，不负责ssl <br/>
    Re-encrypt： 客户端 —(HTTPS)—> Router —(HTTPS)—> Backend Pod（使用不同的证书） <br/>
-
+### openshift url
+openshift可以访问的url有两种，public的internal的，internal的携带端口访问，只能用于同一个openshift的pod（一般可以直接service name:port来访问）
 
 
 ## DGS graphql
