@@ -145,6 +145,8 @@ Cookie、LocalStorage 和 SessionStorage 的核心区别在于：数据生命周
 cookie: 由服务器或本地设置过期时间，过期前一直有效.  每次 HTTP 请求都会自动携带在 Header 中 <br />
 LocalStorage: 永久有效，除非手动清除或代码删除 <br />
 SessionStorage: 仅在当前标签页有效，关闭标签页或浏览器即清除 <br />
+### xls
+xls文件一般应该为二进制文件，但是如果用的很古早的excel,其本质可能是xml
 ### smtp与esmtp
 
 SMTP（简单邮件传输协议）和 ESMTP（扩展简单邮件传输协议）的核心区别在于安全性（身份验证）和功能扩展性。简单来说，ESMTP 是 SMTP 的“升级强化版”。 esmtp发送时需要验证用户身份<br />
