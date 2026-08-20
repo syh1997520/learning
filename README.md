@@ -115,6 +115,10 @@ http克隆其实也是使用的https协议，不过需要携带用户名密码�
    很多游戏都需要虚拟光驱来运行，用来防盗版和防作弊等行为
    ### gnome
    linux的图形化桌面
+   ### ldap
+LDAP 的全称是 轻量级目录访问协议（Lightweight Directory Access Protocol）。它不是一个运行的软件，而是一种跨平台的开放网络协议 <br/>
+
+一般跟ldap服务器交互时，以jenkins为例，需要设置ldap服务器ip,申请一个账号给jenkins来提供查询，配置查询的根路径，配置查询权限的路径
    ### adb
    adb的全称为Android Debug Bridge. 用来给安卓设备debug用. 可以通过adb软件向安卓设备传输apk
    ### 单元测试与集成测试(integration test)
