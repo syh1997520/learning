@@ -1019,8 +1019,6 @@ rollback时推荐用tag进行rollback,因此每个changelog最好加个tag. <br/
 https://medium.com/mongodb-performance-tuning/tuning-mongodb-transactions-354311ab9ed6
 mongodb如果并发对一行进行更新的话，可能会直接抛出事务异常。需要自己处理。 比如加重试或者加transcation注解
 总结: mongodb不是很适合作为第三方lib的dao repository。对并发性适配比较差
-
-注意，transication注解不能在子线程生效
 ### mongodb背压
 mongodb提供了异步背压机制，允许result像文件流一样，分批去读取 <br/>
 而mysql基本都是同步阻塞的api.当然也可以尝试使用第三方框架来使mysql支持。原理是TCP滑动窗口<br/>
@@ -1037,6 +1035,9 @@ mongo.getCollection.insertmany则只接受document对象，不会有额外的转
 这样做的目的是将数组中的每个元素转换为单独的文档，以便可以在后续的聚合阶段对这些元素进行进一步的处理。<br/>
 ### mongo多节点
 mongodb，包括MySQL,有多节点时，都可能出现查询时查到从节点导致数据不一致的情况。
+### trasncation注解
+ mongodb的trasncation注解，对于单机mongo是不生效的.<br/>
+ 注意，transication注解不能在子线程生效
  ## mongodb session
 mongodb连接后，就不会验证用户名密码了。所以期间如果改密码，是不会下线的 <br/>
 
