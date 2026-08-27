@@ -1961,6 +1961,12 @@ openshift可以访问的url有两种，public的internal的，internal的携带�
    https://rocketmq.apache.org/zh/docs/4.x/producer/04concept1
    ### 与rpc调用的一些区别
    用mq的好处主要是有个队列可以储存消息，而rpc如果不加链路追踪，是看不到的. 并且mq会减少上游的压力(上游不用一直维护一个rpc调用线程的开销)
+   ### 消息堆积
+RocketMQ/Kafka 这种基于 Partition/Queue（队列） 机制的 MQ 中，有一个致命的物理限制：消费者的数量如果大于 Queue 的数量，多出来的消费者是分不到消息的（只能闲置）<br/>
+1.新建临时 Topic：创建一个新的临时 Topic，并把它的 Queue 数量扩大到原来的 10 倍（比如从 4 个扩大到 40 个）。<br/>
+2.上线“搬运工”消费者：紧急临时上线一批 Consumer（不需要执行复杂的业务逻辑，代码里只做一件事：从原 Topic 疯狂拉取消息，不处理，直接转手投递到新的临时 Topic 中）。这一步能以极快的速度把原 Topic 的积压清空。<br/>
+3.十倍并发消费：部署 10 倍数量的真正业务 Consumer 去消费这个新的临时 Topic，积压问题通常能在十几分钟内迅速化解。<br/>
+
    ### 下载与启动
    先启动nameserver(执行.sh文件)，broker通过修改配置文件来实现集群
    https://blog.csdn.net/a58125584s/article/details/124578049
