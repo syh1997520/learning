@@ -1996,7 +1996,9 @@ RocketMQ/Kafka 这种基于 Partition/Queue（队列） 机制的 MQ 中，有�
    https://zhuanlan.zhihu.com/p/554481474
    对于多个下游事务，可以采用广播通知
    事务消息如果消费者失败，会不断重试
-
+  #### 广播消息
+在 RocketMQ 或 RabbitMQ 的广播模式下，MQ 默认是不提供重试机制的，或者重试代价极大 <br />
+为了防止个别 Pod 没收到消息或消费失败导致沦为‘脏数据孤岛’，不要依赖 MQ 的重试。通过‘本地内存短 TTL 强行兜底 + 消费端进程内 Guava Retry 局部重试’的组合拳<br/>
 
 ## service mesh
    springcloud虽然为微服务提供了解决方案，但是也给代码中添加了很多非业务的部分，代码侵入
