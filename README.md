@@ -1974,6 +1974,9 @@ RocketMQ/Kafka 这种基于 Partition/Queue（队列） 机制的 MQ 中，有�
 2.上线“搬运工”消费者：紧急临时上线一批 Consumer（不需要执行复杂的业务逻辑，代码里只做一件事：从原 Topic 疯狂拉取消息，不处理，直接转手投递到新的临时 Topic 中）。这一步能以极快的速度把原 Topic 的积压清空。<br/>
 3.十倍并发消费：部署 10 倍数量的真正业务 Consumer 去消费这个新的临时 Topic，积压问题通常能在十几分钟内迅速化解。<br/>
 
+### rocketmq为什么一个queue对应一个consumer
+RocketMQ 为了追求极致的吞吐量和架构的极简性，在底层设计上做了一次非常彻底的权衡（Trade-off）.为了消灭“分布式锁”和“状态同步”.以及高效地实现批量读取
+
    ### 下载与启动
    先启动nameserver(执行.sh文件)，broker通过修改配置文件来实现集群
    https://blog.csdn.net/a58125584s/article/details/124578049
