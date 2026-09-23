@@ -291,6 +291,9 @@ YGC（Young GC / Minor GC）的核心触发条件是年轻代（Eden 区）空�
    #### java agent
    Java Agent 是 Java 虚拟机提供的一整套后门，通过这套后门可以对虚拟机方方面面进行监控与分析，甚至干预虚拟机的运行
    https://blog.csdn.net/perfect2011/article/details/125594137
+   #### lmbda表达式
+lmbda表达式其实本质上是在.class文件里面生成了一个新的内部类，并且持有一个新的方法。
+所以对于成员变量，生命周期是一致的，可以不需要final. 对于局部变量，编译器会将局部变量作为“参数”传递给动态生成的类，并将其作为“成员变量（属性）”永久保存在 Lambda 对象的堆内存中
    ### 并发编程   
    #### synchronized锁升级
    https://baijiahao.baidu.com/s?id=1740908287236022841&wfr=spider&for=pc
