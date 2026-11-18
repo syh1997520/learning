@@ -286,6 +286,8 @@ YGC（Young GC / Minor GC）的核心触发条件是年轻代（Eden 区）空�
 
 默认最大堆内存（对应 -Xmx）计算公式：物理内存的 1/4（25%）  <br />
 
+堆大小不要直接等于内存大小，因为还要分配内存给对外内存和栈等。可以直接用MaxRAMPercentage=75这样子来做，代表堆内存为容器内存的75%  <br />
+
    #### array.aslist
    在使用Aarrays.asList()生成的list对象，当对对象进行add()方法操作时，会报出UnsupportedOperationException异常问题。
    #### java agent
