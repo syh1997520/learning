@@ -878,6 +878,9 @@ export const routes: Routes = [
    #### DDNS
    动态dns,用于处理ip地址会经常改变的情况(把ip注册到某个服务商，直接用域名访问自己的设备)
    https://zhuanlan.zhihu.com/p/46580280
+
+   ### http
+   http与https的连接都有keep-alive这个参数，代表了没有新的通信后，多久释放掉这个连接，前端发送请求到后端，会优先复用存在的连接，而不是直接建立新的。
    
    ### vpn与proxy
    https://zhuanlan.zhihu.com/p/451193697
