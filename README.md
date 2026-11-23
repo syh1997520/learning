@@ -1743,6 +1743,10 @@ openshift可以访问的url有两种，public的internal的，internal的携带�
    然后引入springboot的mysql包，里面会有写好的bean
    #### 起步依赖
    springboot会有个parent maven依赖,里面会有个dependencymanagement,里面声明了很多jar包，他们之间是兼容的。如果想修改parent里面某个包的版本，需要写在本pom的dependencymanagement里面。
+   #### 内嵌容器
+   默认内嵌 Tomcat/Jetty/Undertow，打成 fat jar 后 `java -jar` 直接运行，不需要单独部署 WAR 包到外部容器。这是 Spring Boot 相对传统 Spring 最直观的部署体验改进。
+   #### 外部化配置与 Profile
+   `application.yml/properties` 支持多环境 profile（`application-dev.yml`）、按优先级覆盖（命令行参数 > 环境变量 > 配置文件）
    ### server.ssl
    spring可以通过server.ssl. xxx(key-store/trust-store)来配置http请求使用的keystore/trust-store
    
