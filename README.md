@@ -1737,6 +1737,9 @@ openshift可以访问的url有两种，public的internal的，internal的携带�
    ### 启动过程
     @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
     spring.factories文件: https://blog.csdn.net/itScholar001/article/details/131394751
+   ### 自动配置
+   比如可以直接把db信息配在yml里面，原理是 `@EnableAutoConfiguration` 会读取各个 jar 包里的 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`（老版本是 `spring.factories`），配合 `@ConditionalOnXxx` 条件注解决定装配哪些 Bean。
+   然后引入springboot的mysql包，里面会有写好的bean
    ### server.ssl
    spring可以通过server.ssl. xxx(key-store/trust-store)来配置http请求使用的keystore/trust-store
    
