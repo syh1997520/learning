@@ -1737,6 +1737,15 @@ openshift可以访问的url有两种，public的internal的，internal的携带�
    https://www.kancloud.cn/mini-enjoy/sprintboot/3067851
    https://blog.csdn.net/kfepiza/article/details/131297093
    通过profile来指定环境时，会先加载application.yml，再去加载相应的环境配置，所以会产生覆盖
+   ### CrossOrigin
+   可以标在类上（作用于该 Controller 所有方法）或方法上。注解方式的配置最终会被转换成 `CorsConfiguration`
+   ```
+@CrossOrigin(origins = "https://app.example.com",
+             methods = {RequestMethod.GET, RequestMethod.POST},
+             allowedHeaders = "*",
+             allowCredentials = "true",
+             maxAge = 3600)
+   ```
    ### 启动过程
     @springbootApplication: https://blog.csdn.net/qq_41934990/article/details/130433959
     spring.factories文件: https://blog.csdn.net/itScholar001/article/details/131394751
